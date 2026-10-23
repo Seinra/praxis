@@ -10,15 +10,17 @@
 /// | a success-or-failure outcome | `result` ([Result], [Ok], [Failure]) |
 /// | a maybe-present value | `opt` ([Opt], [Some], [None]) |
 /// | a list to transform, find, or fold | lists ([findElement], [minElement], [maxElement], [chunkElements], [partitionElements]) |
+/// | a lazy `Iterable` pipeline to pull on demand | `iterx` ([zipIterables], [chunkedIterable], [windowedIterable], [cycleIterable], [repeatElement], [deduplicateAdjacent]) — reach for `iterx` when the source is an `Iterable` or the pipeline should stay lazy; reach for the eager `lists` helpers when the input is already a `List` and you want a finished value in one pass |
 /// | distinct values to combine or compare | `set` ([symmetricDifference], [isSubsetOf], [isSupersetOf], [isDisjointFrom], [hasSameMembers]) |
 /// | a builtin map to reshape | `mapx` ([invertEntries], [pickEntries], [omitEntries], [mapValues], [mapKeys], [groupEntriesBy]) |
 ///
-/// Skeleton ships `result` + `opt` + lists, the set slice ships `set`, and
-/// the mapx slice ships `mapx`; everything else is declared future scope, never stubbed (see `README.md`).
+/// Skeleton ships `result` + `opt` + lists, the set slice ships `set`, the
+/// mapx slice ships `mapx`, and the iterx slice ships `iterx`; everything else is declared future scope, never stubbed (see `README.md`).
 ///
 /// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
 library;
 
+export 'src/iterx.dart';
 export 'src/lists.dart';
 export 'src/mapx.dart';
 export 'src/opt.dart';
