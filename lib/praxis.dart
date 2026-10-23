@@ -10,9 +10,10 @@
 /// | a success-or-failure outcome | `result` ([Result], [Ok], [Failure]) |
 /// | a maybe-present value | `opt` ([Opt], [Some], [None]) |
 /// | a list to transform, find, or fold | lists ([findElement], [minElement], [maxElement], [chunkElements], [partitionElements]) |
+/// | distinct values to combine or compare | `set` ([symmetricDifference], [isSubsetOf], [isSupersetOf], [isDisjointFrom], [hasSameMembers]) |
 ///
-/// Skeleton ships `result` + `opt` + lists; everything else is declared
-/// future scope, never stubbed (see `README.md`).
+/// Skeleton ships `result` + `opt` + lists and the set slice ships `set`;
+/// everything else is declared future scope, never stubbed (see `README.md`).
 ///
 /// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
 library;
@@ -20,3 +21,4 @@ library;
 export 'src/lists.dart';
 export 'src/opt.dart';
 export 'src/result.dart';
+export 'src/set.dart';
