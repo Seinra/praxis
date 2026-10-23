@@ -1,0 +1,38 @@
+# praxis-skeleton — `result` + `opt` + lists green with docs
+
+First library slice. Ships the skeleton only; everything else stays declared future scope, never stubbed.
+
+## Specs
+
+- S1 (name): the library is named Praxis — "Praxis sera el nombre de la libreria".
+- S2 (absence): records `(value, present)` mirroring Axiom's `(T, bool)` — owner picked "(a) Records (valor, presente)".
+- S3 (async): skeleton is sync-only — owner picked "Decidir en skeleton" (the `flow` async design opens with the `flow` slice).
+- S4 (codecs): handwritten manual codecs + migration guide later — owner picked "Manual + guía migr." after the criollo briefing.
+- S5 (lints): strict analyzer + `custom_lint` house rules — owner picked "analyze + custom" (`custom_lint` plugin parked per STATUS debt until the new plugin-system migration).
+- S6 (release): path/git dependency while private, publish (MIT) at the library bar — owner picked "Path local y luego pub".
+- S7 (library-first): ship thesis-fitting helpers without waiting for DLC consumers — "no frenes caracteristicas porque 'no hay una clase en el DLC de Catalyst que la consuma', porque obviamente no la va a haber, las clases se crean sobre la libreria ya terminada".
+- S8 (loop): run under `PRAXIS_LOOP.md`, mirroring Axiom's loop — "vas a necesitar crear un loop vos tambien, similar al que tiene Axiom, usando loop-engineering, cognitive-doc-design, foundry-docs y foundry-craft".
+- S9 (fidelity): every slice contrasted against how Axiom was built — "contrastalo con como se construyo Axiom, podes usar los MCP para explorar ese repo local, asi te quedas 100% seguro de estar respetando la thesis. O de si mi respuestas fueron correctas o no".
+
+## Tasks
+
+| ID | Specs | Route | Commit |
+| --- | --- | --- | --- |
+| T1 | S1, S2, S9 | bounded writer, `lib/src/result.dart` + `test/result_test.dart` | — |
+| T2 | S1, S2, S9 | bounded writer, `lib/src/opt.dart` + `test/opt_test.dart` | — |
+| T3 | S1, S2, S7, S9 | bounded writer, `lib/src/lists.dart` + `test/lists_test.dart` | — |
+| T4 | S4, S6 | orchestrator: barrel export, README ships-now, scratch Catalyst pilot note, Docs-sync verdict + close-out | — |
+
+T1–T3 launch together (disjoint Allowed edit surfaces, one package per writer); T4 closes. Each task: RED → GREEN → TRIANGULATE, Which-table row per export, CI-executed examples, purity + never-mutate pins, `dart doc` clean.
+
+## Log
+
+- L1 (owner request, verbatim): "Proyecto desde 0 hermano, tenes un archivo que te indica la idea general. Vamos a armar una libreria de genericos de Dart basandonos en el archivito thesis. Tenes una libreria hermana de genericos en Go que es de donde viene esa thesis, que es Axiom D:\\Proyectos\\Axiom, para que te vayas guiando. Lee el skill-registry y te recuerdo que vas a necesitar crear un loop vos tambien, similar al que tiene Axiom, usando loop-engineering, cognitive-doc-design, foundry-docs y foundry-craft. En resumen esta libreria se crea para que Catalyst, mi app educativa, pueda crear clases sobre genericos en Dart basandose en esta libreria que estamos creando, Axiom fue creada por le mismo motivo. Obviamente vamos a empezar en repo privado y cuando todo este completo se hace publico, dado que los alumnos van a necesitar consumir la libreria, tal cual como hicimos con Axiom. Acordate que debes seguir la thesis, primero la libreria, mucho despues vienen las clases, asi que no frenes caracteristicas porque \"no hay una clase en el DLC de Catalyst que la consuma\", porque obviamente no la va a haber, las clases se crean sobre la libreria ya terminada."
+- L2 (2026-10-23): thesis ratified → `VISION.md`; scaffold green (`dart pub get` 63 deps ok, `dart analyze` clean, `dart format` clean); loop v0.1 written.
+- L4 (2026-10-23, owner addendum, verbatim): "Eso si, tenes que tener en cuenta que Dart siempre se usa en conjunto con Flutter eh! Si bien esta es una libreria de genericos de Dart, este lenguaje tiene esa pequeña gran caracteristica donde su framework es mas usado que el lenguaje en si. Por ende la libreria debe tenerlo en cuenta en los niveles que corresponda." Posture recorded in ARCHITECTURE (pure-Dart core importable from Flutter + Flutter-flavored guides + lifecycle-safe async later); no new package, no Flutter import in core.
+- L9 (2026-10-23): verifier Go (0 BLOCKER / 0 WARNING, 1 SUGGESTION adopted: library-level doc added to `lib/src/result.dart` for one-voice package docs with `opt`/`lists`); adopted inline, suite + analyzer re-greened below.
+- L5 (2026-10-23): T3 verified by parent — full read-back of `lib/src/lists.dart` (Which-tables, gap justifications with REFERENCES IDs, purity, `(value, present)` discipline hold), `dart test test/lists_test.dart` 44/44 green, scoped `dart analyze` clean. Review_focus carried to T4: `(value, present)` field-name consistency across T1/T2, suffixed `minElement`/`maxElement` verdict. T1's `result.dart:179` warning stays T1's surface — untouched.
+- L3 (2026-10-23): Axiom contrast verdict — owner answers hold: (a) records matches `slice.go` `(T, bool)` pins; async deferral matches context-bound `flow`; manual codecs match zero-codegen + handwritten JSON/DB edges; strict+custom matches minimal golangci set; path-then-publish matches replace-then-MIT. No answer corrected.
+- L6 (2026-10-23, T4 naming verdicts — record only, zero renames): canonical `(value, present)` named record fields hold on `findElement`/`minElement`/`maxElement` (`lib/src/lists.dart:54,96,141`, read as `.present`/`.value` in `test/lists_test.dart`); `Opt.split` is intentionally positional `(Held?, bool)` (`lib/src/opt.dart:134,269,336`), destructured `(heldValue, presentFlag)` in docs/tests — not a named-field site. Suffixed `minElement`/`maxElement` keep the documented `dart:math` two-scalar `min`/`max` collision rationale in their doc comments. Noun `Failure` + `Result.failure` factory (`lib/src/result.dart:77,332`) mirrors `Ok` + `Result.ok` (`:57,271`). No thesis invariant-3 ban triggered (`value`/`present` are the ratified OrNull contract, ARCHITECTURE frozen decision 2) — keep all names.
+- L7 (2026-10-23, T4 scratch pilot — `.tmp/pilot.dart`, gitignored, never committed): `dart .tmp/pilot.dart` → `exit=0`, output `ok→getOrElse: 21` / `present→valueOr: 4` / `findElement→present: true value=91` (one happy path per package: ok→getOrElse, present→valueOr, findElement→present; asserts held).
+- L8 (2026-10-23, T4 docs-sync verdict, VALIDATION_GATES rows 1–6): (1) checked — `ls lib/src/*.dart` → 3 files, README Ships-now cell names `result`+`opt`+lists. (2) N/A — no new package in T4; skeleton packages arrived via T1–T3, this unit wires the barrel + flips the index and re-executes the full suite (120/120 green). (3) checked — barrel `Which package?` table (`lib/praxis.dart:6`) rows resolve to exports whose package docs carry the outcome tables (`result.dart:9`, `opt` package-doc table, `lists.dart:10`). (4) checked — no `docs/` dir; README contradiction scan (`out-of-scope|YAGNI|no result|no opt|no lists|never ship`) → zero hits. (5) checked — the one stale line (`Ships now: scaffold only`) leaves in this unit; all 14 declared-future rows byte-identical. (6) checked — `loop-config.yaml` read-back `currentFeature: odd/tasks/praxis-skeleton.md`.
