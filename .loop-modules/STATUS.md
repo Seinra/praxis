@@ -19,3 +19,4 @@ Progress log + debt ledger. Columns: Item, Phase, Ceiling, Upgrade Path. NEVER d
 | custom_lint plugin activation | parked | legacy plugin deprecated in Dart 3.13; dep pinned `^0.7.0` | migrate to new analyzer plugin system, then re-enable in `analysis_options.yaml` |
 | Branch protection / remote | blocked | no remote yet (private local repo) | owner infra decision at publish time; meanwhile discipline-gated work |
 | Catalyst path pilot | T-phase | scratch only | versioned release + pin before any Catalyst commit |
+| R1 result-slice advisories (R2-001 WARNING + 7 SUGGESTIONs) | parked | informational, receipt stands, no correction offered | later slice adopts/dismisses with evidence; never a review rerun |
