@@ -1,0 +1,21 @@
+# STATUS
+
+Progress log + debt ledger. Columns: Item, Phase, Ceiling, Upgrade Path. NEVER design prose here.
+
+## Log
+
+| Date | Item | Phase | Note |
+| --- | --- | --- | --- |
+| 2026-10-23 | thesis ratified → VISION.md | PLAN | owner decisions: name `Praxis` + 1–6 (records-OrNull, async-deferred, manual-codecs, strict+custom_lint, path-then-publish); `dart --version` 3.13.5 |
+| 2026-10-23 | scaffold: pubspec/analysis/README/CONTRIBUTING/LICENSE/lib | IMPLEMENT | `dependencies: {}`, strict lints; `dart pub get` 63 deps ok; `dart analyze` clean; `dart format` clean |
+| 2026-10-23 | loop hub + 7 modules + VISION + config | IMPLEMENT | PRAXIS_LOOP.md v0.1 + TECH_STACK/REFERENCES/ARCHITECTURE/REVIEW_PACKS/VALIDATION_GATES/SUCCESS_METRICS + this file; mirrors AXIOM_LOOP v0.3 governance |
+| 2026-10-23 | Axiom contrast (thesis fidelity) | VALIDATE | `(T, bool)` pins (FindSlice/Min/Max/Average), zero codegen, context-bound flow → deferral holds, manual JSON codecs, minimal lint set, CONTRIBUTING decline rows |
+| 2026-10-23 | skeleton T1–T4 done + verifier Go | VALIDATE | 120/120 tests, analyze/format clean, docs-sync 6/6, pilot exit 0; 1 SUGGESTION adopted (result library doc); no commits, push/PR owner-gated |
+
+## Debt ledger
+
+| Item | Phase | Ceiling | Upgrade Path |
+| --- | --- | --- | --- |
+| custom_lint plugin activation | parked | legacy plugin deprecated in Dart 3.13; dep pinned `^0.7.0` | migrate to new analyzer plugin system, then re-enable in `analysis_options.yaml` |
+| Branch protection / remote | blocked | no remote yet (private local repo) | owner infra decision at publish time; meanwhile discipline-gated work |
+| Catalyst path pilot | T-phase | scratch only | versioned release + pin before any Catalyst commit |
