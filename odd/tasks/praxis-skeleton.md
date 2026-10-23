@@ -18,10 +18,10 @@ First library slice. Ships the skeleton only; everything else stays declared fut
 
 | ID | Specs | Route | Commit |
 | --- | --- | --- | --- |
-| T1 | S1, S2, S9 | bounded writer, `lib/src/result.dart` + `test/result_test.dart` | — |
-| T2 | S1, S2, S9 | bounded writer, `lib/src/opt.dart` + `test/opt_test.dart` | — |
-| T3 | S1, S2, S7, S9 | bounded writer, `lib/src/lists.dart` + `test/lists_test.dart` | — |
-| T4 | S4, S6 | orchestrator: barrel export, README ships-now, scratch Catalyst pilot note, Docs-sync verdict + close-out | — |
+| T1 | S1, S2, S9 | bounded writer, `lib/src/result.dart` + `test/result_test.dart` | d6aa30b |
+| T2 | S1, S2, S9 | bounded writer, `lib/src/opt.dart` + `test/opt_test.dart` | 8c86815 |
+| T3 | S1, S2, S7, S9 | bounded writer, `lib/src/lists.dart` + `test/lists_test.dart` | b05409f |
+| T4 | S4, S6 | orchestrator: barrel export, README ships-now, scratch Catalyst pilot note, Docs-sync verdict + close-out | b696742 |
 
 T1–T3 launch together (disjoint Allowed edit surfaces, one package per writer); T4 closes. Each task: RED → GREEN → TRIANGULATE, Which-table row per export, CI-executed examples, purity + never-mutate pins, `dart doc` clean.
 
@@ -31,6 +31,7 @@ T1–T3 launch together (disjoint Allowed edit surfaces, one package per writer)
 - L2 (2026-10-23): thesis ratified → `VISION.md`; scaffold green (`dart pub get` 63 deps ok, `dart analyze` clean, `dart format` clean); loop v0.1 written.
 - L4 (2026-10-23, owner addendum, verbatim): "Eso si, tenes que tener en cuenta que Dart siempre se usa en conjunto con Flutter eh! Si bien esta es una libreria de genericos de Dart, este lenguaje tiene esa pequeña gran caracteristica donde su framework es mas usado que el lenguaje en si. Por ende la libreria debe tenerlo en cuenta en los niveles que corresponda." Posture recorded in ARCHITECTURE (pure-Dart core importable from Flutter + Flutter-flavored guides + lifecycle-safe async later); no new package, no Flutter import in core.
 - L9 (2026-10-23): verifier Go (0 BLOCKER / 0 WARNING, 1 SUGGESTION adopted: library-level doc added to `lib/src/result.dart` for one-voice package docs with `opt`/`lists`); adopted inline, suite + analyzer re-greened below.
+- L10 (2026-10-23): work-unit chain on main — 6109a9f scaffold, f8b3a26 thesis/VISION, 0989ed2 loop, d6aa30b T1, 8c86815 T2, b05409f T3, b696742 T4; Commit column filled from `git log`; tree clean, no push (owner-gated).
 - L5 (2026-10-23): T3 verified by parent — full read-back of `lib/src/lists.dart` (Which-tables, gap justifications with REFERENCES IDs, purity, `(value, present)` discipline hold), `dart test test/lists_test.dart` 44/44 green, scoped `dart analyze` clean. Review_focus carried to T4: `(value, present)` field-name consistency across T1/T2, suffixed `minElement`/`maxElement` verdict. T1's `result.dart:179` warning stays T1's surface — untouched.
 - L3 (2026-10-23): Axiom contrast verdict — owner answers hold: (a) records matches `slice.go` `(T, bool)` pins; async deferral matches context-bound `flow`; manual codecs match zero-codegen + handwritten JSON/DB edges; strict+custom matches minimal golangci set; path-then-publish matches replace-then-MIT. No answer corrected.
 - L6 (2026-10-23, T4 naming verdicts — record only, zero renames): canonical `(value, present)` named record fields hold on `findElement`/`minElement`/`maxElement` (`lib/src/lists.dart:54,96,141`, read as `.present`/`.value` in `test/lists_test.dart`); `Opt.split` is intentionally positional `(Held?, bool)` (`lib/src/opt.dart:134,269,336`), destructured `(heldValue, presentFlag)` in docs/tests — not a named-field site. Suffixed `minElement`/`maxElement` keep the documented `dart:math` two-scalar `min`/`max` collision rationale in their doc comments. Noun `Failure` + `Result.failure` factory (`lib/src/result.dart:77,332`) mirrors `Ok` + `Result.ok` (`:57,271`). No thesis invariant-3 ban triggered (`value`/`present` are the ratified OrNull contract, ARCHITECTURE frozen decision 2) — keep all names.
