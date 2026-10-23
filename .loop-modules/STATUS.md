@@ -24,3 +24,4 @@ Progress log + debt ledger. Columns: Item, Phase, Ceiling, Upgrade Path. NEVER d
 | R3 lists-slice advisories (3 SUGGESTIONs) | parked | informational, receipt stands, no correction offered; own row, R1/R2 untouched | later slice adopts/dismisses with evidence; never a review rerun |
 | R4 close-out advisories (2 WARNING + 2 SUGGESTIONs) | parked | informational, receipt stands, no correction offered; own row, R1/R2/R3 untouched | later slice adopts/dismisses with evidence; never a review rerun |
 | R5 set-slice advisories (4 SUGGESTIONs) | parked | informational, receipt stands, no correction offered; own row, R1–R4 untouched | later slice adopts/dismisses with evidence; never a review rerun |
+| R6 mapx-slice advisories (1 WARNING + 2 SUGGESTIONs) | parked | informational, receipt stands, no correction offered; own row, R1–R5 untouched | later slice adopts/dismisses with evidence; never a review rerun |
