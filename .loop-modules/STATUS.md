@@ -17,8 +17,9 @@ Progress log + debt ledger. Columns: Item, Phase, Ceiling, Upgrade Path. NEVER d
 | Item | Phase | Ceiling | Upgrade Path |
 | --- | --- | --- | --- |
 | custom_lint plugin activation | parked | legacy plugin deprecated in Dart 3.13; dep pinned `^0.7.0` | migrate to new analyzer plugin system, then re-enable in `analysis_options.yaml` |
-| Branch protection / remote | blocked | no remote yet (private local repo) | owner infra decision at publish time; meanwhile discipline-gated work |
+| Branch protection / remote | done | `Seinra/praxis` private created 2026-10-23, main pushed (11 commits), tracks `origin/main` | branch protection at publish time; meanwhile discipline-gated work |
 | Catalyst path pilot | T-phase | scratch only | versioned release + pin before any Catalyst commit |
 | R1 result-slice advisories (R2-001 WARNING + 7 SUGGESTIONs) | parked | informational, receipt stands, no correction offered | later slice adopts/dismisses with evidence; never a review rerun |
 | R2 opt-slice advisories (R2-import-package-name WARNING + 5 SUGGESTIONs) | parked | informational, receipt stands, no correction offered; own row, R1 untouched | later slice adopts/dismisses with evidence; never a review rerun |
 | R3 lists-slice advisories (3 SUGGESTIONs) | parked | informational, receipt stands, no correction offered; own row, R1/R2 untouched | later slice adopts/dismisses with evidence; never a review rerun |
+| R4 close-out advisories (2 WARNING + 2 SUGGESTIONs) | parked | informational, receipt stands, no correction offered; own row, R1/R2/R3 untouched | later slice adopts/dismisses with evidence; never a review rerun |
