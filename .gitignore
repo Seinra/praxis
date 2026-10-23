@@ -1,0 +1,37 @@
+# Dart build output + package cache
+.dart_tool/
+.packages
+build/
+doc/api/
+
+# Test output
+*.out
+coverage/
+.lcov/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local scratch for pilot verification (never commit)
+/.tmp/
+
+# Harness state: keys are secrets, caches are local
+.crystallize/keys/
+.atl/.skill-registry.cache.json
+
+# Local search/code indexes (regenerable, never commit)
+.zvec-grep/
+.codegraph/
+.crystallize/raw/
+
+# Dart libraries don't commit the lockfile (apps do)
+pubspec.lock
+
+# Published artifacts (private until the v0 bar — VISION invariant 6)

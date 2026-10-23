@@ -1,0 +1,15 @@
+name: praxis
+description: Small, dependable typed helpers for Dart generics.
+version: 0.1.0-dev
+homepage: https://github.com/seinra/praxis
+
+environment:
+  sdk: ^3.13.0
+
+# SDK-first (VISION invariant 1): no third-party runtime dependencies.
+dependencies: {}
+
+dev_dependencies:
+  test: ^1.25.0
+  lints: ^5.0.0
+  custom_lint: ^0.7.0

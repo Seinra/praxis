@@ -1,0 +1,22 @@
+# Praxis analysis baseline (owner decision 2026-10-23: strict + custom_lint).
+include: package:lints/recommended.yaml
+
+analyzer:
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
+  # custom_lint plugin parked: Dart 3.13 deprecates legacy analyzer plugins
+  # (analysis_options_deprecated_plugins) and custom_lint 0.7.x still uses
+  # it. The dev_dependency stays pinned; activation waits on the new plugin
+  # system migration. Tracked in .loop-modules/STATUS.md debt ledger.
+
+linter:
+  rules:
+    # House rules with analyzer support (thesis invariant 3 + quality bar):
+    public_member_api_docs: true
+    always_declare_return_types: true
+    avoid_dynamic_calls: true
+    no_wildcard_variable_uses: true
+    prefer_single_quotes: true
+    directives_ordering: true
