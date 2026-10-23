@@ -14,8 +14,8 @@ Second library slice (first wall after the skeleton). Ships the `set` package on
 
 | ID | Specs | Route | Commit |
 | --- | --- | --- | --- |
-| T1 | S1, S2, S3, S5 | bounded writer, `lib/src/set.dart` + `test/set_test.dart` | b2ade47 |
-| T2 | S4 | orchestrator: barrel, README, pilot, docs-sync, loop-config pointer, work-unit commit | b2ade47 |
+| T1 | S1, S2, S3, S5 | bounded writer, `lib/src/set.dart` + `test/set_test.dart` | 4753c03 |
+| T2 | S4 | orchestrator: barrel, README, pilot, docs-sync, loop-config pointer, work-unit commit | 4753c03 |
 
 T1 ships the package (RED → GREEN → TRIANGULATE, Which-table per export, CI-executed examples, purity + never-mutate pins, `dart doc` clean). T2 closes (barrel export, README row flip for `set`, pilot happy path, docs-sync rows, commit on this branch).
 

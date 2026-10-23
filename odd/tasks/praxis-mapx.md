@@ -14,8 +14,8 @@ Third library slice (second wall; completes the `lists` → `set` → `mapx` col
 
 | ID | Specs | Route | Commit |
 | --- | --- | --- | --- |
-| T1 | S1, S2, S3, S5 | bounded writer, `lib/src/mapx.dart` + `test/mapx_test.dart` | 1504fc9 |
-| T2 | S4 | orchestrator: barrel, README, pilot, docs-sync, loop-config pointer, work-unit commit | 1504fc9 |
+| T1 | S1, S2, S3, S5 | bounded writer, `lib/src/mapx.dart` + `test/mapx_test.dart` | 9d8a5bd |
+| T2 | S4 | orchestrator: barrel, README, pilot, docs-sync, loop-config pointer, work-unit commit | 9d8a5bd |
 
 T1 ships the package (RED → GREEN → TRIANGULATE, Which-table per export, CI-executed examples, purity + never-mutate pins, `dart doc` clean). T2 closes (barrel export, README row flip for `mapx`, pilot happy path, docs-sync rows, commit on this branch).
 
@@ -28,4 +28,4 @@ T1 ships the package (RED → GREEN → TRIANGULATE, Which-table per export, CI-
 - L5 (2026-10-23, T2 docs-sync verdict 6/6): row 1 checked (`lib/src` holds 5 non-test `.dart` — lists, mapx, opt, result, set — and README Ships-now names all 5); row 2 checked (this unit carries the new-package wiring — `lib/praxis.dart` barrel export + Which-row, README index row flip, executed suite `dart test test/mapx_test.dart` 40/40); row 3 checked (`invertEntries` Which-row in barrel `lib/praxis.dart:14` and package Which-table `lib/src/mapx.dart:14`; no separate family guide exists — no `docs/` dir); row 4 checked (zero `no mapx` / out-of-scope hits across `README.md` + `lib/praxis.dart`); row 5 checked (`mapx` declared-future row leaves in this unit's README diff); row 6 checked (`loop-config.yaml` `currentFeature: odd/tasks/praxis-mapx.md`, set at T0).
 - L7 (2026-10-23, parent mutation probe, uncommitted): inverted one `containsKey` in `pickEntries` → suite went red (+33 -7, incl. documented example); reverted → 40/40 green. Oracles are independent; `git status` confirms zero trace left in `lib/src/mapx.dart`.
 - L8 (2026-10-23): R6 native review of the mapx slice burned — lineage review-899ea61284f164b1 APPROVED + burned (readability+reliability, 732 lines, group 2/2 clean via pi_host_relay, no resubmits); 3 advisories parked informational in their OWN ledger row (R2-mapkeys-collision-doc WARNING mapx.dart:197-200 + R2-entries-param-name and R2-pick-as-cast SUGGESTIONs) — skeleton rows R1–R4 and R5 untouched, no finding overwritten; scratch worktree removed; delivery per ordinary policy.
-- L6 (2026-10-23, work-unit record): T1+T2 land together in `1504fc9` (731 authored lines, past the ~400 advisory slice — kept whole per keep-tests-with-code, same disposition as set L7; native review takes it as one 2-lens candidate). Parent re-ran the full suite on the final state (`dart test` 209/209 green) before committing.
+- L6 (2026-10-23, work-unit record): T1+T2 land together in `9d8a5bd` (731 authored lines, past the ~400 advisory slice — kept whole per keep-tests-with-code, same disposition as set L7; native review takes it as one 2-lens candidate). Parent re-ran the full suite on the final state (`dart test` 209/209 green) before committing.
