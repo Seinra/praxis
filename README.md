@@ -36,7 +36,7 @@ everything else is declared future scope (one ODD feature per package).
 | a maybe-present value | `opt` | skeleton — shipped |
 | a list to transform, find, or fold | lists | skeleton — shipped |
 | two typed sides (left / right) | `either` | declared future (same gate as Axiom's) |
-| a builtin map to reshape | `mapx` | declared future |
+| a builtin map to reshape | `mapx` | mapx — shipped |
 | distinct values to combine or compare | `set` | set — shipped |
 | a lazy `Iterable` pipeline | `iterx` | declared future |
 | predicates to combine (And / Or / Not) | `valid` | declared future |
@@ -66,7 +66,7 @@ mirrors Axiom's `(T, bool)`).
 | Topic | Decision |
 | --- | --- |
 | Package / toolchain | `praxis`, Dart `^3.13.0` (records, patterns, sealed types) |
-| Ships now | skeleton: `result` + `opt` + lists (`odd/tasks/praxis-skeleton.md`); set slice: `set` (`odd/tasks/praxis-set.md`) |
+| Ships now | skeleton: `result` + `opt` + lists (`odd/tasks/praxis-skeleton.md`); set slice: `set` (`odd/tasks/praxis-set.md`); mapx slice: `mapx` (`odd/tasks/praxis-mapx.md`) |
 | Rules | SDK-first (`dart:core`/`dart:collection`/`dart:async` before hand-rolled); typed API, `dynamic` only at codec edges; grep-able names (no `data`/`item`/`res`); doc comment on every export + one CI-executed example per package happy path; pure helpers (never mutate inputs) |
 | Loop | `PRAXIS_LOOP.md` + `.loop-modules/` + `VISION.md` + `loop-config.yaml`; ODD-tracked in `odd/tasks/` |
 | Declared future (owner-gated) | new packages need an explicit owner package-creation call before any ODD — curriculum need gates helpers, never speculative generality |
