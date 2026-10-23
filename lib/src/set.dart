@@ -25,7 +25,7 @@
 /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
 library;
 
-/// Returns the members held by exactly one of [firstSets] or [secondSets].
+/// Returns the members held by exactly one of [firstMembers] or [secondMembers].
 ///
 /// | When you want to ...             | Reach for ...         |
 /// | -------------------------------- | --------------------- |
@@ -39,33 +39,33 @@ library;
 /// precedent (AXIOM-SISTER).
 ///
 /// Returns a fresh empty set when both sides match or both are empty.
-/// Never mutates [firstSets] or [secondSets].
+/// Never mutates [firstMembers] or [secondMembers].
 ///
 /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
-/// final differed = symmetricDifference(<int>{1, 2, 3}, <int>{3, 4});
-/// print(differed.containsAll(<int>{1, 2, 4})); // true
+/// final difference = symmetricDifference(<int>{1, 2, 3}, <int>{3, 4});
+/// print(difference.containsAll(<int>{1, 2, 4})); // true
 /// ```
 Set<Element> symmetricDifference<Element>(
-  Set<Element> firstSets,
-  Set<Element> secondSets,
+  Set<Element> firstMembers,
+  Set<Element> secondMembers,
 ) {
-  final Set<Element> differed = <Element>{};
-  for (final Element candidateMember in firstSets) {
-    if (!secondSets.contains(candidateMember)) {
-      differed.add(candidateMember);
+  final Set<Element> difference = <Element>{};
+  for (final Element candidateMember in firstMembers) {
+    if (!secondMembers.contains(candidateMember)) {
+      difference.add(candidateMember);
     }
   }
-  for (final Element candidateMember in secondSets) {
-    if (!firstSets.contains(candidateMember)) {
-      differed.add(candidateMember);
+  for (final Element candidateMember in secondMembers) {
+    if (!firstMembers.contains(candidateMember)) {
+      difference.add(candidateMember);
     }
   }
-  return differed;
+  return difference;
 }
 
-/// Reports whether every member of [firstSets] is held by [secondSets].
+/// Reports whether every member of [firstMembers] is held by [secondMembers].
 ///
 /// | When you want to ...             | Reach for ... |
 /// | -------------------------------- | ------------- |
@@ -79,27 +79,30 @@ Set<Element> symmetricDifference<Element>(
 /// inclusion order reads left to right, mirroring the Axiom `set`
 /// IsSubsetOf precedent (AXIOM-SISTER).
 ///
-/// Returns `true` when [firstSets] is empty: an empty side adds no
-/// counterexample. Never mutates [firstSets] or [secondSets].
+/// Returns `true` when [firstMembers] is empty: an empty side adds no
+/// counterexample. Never mutates [firstMembers] or [secondMembers].
 ///
 /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// print(isSubsetOf(<int>{1, 2}, <int>{1, 2, 3})); // true
 /// ```
-bool isSubsetOf<Element>(Set<Element> firstSets, Set<Element> secondSets) {
-  if (firstSets.length > secondSets.length) {
+bool isSubsetOf<Element>(
+  Set<Element> firstMembers,
+  Set<Element> secondMembers,
+) {
+  if (firstMembers.length > secondMembers.length) {
     return false;
   }
-  for (final Element candidateMember in firstSets) {
-    if (!secondSets.contains(candidateMember)) {
+  for (final Element candidateMember in firstMembers) {
+    if (!secondMembers.contains(candidateMember)) {
       return false;
     }
   }
   return true;
 }
 
-/// Reports whether every member of [secondSets] is held by [firstSets].
+/// Reports whether every member of [secondMembers] is held by [firstMembers].
 ///
 /// | When you want to ...                  | Reach for ...   |
 /// | ------------------------------------- | --------------- |
@@ -112,19 +115,22 @@ bool isSubsetOf<Element>(Set<Element> firstSets, Set<Element> secondSets) {
 /// the swapped subset check, mirroring the Axiom `set` IsSupersetOf
 /// precedent (AXIOM-SISTER).
 ///
-/// Returns `true` when [secondSets] is empty: nothing promises nothing
-/// to cover. Never mutates [firstSets] or [secondSets].
+/// Returns `true` when [secondMembers] is empty: nothing promises nothing
+/// to cover. Never mutates [firstMembers] or [secondMembers].
 ///
 /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// print(isSupersetOf(<int>{1, 2, 3}, <int>{1, 2})); // true
 /// ```
-bool isSupersetOf<Element>(Set<Element> firstSets, Set<Element> secondSets) {
-  return isSubsetOf<Element>(secondSets, firstSets);
+bool isSupersetOf<Element>(
+  Set<Element> firstMembers,
+  Set<Element> secondMembers,
+) {
+  return isSubsetOf<Element>(secondMembers, firstMembers);
 }
 
-/// Reports whether [firstSets] and [secondSets] share no member.
+/// Reports whether [firstMembers] and [secondMembers] share no member.
 ///
 /// | When you want to ...              | Reach for ...    |
 /// | -------------------------------- | ---------------- |
@@ -138,19 +144,22 @@ bool isSupersetOf<Element>(Set<Element> firstSets, Set<Element> secondSets) {
 /// precedent (AXIOM-SISTER).
 ///
 /// Returns `true` when either side is empty: an empty side shares
-/// nothing. Never mutates [firstSets] or [secondSets].
+/// nothing. Never mutates [firstMembers] or [secondMembers].
 ///
 /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// print(isDisjointFrom(<int>{1, 2}, <int>{3, 4})); // true
 /// ```
-bool isDisjointFrom<Element>(Set<Element> firstSets, Set<Element> secondSets) {
-  Set<Element> smallerSets = firstSets;
-  Set<Element> largerSets = secondSets;
+bool isDisjointFrom<Element>(
+  Set<Element> firstMembers,
+  Set<Element> secondMembers,
+) {
+  Set<Element> smallerSets = firstMembers;
+  Set<Element> largerSets = secondMembers;
   if (smallerSets.length > largerSets.length) {
-    smallerSets = secondSets;
-    largerSets = firstSets;
+    smallerSets = secondMembers;
+    largerSets = firstMembers;
   }
   for (final Element candidateMember in smallerSets) {
     if (largerSets.contains(candidateMember)) {
@@ -160,7 +169,7 @@ bool isDisjointFrom<Element>(Set<Element> firstSets, Set<Element> secondSets) {
   return true;
 }
 
-/// Reports whether [firstSets] and [secondSets] hold exactly the same members.
+/// Reports whether [firstMembers] and [secondMembers] hold exactly the same members.
 ///
 /// | When you want to ...                  | Reach for ...    |
 /// | ------------------------------------- | ---------------- |
@@ -173,17 +182,20 @@ bool isDisjointFrom<Element>(Set<Element> firstSets, Set<Element> secondSets) {
 /// and distinct-value logic compare by membership, mirroring the Axiom
 /// `set` Equal precedent (AXIOM-SISTER).
 ///
-/// Returns `true` for two empty sides. Never mutates [firstSets] or
-/// [secondSets].
+/// Returns `true` for two empty sides. Never mutates [firstMembers] or
+/// [secondMembers].
 ///
 /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// print(hasSameMembers(<int>{1, 2}, <int>{2, 1})); // true
 /// ```
-bool hasSameMembers<Element>(Set<Element> firstSets, Set<Element> secondSets) {
-  if (firstSets.length != secondSets.length) {
+bool hasSameMembers<Element>(
+  Set<Element> firstMembers,
+  Set<Element> secondMembers,
+) {
+  if (firstMembers.length != secondMembers.length) {
     return false;
   }
-  return secondSets.containsAll(firstSets);
+  return secondMembers.containsAll(firstMembers);
 }
