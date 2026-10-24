@@ -123,6 +123,16 @@ void main() {
       expect(picked, equals(<String, int>{'pear': 2}));
     });
 
+    test('keeps a present-null value', () {
+      const Map<String, int?> entries = <String, int?>{'ann': null};
+      final Map<String, int?> picked = pickEntries<String, int?>(
+        entries,
+        <String>['ann'],
+      );
+      expect(picked.containsKey('ann'), isTrue);
+      expect(picked['ann'], isNull);
+    });
+
     test('returns a fresh map and leaves both inputs untouched', () {
       final Map<String, int> entries = <String, int>{'ann': 1, 'bob': 2};
       final Map<String, int> snapshot = Map<String, int>.of(entries);

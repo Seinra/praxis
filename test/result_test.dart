@@ -397,6 +397,38 @@ void main() {
         expect(outcome.isFailure, isTrue);
         expect(outcome.cause, same(rootCause));
       });
+
+      group('equality', () {
+        test('ok equals ok with an equal value', () {
+          expect(Result<int>.ok(21), equals(Result<int>.ok(21)));
+          expect(Result<int>.ok(21) == Result<int>.ok(22), isFalse);
+          expect(
+            Result<int>.ok(21) == Result<int>.failure(Exception()),
+            isFalse,
+          );
+        });
+
+        test('failure equals failure with the identical cause', () {
+          final Exception rootCause = Exception('offline');
+          expect(
+            Result<int>.failure(rootCause),
+            equals(Result<int>.failure(rootCause)),
+          );
+          expect(
+            Result<int>.failure(Exception('a')) ==
+                Result<int>.failure(Exception('a')),
+            isFalse,
+          );
+        });
+
+        test('renders sides for debugging', () {
+          expect(Result<int>.ok(21).toString(), equals('Ok(21)'));
+          expect(
+            Result<int>.failure(Exception('offline')).toString(),
+            startsWith('Failure('),
+          );
+        });
+      });
     });
   });
 }

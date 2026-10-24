@@ -81,10 +81,10 @@ bool isPrime(int candidate) {
 ///
 /// `dart:core` and `dart:math` name no prime sieve: [int] answers
 /// remainder questions but never enumerates primes (DART-SDK).
-/// [primesUpTo] fills that gap with one sieve pass reusing the [isPrime]
-/// trial-division discipline (odd sieving from `divisor * divisor`, with
-/// the overflow-safe `divisor <= upperBound ~/ divisor` bound, so the
-/// start of each marking run always fits). Axiom ships no sieve at all
+/// [primesUpTo] fills that gap with one sieve pass reusing the overflow-safe
+/// bound idiom (marking from `divisor * divisor` while
+/// `divisor <= upperBound ~/ divisor`, so the start of each marking run
+/// always fits). Axiom ships no sieve at all
 /// (`IsPrime`/`Gcd`/`Lcm` only), so this extends the same discipline to
 /// generation with an explicit bound contract (AXIOM-SISTER).
 ///

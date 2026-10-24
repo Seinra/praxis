@@ -129,17 +129,12 @@ void main() {
       expect(lcm(firstNumber, secondNumber), equals(3 << 32));
     });
 
-    test('agrees with the gcd-factored definition', () {
-      for (final (int, int) pair in <(int, int)>[(12, 18), (21, 6), (35, 49)]) {
-        final int firstNumber = pair.$1;
-        final int secondNumber = pair.$2;
-        final int divisor = firstNumber.gcd(secondNumber);
-        final int expected = divisor == 0
-            ? 0
-            : (firstNumber ~/ divisor * secondNumber).abs();
+    test('matches known multiples', () {
+      for (final (int firstNumber, int secondNumber, int expectedMultiple)
+          in <(int, int, int)>[(12, 18, 36), (21, 6, 42), (35, 49, 245)]) {
         expect(
           lcm(firstNumber, secondNumber),
-          equals(expected),
+          equals(expectedMultiple),
           reason: 'lcm($firstNumber, $secondNumber)',
         );
       }

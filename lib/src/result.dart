@@ -319,12 +319,30 @@ final class Ok<OutcomeValue> extends Result<OutcomeValue> {
   /// const Ok<int>(21).value // 21
   /// ```
   final OutcomeValue value;
+
+  /// Whether [other] is an [Ok] holding an equal value.
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is Ok<OutcomeValue> && other.value == value);
+
+  /// Hash code matching [==].
+  @override
+  int get hashCode => value.hashCode;
+
+  /// Renders as `Ok(value)` for debugging.
+  @override
+  String toString() => 'Ok($value)';
 }
 
 /// The failure side of a [Result].
 ///
 /// Created through [Result.failure]; its [cause] travels through
 /// [Result.mapValue] and [Result.andThen] untouched.
+///
+/// Cause type note (DART-SDK): [Exception] is the only failure value by
+/// design — callers with codes or ADTs wrap them in an [Exception];
+/// generalizing the cause type stays a future ODD with a migration note.
 ///
 /// Which-table row:
 ///
@@ -383,4 +401,20 @@ final class Failure<OutcomeValue> extends Result<OutcomeValue> {
   /// // identical(outcome.cause, rootCause) == true
   /// ```
   final Exception cause;
+
+  /// Whether [other] is a [Failure] holding the identical cause.
+  ///
+  /// [Exception] carries identity equality, so sameness here is [identical].
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is Failure<OutcomeValue> && identical(other.cause, cause));
+
+  /// Hash code matching [==].
+  @override
+  int get hashCode => cause.hashCode;
+
+  /// Renders as `Failure(cause)` for debugging.
+  @override
+  String toString() => 'Failure($cause)';
 }
