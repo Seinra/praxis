@@ -14,10 +14,11 @@
 /// | distinct values to combine or compare | `set` ([symmetricDifference], [isSubsetOf], [isSupersetOf], [isDisjointFrom], [hasSameMembers]) |
 /// | a builtin map to reshape | `mapx` ([invertEntries], [pickEntries], [omitEntries], [mapValues], [mapKeys], [groupEntriesBy]) |
 /// | predicates to combine (And / Or / Not) | `valid` ([Predicate], [andPredicates], [orPredicates], [notPredicate], [alwaysTrue], [alwaysFalse]) |
+/// | text to split or cut by runes | `strings` ([splitWords], [chunkString], [truncateRunes], [takeRunes], [dropRunes], [truncateWithEllipsis]) |
 ///
 /// Skeleton ships `result` + `opt` + lists, the set slice ships `set`, the
-/// mapx slice ships `mapx`, the iterx slice ships `iterx`, and the valid slice
-/// ships `valid`; everything else is declared future scope, never stubbed (see `README.md`).
+/// mapx slice ships `mapx`, the iterx slice ships `iterx`, the valid slice
+/// ships `valid`, and the strings slice ships `strings`; everything else is declared future scope, never stubbed (see `README.md`).
 ///
 /// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
 library;
@@ -28,4 +29,5 @@ export 'src/mapx.dart';
 export 'src/opt.dart';
 export 'src/result.dart';
 export 'src/set.dart';
+export 'src/strings.dart';
 export 'src/valid.dart';
