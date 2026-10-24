@@ -39,7 +39,7 @@ everything else is declared future scope (one ODD feature per package).
 | a builtin map to reshape | `mapx` | mapx — shipped |
 | distinct values to combine or compare | `set` | set — shipped |
 | a lazy `Iterable` pipeline | `iterx` | iterx — shipped |
-| predicates to combine (And / Or / Not) | `valid` | declared future |
+| predicates to combine (And / Or / Not) | `valid` | valid — shipped |
 | one call to run once per key | `singleflight` | declared future (async story decided at `flow`) |
 | objects to reuse, not rebuild | `pool` | declared future |
 | named singleton services | `di` | declared future |
@@ -66,7 +66,7 @@ mirrors Axiom's `(T, bool)`).
 | Topic | Decision |
 | --- | --- |
 | Package / toolchain | `praxis`, Dart `^3.13.0` (records, patterns, sealed types) |
-| Ships now | skeleton: `result` + `opt` + lists (`odd/tasks/praxis-skeleton.md`); set slice: `set` (`odd/tasks/praxis-set.md`); mapx slice: `mapx` (`odd/tasks/praxis-mapx.md`); iterx slice: `iterx` (`odd/tasks/praxis-iterx.md`) |
+| Ships now | skeleton: `result` + `opt` + lists (`odd/tasks/praxis-skeleton.md`); set slice: `set` (`odd/tasks/praxis-set.md`); mapx slice: `mapx` (`odd/tasks/praxis-mapx.md`); iterx slice: `iterx` (`odd/tasks/praxis-iterx.md`); valid slice: `valid` (`odd/tasks/praxis-valid.md`) |
 | Rules | SDK-first (`dart:core`/`dart:collection`/`dart:async` before hand-rolled); typed API, `dynamic` only at codec edges; grep-able names (no `data`/`item`/`res`); doc comment on every export + one CI-executed example per package happy path; pure helpers (never mutate inputs) |
 | Loop | `PRAXIS_LOOP.md` + `.loop-modules/` + `VISION.md` + `loop-config.yaml`; ODD-tracked in `odd/tasks/` |
 | Declared future (owner-gated) | new packages need an explicit owner package-creation call before any ODD — curriculum need gates helpers, never speculative generality |

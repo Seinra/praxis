@@ -13,9 +13,11 @@
 /// | a lazy `Iterable` pipeline to pull on demand | `iterx` ([zipIterables], [chunkedIterable], [windowedIterable], [cycleIterable], [repeatElement], [deduplicateAdjacent]) — reach for `iterx` when the source is an `Iterable` or the pipeline should stay lazy; reach for the eager `lists` helpers when the input is already a `List` and you want a finished value in one pass |
 /// | distinct values to combine or compare | `set` ([symmetricDifference], [isSubsetOf], [isSupersetOf], [isDisjointFrom], [hasSameMembers]) |
 /// | a builtin map to reshape | `mapx` ([invertEntries], [pickEntries], [omitEntries], [mapValues], [mapKeys], [groupEntriesBy]) |
+/// | predicates to combine (And / Or / Not) | `valid` ([Predicate], [andPredicates], [orPredicates], [notPredicate], [alwaysTrue], [alwaysFalse]) |
 ///
 /// Skeleton ships `result` + `opt` + lists, the set slice ships `set`, the
-/// mapx slice ships `mapx`, and the iterx slice ships `iterx`; everything else is declared future scope, never stubbed (see `README.md`).
+/// mapx slice ships `mapx`, the iterx slice ships `iterx`, and the valid slice
+/// ships `valid`; everything else is declared future scope, never stubbed (see `README.md`).
 ///
 /// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
 library;
@@ -26,3 +28,4 @@ export 'src/mapx.dart';
 export 'src/opt.dart';
 export 'src/result.dart';
 export 'src/set.dart';
+export 'src/valid.dart';
