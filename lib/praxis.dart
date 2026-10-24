@@ -18,11 +18,12 @@
 /// | whole numbers to test, divide, or combine | `mathx` ([isPrime], [primesUpTo], [lcm]) |
 /// | transforms with a cap, first success, or one outcome per input | `flow` ([FlowScope], [flowMap], [flowFirst], [flowCollect]) |
 /// | objects to reuse instead of rebuild | `pool` ([Pool], [Pool.acquire], [Pool.release], [Pool.use], [Pool.idleCount], [Pool.maxSize]) |
+/// | one shared execution across same-key callers | `singleflight` ([SingleflightGroup], [SingleflightGroup.call]) |
 ///
 /// Skeleton ships `result` + `opt` + lists, the set slice ships `set`, the
 /// mapx slice ships `mapx`, the iterx slice ships `iterx`, the valid slice
 /// ships `valid`, the strings slice ships `strings`, the mathx slice ships
-/// `mathx`, the flow slice ships `flow`, and the pool slice ships `pool`; everything else is declared future scope, never stubbed (see `README.md`).
+/// `mathx`, the flow slice ships `flow`, the pool slice ships `pool`, and the singleflight slice ships `singleflight`; everything else is declared future scope, never stubbed (see `README.md`).
 ///
 /// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
 library;
@@ -36,5 +37,6 @@ export 'src/opt.dart';
 export 'src/pool.dart';
 export 'src/result.dart';
 export 'src/set.dart';
+export 'src/singleflight.dart';
 export 'src/strings.dart';
 export 'src/valid.dart';
