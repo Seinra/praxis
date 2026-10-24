@@ -66,16 +66,17 @@ typedef Predicate<Candidate> = bool Function(Candidate candidate);
 /// | several checks that must all hold | [andPredicates] |
 ///
 /// Stdlib gap (DART-SDK): `&&` combines `bool` values inline, but no SDK
-/// helper composes a list of predicate *functions* with left-to-right
+/// helper composes an iterable of predicate *functions* with left-to-right
 /// short-circuit and vacuous truth. [andPredicates] fills that gap.
 /// Fidelity note (AXIOM-SISTER): mirrors Axiom's `And` combination
 /// discipline — every leg must hold, empty holds vacuously — expressed
-/// over a Dart `List` instead of Go variadics. A `nil`-leg guard is
+/// over a Dart iterable instead of Go variadics. A `nil`-leg guard is
 /// YAGNI-killed here with a reason: sound null safety makes it
 /// unrepresentable, since [predicates] holds non-nullable [Predicate]
 /// values the compiler already rejects as `null`.
 ///
-/// Never mutates [predicates].
+/// Accepts any [Iterable]: re-calling the combined predicate re-iterates
+/// a single-use source. Never mutates [predicates].
 ///
 /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
 ///
@@ -88,7 +89,7 @@ typedef Predicate<Candidate> = bool Function(Candidate candidate);
 /// // isPositiveEven(-4) == false
 /// ```
 Predicate<Candidate> andPredicates<Candidate>(
-  List<Predicate<Candidate>> predicates,
+  Iterable<Predicate<Candidate>> predicates,
 ) {
   return (Candidate candidate) {
     for (final Predicate<Candidate> activePredicate in predicates) {
@@ -114,16 +115,17 @@ Predicate<Candidate> andPredicates<Candidate>(
 /// | several checks of which one must hold | [orPredicates] |
 ///
 /// Stdlib gap (DART-SDK): `||` combines `bool` values inline, but no SDK
-/// helper composes a list of predicate *functions* with left-to-right
+/// helper composes an iterable of predicate *functions* with left-to-right
 /// short-circuit and vacuous failure. [orPredicates] fills that gap.
 /// Fidelity note (AXIOM-SISTER): mirrors Axiom's `Or` combination
 /// discipline — any leg holds, empty fails vacuously — expressed over a
-/// Dart `List` instead of Go variadics. A `nil`-leg guard is YAGNI-killed
+/// Dart iterable instead of Go variadics. A `nil`-leg guard is YAGNI-killed
 /// here with a reason: sound null safety makes it unrepresentable, since
 /// [predicates] holds non-nullable [Predicate] values the compiler
 /// already rejects as `null`.
 ///
-/// Never mutates [predicates].
+/// Accepts any [Iterable]: re-calling the combined predicate re-iterates
+/// a single-use source. Never mutates [predicates].
 ///
 /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
 ///
@@ -136,7 +138,7 @@ Predicate<Candidate> andPredicates<Candidate>(
 /// // isZeroOrEven(4) == true
 /// ```
 Predicate<Candidate> orPredicates<Candidate>(
-  List<Predicate<Candidate>> predicates,
+  Iterable<Predicate<Candidate>> predicates,
 ) {
   return (Candidate candidate) {
     for (final Predicate<Candidate> activePredicate in predicates) {

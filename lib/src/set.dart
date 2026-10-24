@@ -155,14 +155,14 @@ bool isDisjointFrom<Element>(
   Set<Element> firstMembers,
   Set<Element> secondMembers,
 ) {
-  Set<Element> smallerSets = firstMembers;
-  Set<Element> largerSets = secondMembers;
-  if (smallerSets.length > largerSets.length) {
-    smallerSets = secondMembers;
-    largerSets = firstMembers;
+  Set<Element> smallerMembers = firstMembers;
+  Set<Element> largerMembers = secondMembers;
+  if (smallerMembers.length > largerMembers.length) {
+    smallerMembers = secondMembers;
+    largerMembers = firstMembers;
   }
-  for (final Element candidateMember in smallerSets) {
-    if (largerSets.contains(candidateMember)) {
+  for (final Element candidateMember in smallerMembers) {
+    if (largerMembers.contains(candidateMember)) {
       return false;
     }
   }

@@ -32,6 +32,8 @@
 /// `sync*` generators).
 library;
 
+import 'dart:collection';
+
 /// Pairs elements from two iterables positionally, stopping at the shorter side.
 ///
 /// | When you want to ...            | Reach for ...  |
@@ -181,14 +183,14 @@ Iterable<List<Element>> _windowedElements<Element>(
   Iterable<Element> sourceElements,
   int windowSize,
 ) sync* {
-  final List<Element> windowElements = <Element>[];
+  final Queue<Element> windowElements = Queue<Element>();
   for (final Element candidate in sourceElements) {
-    windowElements.add(candidate);
+    windowElements.addLast(candidate);
     if (windowElements.length < windowSize) {
       continue;
     }
     yield List<Element>.of(windowElements);
-    windowElements.removeAt(0);
+    windowElements.removeFirst();
   }
 }
 

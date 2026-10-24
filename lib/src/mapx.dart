@@ -93,6 +93,8 @@ Map<Key, Value> pickEntries<Key, Value>(
   final Map<Key, Value> pickedEntries = <Key, Value>{};
   for (final Key wantedKey in wantedKeys) {
     if (entries.containsKey(wantedKey)) {
+      // `as Value` (never `!`): preserves a present-null `Value`
+      // instead of throwing on it.
       pickedEntries[wantedKey] = entries[wantedKey] as Value;
     }
   }
