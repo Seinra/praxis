@@ -17,11 +17,12 @@
 /// | text to split or cut by runes | `strings` ([splitWords], [chunkString], [truncateRunes], [takeRunes], [dropRunes], [truncateWithEllipsis], [defaultEllipsisMark]) |
 /// | whole numbers to test, divide, or combine | `mathx` ([isPrime], [primesUpTo], [lcm]) |
 /// | transforms with a cap, first success, or one outcome per input | `flow` ([FlowScope], [flowMap], [flowFirst], [flowCollect]) |
+/// | objects to reuse instead of rebuild | `pool` ([Pool], [Pool.acquire], [Pool.release], [Pool.use], [Pool.idleCount], [Pool.maxSize]) |
 ///
 /// Skeleton ships `result` + `opt` + lists, the set slice ships `set`, the
 /// mapx slice ships `mapx`, the iterx slice ships `iterx`, the valid slice
 /// ships `valid`, the strings slice ships `strings`, the mathx slice ships
-/// `mathx`, and the flow slice ships `flow`; everything else is declared future scope, never stubbed (see `README.md`).
+/// `mathx`, the flow slice ships `flow`, and the pool slice ships `pool`; everything else is declared future scope, never stubbed (see `README.md`).
 ///
 /// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
 library;
@@ -32,6 +33,7 @@ export 'src/lists.dart';
 export 'src/mapx.dart';
 export 'src/mathx.dart';
 export 'src/opt.dart';
+export 'src/pool.dart';
 export 'src/result.dart';
 export 'src/set.dart';
 export 'src/strings.dart';
