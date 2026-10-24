@@ -78,10 +78,11 @@ const String defaultEllipsisMark = '…';
 /// print(words); // [go, rust, zig]
 /// ```
 List<String> splitWords(String sourceText) {
-  if (sourceText.trim().isEmpty) {
+  final String trimmedSource = sourceText.trim();
+  if (trimmedSource.isEmpty) {
     return <String>[];
   }
-  return sourceText.trim().split(RegExp(r'\s+', unicode: true));
+  return trimmedSource.split(RegExp(r'\s+', unicode: true));
 }
 
 /// Splits [sourceText] into chunks of at most [chunkSize] runes.

@@ -92,7 +92,6 @@ void main() {
     });
 
     test('cuts emoji by runes not code units', () {
-      expect(takeRunes('👋🌍ab', 2), equals('👋🌍'));
       expect(truncateRunes('👋🌍ab', 2), equals('👋🌍'));
     });
 
@@ -119,6 +118,10 @@ void main() {
 
     test('keeps emoji runes whole', () {
       expect(takeRunes('👋🌍ab', 1), equals('👋'));
+    });
+
+    test('cuts an emoji pair by runes', () {
+      expect(takeRunes('👋🌍ab', 2), equals('👋🌍'));
     });
 
     test('returns the source unchanged when the count covers the input', () {
