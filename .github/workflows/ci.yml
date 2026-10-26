@@ -29,6 +29,12 @@ jobs:
         with:
           sdk: 3.13
       - run: dart pub get
+      # The house-rule plugin is its own package with an isolated dependency
+      # set (analysis_server_plugin). A fresh checkout has no nested
+      # .dart_tool, so root `dart analyze` cannot resolve its imports until
+      # its own dependencies are fetched. This step is what makes CI match
+      # any machine that already ran pub get inside tools/praxis_lints.
+      - run: cd tools/praxis_lints && dart pub get
       - run: dart analyze
       - run: dart format --output=none --set-exit-if-changed .
       - run: dart test
