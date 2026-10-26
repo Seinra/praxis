@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.2
+
+Pana-gaps release — you get the same 21-package API with full doc coverage and a runnable example: `FlowScope()` gains its explicit documented constructor (200/200 documented API elements), and `example/main.dart` feeds the pub.dev Example tab. Drops the stray `at Echo-level quality` phrase from README and the loop hub. No library behavior changes.
+
 ## 0.1.1
 
 Docs-coherence release — you get the same 21-package API with a coherent doc hub: README stays a landing page (Quick path + Which-index + quickstart next step), CONTRIBUTING owns the gates and process, VISION/ARCHITECTURE/REFERENCES verify the 21-package bar, and the package description mirrors the repo About. No library behavior changes; the v0.1.0 tag stays pinned.
