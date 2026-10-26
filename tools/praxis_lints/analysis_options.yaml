@@ -1,0 +1,17 @@
+# Mirrors the root baseline (strict + recommended) for the dev-only plugin.
+include: package:lints/recommended.yaml
+
+analyzer:
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
+
+linter:
+  rules:
+    public_member_api_docs: true
+    always_declare_return_types: true
+    avoid_dynamic_calls: true
+    no_wildcard_variable_uses: true
+    prefer_single_quotes: true
+    directives_ordering: true
