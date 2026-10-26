@@ -26,11 +26,12 @@
 /// | values in first-in-first-out order | `queue` ([FifoQueue], [FifoQueue.enqueue], [FifoQueue.dequeue], [FifoQueue.peek]) |
 /// | keys in insertion order, or bounded recent use | `orderedmap` ([OrderedMap], [OrderedMap.put], [OrderedMap.get], [OrderedMap.remove], [LruCache]) |
 /// | a background computation to join later | `task` ([Task], [Task.spawn], [Task.join]) |
+/// | left-to-right and right-to-left function composition | `pipe` ([pipe], [compose]) |
 ///
 /// Skeleton ships `result` + `opt` + lists, the set slice ships `set`, the
 /// mapx slice ships `mapx`, the iterx slice ships `iterx`, the valid slice
 /// ships `valid`, the strings slice ships `strings`, the mathx slice ships
-/// `mathx`, the flow slice ships `flow`, the pool slice ships `pool`, and the singleflight slice ships `singleflight`, the di slice ships `di`, and the repo slice ships `repo`, and the httpx slice ships `httpx`, and the collections slice ships `stack` + `queue` + `orderedmap`, and the task slice ships `task`; everything else is declared future scope, never stubbed (see `README.md`).
+/// `mathx`, the flow slice ships `flow`, the pool slice ships `pool`, and the singleflight slice ships `singleflight`, the di slice ships `di`, and the repo slice ships `repo`, and the httpx slice ships `httpx`, and the collections slice ships `stack` + `queue` + `orderedmap`, and the task slice ships `task`, and the pipecompose slice ships `pipe`; everything else is declared future scope, never stubbed (see `README.md`).
 ///
 /// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
 library;
@@ -44,6 +45,7 @@ export 'src/mapx.dart';
 export 'src/mathx.dart';
 export 'src/opt.dart';
 export 'src/orderedmap.dart';
+export 'src/pipe.dart';
 export 'src/pool.dart';
 export 'src/queue.dart';
 export 'src/repo.dart';
