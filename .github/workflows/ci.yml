@@ -1,0 +1,34 @@
+# Praxis hosted CI — canonical since the v0 bar (odd/tasks/praxis-v0.md).
+#
+# Every step mirrors a locally + Conduit-proven gate from
+# .loop-modules/VALIDATION_GATES.md (no invented checks):
+#   dart pub get                              — resolve locked deps
+#   dart analyze                              — analyzer + strict lints clean
+#   dart format --output=none --set-exit-if-changed . — formatting clean
+#   dart test                                 — tree green
+#
+# Action pins (verified 2026-10-26 against upstream releases):
+#   actions/checkout@v7      — major tag exists (v7.0.1 latest)
+#   dart-lang/setup-dart@v1  — major tag exists (v1.8.1 latest)
+# `sdk: 3.13` resolves the latest 3.13 patch, matching pubspec `^3.13.0`
+# (setup-dart accepts channel / release line / exact version — no caret syntax).
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    # Single linear job, no build matrix: the first failing gate step
+    # cancels the job, so gates stay fail-fast by default.
+    steps:
+      - uses: actions/checkout@v7
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: 3.13
+      - run: dart pub get
+      - run: dart analyze
+      - run: dart format --output=none --set-exit-if-changed .
+      - run: dart test

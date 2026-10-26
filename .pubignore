@@ -1,4 +1,12 @@
-# Published artifacts (private until the v0 bar — VISION invariant 6).
+# Published artifacts (public since the v0 bar — VISION invariant 6).
 # The house-rule analyzer plugin is dev tooling, never library API:
 # resolved separately in its own synthetic package, excluded here.
 /tools/
+# Generated API docs (regenerable via `dart doc`, never library content).
+/doc/api/
+# Local scratch for pilot verification (never publish).
+/.tmp/
+# Conduit local-CI worktrees (ephemeral, never publish).
+/.conduit-worktrees/
+# ODD task history (process record, never library content).
+/odd/
