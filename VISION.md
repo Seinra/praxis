@@ -23,7 +23,7 @@ and ship typed code instead of `dynamic` soup.
 
 | # | Decision | Owner call |
 | --- | --- | --- |
-| — | Name + repo | `Praxis`, package `praxis`, repo `D:/Proyectos/Praxis` (private until the v0 bar) |
+| — | Name + repo | `Praxis`, package `praxis`, repo `D:/Proyectos/Praxis` (public since the v0 bar) |
 | 1 | Absence contract | **(a) Records `(valor, presente)`** mirroring Axiom's `(T, bool)` exactly; revisit with evidence only |
 | 3 | Async story | **Deferred to the `flow` slice** — the library started sync-only; `Future`/`Stream` + cancellation shipped with the `flow` slice (`FlowScope`, `lib/src/flow.dart`) as decided when `flow` opened |
 | 4 | JSON story | **Manual codecs now + migration guide later** — no codegen in the teaching library; `json_serializable` stays a Catalyst-side option |
