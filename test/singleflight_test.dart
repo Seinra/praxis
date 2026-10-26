@@ -3,12 +3,19 @@ import 'dart:async';
 import 'package:praxis/src/singleflight.dart';
 import 'package:test/test.dart';
 
+/// Flush rounds that settle singleflight's microtask-only cleanup.
+///
+/// Singleflight schedules exactly one settlement-forget hop per completed
+/// call, so a small count suffices; twenty-five keeps headroom against
+/// chained test gates without wall-clock waits.
+const int flushMicrotaskRounds = 25;
+
 /// Pumps the microtask queue so gated futures settle without real delays.
 ///
 /// Singleflight schedules cleanup through microtasks only, so awaiting a
 /// completed future flushes every pending handler. No timers, no
 /// wall-clock waits: the suite stays fake-async end to end.
-Future<void> flushMicrotasks([int roundCount = 25]) async {
+Future<void> flushMicrotasks([int roundCount = flushMicrotaskRounds]) async {
   for (int roundIndex = 0; roundIndex < roundCount; roundIndex += 1) {
     await Future<void>.value();
   }

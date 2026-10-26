@@ -99,8 +99,9 @@ final class FlowScope {
 /// stops, and the returned future completes with that failure once started
 /// tasks settle. In-flight futures always run to completion because Dart
 /// futures are not preemptible. Stopping [scope] from the outside has the
-/// same scheduling effect; when inputs never ran as a result, the future
-/// completes with a [StateError] instead of a holed list.
+/// same scheduling effect; when the stop leaves inputs unsettled, the future
+/// completes with a [StateError] and discards any settled successes instead
+/// of a holed list.
 ///
 /// Which-table row:
 ///
@@ -174,9 +175,9 @@ Future<List<Output>> flowMap<Input, Output>(
 /// chronological error — the gap against [Future.any]
 /// (`lib/async/future.dart:656`), which settles on the first value OR error
 /// and therefore loses slow successes to fast failures. Stopping [scope]
-/// from the outside stops new work; started tasks still settle, and the
-/// future completes with the recorded failure — or with a [StateError] when
-/// nothing settled at all.
+/// from the outside stops new work; started tasks still settle, a started
+/// success still wins, and the future otherwise completes with the recorded
+/// failure — or with a [StateError] when nothing settled at all.
 ///
 /// Which-table row:
 ///

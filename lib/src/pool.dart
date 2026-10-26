@@ -202,9 +202,13 @@ final class Pool<Pooled> {
   /// Fidelity note (AXIOM-SISTER): mirrors Axiom's return-for-reuse with
   /// an explicit bounded discard instead of a runtime GC drop.
   ///
-  /// Double-release throws an [ArgumentError]: releasing the same identity
-  /// twice without an intervening [acquire] would hand one mutable value
-  /// to two borrowers, so the second release fails instead of aliasing.
+  /// Double-release throws an [ArgumentError] while the value stays idle:
+  /// releasing the same identity twice without an intervening [acquire]
+  /// would hand one mutable value to two borrowers, so the second release
+  /// fails instead of aliasing. Values discarded when idle was full leave
+  /// no idle entry, so the guard does not track them. The caller drops its
+  /// reference after [release]: re-releasing a stale reference after an
+  /// intervening [acquire] would alias, so callers never retain the value.
   /// Reset errors propagate and discard the value: a value whose reset
   /// throws is never stored. Full idle discards the value: [idleCount]
   /// stays at [maxSize] instead of growing unbounded.
@@ -257,7 +261,8 @@ final class Pool<Pooled> {
   /// Acquires one value, runs [action], and releases in a `finally` block,
   /// returning the action result. Action throws still release when reset
   /// succeeds, then propagate the action error; reset throws discard the
-  /// value and propagate the reset error. Never mutates caller inputs:
+  /// value and propagate the reset error, and when both throw the reset
+  /// error propagates. Never mutates caller inputs:
   /// only the pooled value passes through [action] and [release].
   ///
   /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.

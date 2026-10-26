@@ -86,7 +86,6 @@ final class ServiceContainer {
   ServiceContainer();
 
   final Map<String, _ServiceSlot> _slotsByName = <String, _ServiceSlot>{};
-  final List<String> _registrationOrder = <String>[];
 
   /// Registers [create] as the lazy factory for [serviceName].
   ///
@@ -106,8 +105,10 @@ final class ServiceContainer {
   /// safety makes it unrepresentable, since [create] is a non-nullable
   /// function the compiler already rejects as `null`.
   ///
-  /// The factory runs at most once per registration, on the first
-  /// [resolve]: later resolves share the cached value. The optional
+  /// The factory builds the singleton once per registration: the first
+  /// [resolve] runs it and later resolves share the cached value, while a
+  /// throwing factory leaves nothing cached so the next [resolve] retries.
+  /// The optional
   /// [dispose] hook runs with the built value when [unregister] or [reset]
   /// drops a built registration; never-built registrations dispose
   /// nothing. Dispose errors propagate to the caller.
@@ -145,7 +146,6 @@ final class ServiceContainer {
         ? null
         : (Object createdService) => dispose(createdService as Service);
     _slotsByName[serviceName] = _ServiceSlot(create, wrappedDispose);
-    _registrationOrder.add(serviceName);
   }
 
   /// Returns the shared singleton for [serviceName], building it once.
@@ -235,7 +235,6 @@ final class ServiceContainer {
         'praxis di: no service registered under "$serviceName".',
       );
     }
-    _registrationOrder.remove(serviceName);
     removedSlot.disposeIfBuilt();
   }
 
@@ -251,11 +250,13 @@ final class ServiceContainer {
   /// order, so [reset] owns the reverse-order dispose sweep over built
   /// singletons. Newest disposes first so later registrations — which may
   /// depend on earlier ones — release before their dependencies.
-  /// Never-built registrations dispose nothing.
+  /// Never-built registrations dispose nothing. Registration order rides
+  /// the table's insertion-ordered keys, so no parallel order list exists.
   ///
-  /// The container ends empty even when a dispose hook throws: removals
-  /// land in a `finally` sweep while the first dispose error still
-  /// propagates, so the next test always starts clean.
+  /// Every built singleton is disposed even when a hook throws: the sweep
+  /// continues through the remaining registrations while the first dispose
+  /// error still propagates, and removals land in a `finally` sweep so the
+  /// next test always starts clean.
   ///
   /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
   ///
@@ -269,13 +270,26 @@ final class ServiceContainer {
   /// // services.resolve<int>('answer') throws
   /// ```
   void reset() {
+    Object? pendingFailure;
+    StackTrace? pendingStackTrace;
     try {
-      for (final String serviceName in _registrationOrder.reversed) {
-        _slotsByName[serviceName]?.disposeIfBuilt();
+      final List<String> teardownOrder = _slotsByName.keys.toList();
+      for (final String serviceName in teardownOrder.reversed) {
+        try {
+          _slotsByName[serviceName]?.disposeIfBuilt();
+        } catch (disposalFailure, disposalStackTrace) {
+          pendingFailure ??= disposalFailure;
+          pendingStackTrace ??= disposalStackTrace;
+        }
       }
     } finally {
       _slotsByName.clear();
-      _registrationOrder.clear();
+    }
+    if (pendingFailure != null) {
+      Error.throwWithStackTrace(
+        pendingFailure,
+        pendingStackTrace ?? StackTrace.empty,
+      );
     }
   }
 }
@@ -312,17 +326,15 @@ final class _ServiceSlot {
   /// Runs the dispose hook with the built value when one exists.
   ///
   /// Clears the cached flag before disposing so a throwing hook never
-  /// leaves a half-torn slot behind.
+  /// leaves a half-torn slot behind. The cached value is never null here:
+  /// [buildOnce] stores only the non-nullable [_create] result.
   void disposeIfBuilt() {
     if (!_hasCachedService) {
       return;
     }
-    final Object? builtService = _cachedService;
+    final Object builtService = _cachedService as Object;
     _hasCachedService = false;
     _cachedService = null;
-    final void Function(Object createdService)? activeDispose = _dispose;
-    if (activeDispose != null && builtService != null) {
-      activeDispose(builtService);
-    }
+    _dispose?.call(builtService);
   }
 }

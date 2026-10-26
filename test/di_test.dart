@@ -275,6 +275,42 @@ void main() {
         throwsStateError,
       );
     });
+
+    test('throwing dispose still disposes remaining singletons', () {
+      final ServiceContainer services = ServiceContainer();
+      final List<String> disposedNames = <String>[];
+      final StateError rootFailure = StateError('dispose offline');
+      services.register<_CounterService>(
+        'first',
+        () => _CounterService(1),
+        dispose: (_CounterService createdService) {
+          disposedNames.add('first');
+        },
+      );
+      services.register<_CounterService>(
+        'second',
+        () => _CounterService(2),
+        dispose: (_CounterService createdService) {
+          throw rootFailure;
+        },
+      );
+      services.register<_CounterService>(
+        'third',
+        () => _CounterService(3),
+        dispose: (_CounterService createdService) {
+          disposedNames.add('third');
+        },
+      );
+      services.resolve<_CounterService>('first');
+      services.resolve<_CounterService>('second');
+      services.resolve<_CounterService>('third');
+      expect(services.reset, throwsA(same(rootFailure)));
+      expect(disposedNames, equals(<String>['third', 'first']));
+      expect(
+        () => services.resolve<_CounterService>('first'),
+        throwsStateError,
+      );
+    });
   });
 
   group('documented examples stay runnable', () {

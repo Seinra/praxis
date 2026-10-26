@@ -438,6 +438,24 @@ void main() {
         expect(startedInputs, equals(<int>[0]));
       },
     );
+
+    test('pre-stopped scope reports StateError when nothing settled', () async {
+      final FlowScope ownerScope = FlowScope()..stop();
+      final List<int> startedInputs = <int>[];
+
+      final Future<int> pendingWinner = flowFirst<int, int>(
+        <int>[0, 1],
+        maxInflight: 1,
+        transform: (int candidateInput, FlowScope scope) {
+          startedInputs.add(candidateInput);
+          return Future<int>.value(candidateInput);
+        },
+        scope: ownerScope,
+      );
+
+      await expectLater(pendingWinner, throwsA(isStateError));
+      expect(startedInputs, isEmpty);
+    });
   });
 
   group('flowCollect', () {
