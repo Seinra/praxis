@@ -9,7 +9,7 @@ starting new work on its terminal event, and you stop it from the outside
 with `FlowScope.stop`. In-flight futures always run to completion because
 Dart futures are not preemptible.
 
-**Version:** Praxis `0.1.0-dev`, Dart `^3.13.0`.
+**Version:** Praxis `0.1.0`, Dart `^3.13.0`.
 **Prereqs:** `import 'package:praxis/praxis.dart';` and
 `import 'dart:async';`. You hold a finite input iterable, a `maxInflight`
 cap above zero, and a transform that honors the scope.

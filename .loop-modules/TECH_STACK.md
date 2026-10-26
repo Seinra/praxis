@@ -8,7 +8,7 @@ Stack, versions, and local docs policy for Praxis. Read before domain work. `mod
 | --- | --- | --- |
 | Dart | 3.13.5 (`sdk: ^3.13.0` in `pubspec.yaml`) | Verified `dart --version` 2026-10-23 |
 | Flutter | 3.47.7 stable | Consumer-adjacent only; Praxis is pure Dart (no Flutter import) |
-| Package | `praxis` v0.1.0-dev | Owner decision 2026-10-23; path dependency until the v0 bar |
+| Package | `praxis` v0.1.0 | Owner decision 2026-10-23; published on pub.dev at the v0 bar |
 | Lints | `lints` recommended + strict (casts/inference/raw-types) | `dart analyze` clean is the gate |
 | custom_lint | REMOVED (was `^0.7.0` pinned, plugin PARKED) | upstream archived; zero rules ever existed in repo; house rules now enforced by `tools/praxis_lints` on `analysis_server_plugin` (isolated synthetic-package resolution, no analyzer 7 vs 14 war); root runs plain `dart analyze` |
 | Test | `package:test` | `dart test` green is the gate |

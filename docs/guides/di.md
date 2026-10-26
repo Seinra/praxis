@@ -7,7 +7,7 @@ registration for tests, and `reset` every registration in reverse order for
 test isolation. Factories stay sync; scopes, hierarchies, and auto-wiring
 stay out of scope.
 
-**Version:** Praxis `0.1.0-dev`, Dart `^3.13.0`.
+**Version:** Praxis `0.1.0`, Dart `^3.13.0`.
 **Prereqs:** `import 'package:praxis/praxis.dart';`. You hold the service
 names and the factories that build them. You create a fresh container per
 test instead of sharing one.

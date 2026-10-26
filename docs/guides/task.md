@@ -4,7 +4,7 @@ You start one computation now and join it later: `Task.spawn` runs the
 work eagerly and hands back a handle, and `Task.join` reports its single
 shared outcome as a typed `Result`.
 
-**Version:** Praxis `0.1.0-dev`, Dart `^3.13.0`.
+**Version:** Praxis `0.1.0`, Dart `^3.13.0`.
 **Prereqs:** `import 'package:praxis/praxis.dart';` exposes `Task` (and
 `Result` for the joined outcome).
 

@@ -7,7 +7,7 @@ identical future to late joiners, and completion forgets the key so the next
 sequential call re-executes. Errors ride the shared future to every sharer;
 callers retry explicitly with a fresh call.
 
-**Version:** Praxis `0.1.0-dev`, Dart `^3.13.0`.
+**Version:** Praxis `0.1.0`, Dart `^3.13.0`.
 **Prereqs:** `import 'package:praxis/praxis.dart';` and
 `import 'dart:async';`. You hold the request key and the async action to run
 once while shared.

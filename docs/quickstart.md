@@ -23,8 +23,7 @@ dart pub add praxis
 Save this as `bin/praxis_hello.dart`. It runs as-is — no edits needed:
 
 ```dart
-import 'package:praxis/src/lists.dart';
-import 'package:praxis/src/result.dart';
+import 'package:praxis/praxis.dart';
 
 void main() {
   final Result<int> current = Result<int>.ok(21);

@@ -6,7 +6,7 @@ anonymous closures at every call site. Composition never mutates the
 predicate list, and calling a combined predicate never mutates the
 candidate — checks stay pure values you can store, test by name, and teach.
 
-**Version:** Praxis `0.1.0-dev`, Dart `^3.13.0`.
+**Version:** Praxis `0.1.0`, Dart `^3.13.0`.
 **Prereqs:** `import 'package:praxis/praxis.dart';`. You hold candidates of
 one type and the checks you want to combine.
 

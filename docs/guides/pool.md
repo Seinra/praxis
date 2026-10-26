@@ -7,7 +7,7 @@ room remains, or discards it when idle is full; `Pool.use` borrows for one
 call with guaranteed release. Everything here is synchronous: waiting
 acquirers, timeouts, and cross-isolate sharing stay out of scope.
 
-**Version:** Praxis `0.1.0-dev`, Dart `^3.13.0`.
+**Version:** Praxis `0.1.0`, Dart `^3.13.0`.
 **Prereqs:** `import 'package:praxis/praxis.dart';`. You hold a factory
 that builds fresh values, an optional reset, and the idle cap.
 

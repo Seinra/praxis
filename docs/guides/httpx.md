@@ -4,7 +4,7 @@ You fetch and post typed JSON without owning the wire: you shape calls
 with `HttpxRequest`, you answer them with fakes through `HttpxTransport`,
 and every outcome — value or failure — travels back inside a `Result`.
 
-**Version:** Praxis `0.1.0-dev`, Dart `^3.13.0`.
+**Version:** Praxis `0.1.0`, Dart `^3.13.0`.
 **Prereqs:** `import 'package:praxis/praxis.dart';` exposes the envelope.
 Tests answer fakes in-process; production wires `dart:io` at the
 composition root (never inside `lib`, which stays web-compatible).

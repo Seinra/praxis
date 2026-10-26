@@ -25,8 +25,8 @@ results, options, and lists, built one feature at a time. Sister library of
 ## Which function? (guide index)
 
 Each package doc opens with a "Which function?" table (outcome → function).
-Start there, then `dart doc` the package. Skeleton shipped the first three rows;
-everything else is declared future scope (one ODD feature per package).
+Start there, then `dart doc` the package. New here? Work through
+docs/quickstart.md first.
 
 | If you are holding ... | Start with | Status |
 | --- | --- | --- |

@@ -4,7 +4,7 @@ You hold one record per identity behind a caller-supplied extractor: you
 store or replace with `put`, you read absence as a value with `get`, you
 drop with `remove`, and you snapshot with `list`.
 
-**Version:** Praxis `0.1.0-dev`, Dart `^3.13.0`.
+**Version:** Praxis `0.1.0`, Dart `^3.13.0`.
 **Prereqs:** `import 'package:praxis/praxis.dart';` exposes `Repository`.
 
 ## Concept

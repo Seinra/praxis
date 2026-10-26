@@ -3,7 +3,7 @@
 You replay entries in first-insertion order with `OrderedMap`, and you
 bound memory with every hit refreshing recency through `LruCache`.
 
-**Version:** Praxis `0.1.0-dev`, Dart `^3.13.0`.
+**Version:** Praxis `0.1.0`, Dart `^3.13.0`.
 **Prereqs:** `import 'package:praxis/praxis.dart';` exposes `OrderedMap`
 and `LruCache`.
 

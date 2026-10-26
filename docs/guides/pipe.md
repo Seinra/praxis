@@ -4,7 +4,7 @@ You name a two-step pipeline that reads in application order with `pipe`,
 and the same shape in mathematical order with `compose`. Both hand back
 one reusable function value: stored, passed, or taught by name.
 
-**Version:** Praxis `0.1.0-dev`, Dart `^3.13.0`.
+**Version:** Praxis `0.1.0`, Dart `^3.13.0`.
 **Prereqs:** `import 'package:praxis/praxis.dart';` exposes `pipe` and
 `compose`.
 

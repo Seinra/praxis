@@ -4,7 +4,7 @@ You serve the longest waiting first: you add at the back with `enqueue`,
 you serve with `dequeue`, you peek with `peek`, and an empty queue
 answers absence instead of throwing.
 
-**Version:** Praxis `0.1.0-dev`, Dart `^3.13.0`.
+**Version:** Praxis `0.1.0`, Dart `^3.13.0`.
 **Prereqs:** `import 'package:praxis/praxis.dart';` exposes `FifoQueue`.
 
 ## Concept

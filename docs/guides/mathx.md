@@ -5,7 +5,7 @@ primality, `primesUpTo` lists the primes up to an inclusive bound, and `lcm`
 combines two numbers into their least common multiple. You pass integers by
 value and receive a fresh list back, so every helper stays pure.
 
-**Version:** Praxis `0.1.0-dev`, Dart `^3.13.0`.
+**Version:** Praxis `0.1.0`, Dart `^3.13.0`.
 **Prereqs:** `import 'package:praxis/praxis.dart';`. You hold the candidate
 integer or the bound to sieve up to.
 

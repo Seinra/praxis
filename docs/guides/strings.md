@@ -7,7 +7,7 @@ fixed-rune chunks, `truncateRunes` cuts to a rune budget, `takeRunes` and
 a budget with an ellipsis that still lands on a rune boundary. Every helper
 stays pure — it never mutates your inputs and always hands you fresh values.
 
-**Version:** Praxis `0.1.0-dev`, Dart `^3.13.0`.
+**Version:** Praxis `0.1.0`, Dart `^3.13.0`.
 **Prereqs:** `import 'package:praxis/praxis.dart';`. You hold the source
 text and, for cuts, the rune budget.
 

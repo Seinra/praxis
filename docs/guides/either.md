@@ -1,6 +1,6 @@
 # either — two typed sides, neither favoured
 
-**Version:** praxis `0.1.0-dev` on Dart `^3.13.0`.
+**Version:** praxis `0.1.0` on Dart `^3.13.0`.
 **Prereqs:** Dart SDK; `import 'package:praxis/praxis.dart'`. Read
 [foundations](foundations.md) first if generic syntax is new.
 

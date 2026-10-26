@@ -4,7 +4,7 @@ You undo the most recent first: you add with `push`, you take with `pop`,
 you peek with `peek`, and an empty stack answers absence instead of
 throwing.
 
-**Version:** Praxis `0.1.0-dev`, Dart `^3.13.0`.
+**Version:** Praxis `0.1.0`, Dart `^3.13.0`.
 **Prereqs:** `import 'package:praxis/praxis.dart';` exposes `Stack`.
 
 ## Concept
