@@ -25,9 +25,9 @@ and ship typed code instead of `dynamic` soup.
 | --- | --- | --- |
 | — | Name + repo | `Praxis`, package `praxis`, repo `D:/Proyectos/Praxis` (private until the v0 bar) |
 | 1 | Absence contract | **(a) Records `(valor, presente)`** mirroring Axiom's `(T, bool)` exactly; revisit with evidence only |
-| 3 | Async story | **Deferred to the `flow` slice** — skeleton ships sync only; `Future`/`Stream` + cancellation decided when `flow` opens |
+| 3 | Async story | **Deferred to the `flow` slice** — the library started sync-only; `Future`/`Stream` + cancellation shipped with the `flow` slice (`FlowScope`, `lib/src/flow.dart`) as decided when `flow` opened |
 | 4 | JSON story | **Manual codecs now + migration guide later** — no codegen in the teaching library; `json_serializable` stays a Catalyst-side option |
-| 5 | Lint set | **`dart analyze` strict + `custom_lint`** encoding the house rules (grep-able names, doc coverage) |
+| 5 | Lint set | **`dart analyze` strict + `praxis_lints`** encoding the house rules (grep-able names, doc coverage) |
 | 6 | Release/versioning | **Path/git dependency while private; publish (MIT) at the library bar**, mirroring Axiom's v0 gate |
 
 ## Non-goals
@@ -41,7 +41,7 @@ and ship typed code instead of `dynamic` soup.
 
 ## MVP line
 
-`skeleton`: `result` + `opt` + list helpers green with docs → then one ODD feature per future package (`mapx`, `set`, `iterx`, concurrency, `pool`, `singleflight`, `di`, `repo`, `httpx`, `valid`) until the coverage map is real. Curriculum need gates new helpers (thesis rule): the library precedes the DLC, so no feature waits for "a class in the DLC that consumes it".
+`skeleton`: `result` + `opt` + list helpers green with docs → then one ODD feature per package — shipped `mapx`, `set`, `iterx`, `valid`, `strings`, `mathx`, `flow`, `pool`, `singleflight`, `di`, `repo`, `httpx`, `stack` + `queue` + `orderedmap`, `task`, `pipe`, `either` — until the 21-package coverage map is real. Curriculum need gates new helpers (thesis rule): the library precedes the DLC, so no feature waits for "a class in the DLC that consumes it".
 
 ## Currency rule
 
