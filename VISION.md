@@ -13,7 +13,7 @@ and ship typed code instead of `dynamic` soup.
 3. **Names a stranger can grep.** No single-letter identifiers (short loop indices excepted), no abbreviations, no generic names (`data`, `item`, `res`); collections are plural nouns; predicates are `is/has/can/should`.
 4. **Tree green after every iteration; one logical feature per iteration.**
 5. **AI-readable.** Package docs answer "which function?" without reading bodies (Which-table per package); stable names across releases.
-6. **Private now, public at maturity.** Consumed via path/git dependency while developing; published open-source (MIT) once it passes the library bar — owner decision 2026-10-23.
+6. **Public at maturity — reached at the v0 bar.** Consumed via `dart pub add praxis`; published open-source (MIT) — owner decision 2026-10-23.
 7. **Teachable API.** Every package doubles as course content for the Catalyst generics DLC: names, doc comments, and examples must work as lesson material, not just as reference.
 8. **Standalone teachability.** The split is inside the library — reference (doc comments + Which-tables) vs. guide (decision ladders + compiling examples), all in-repo and standalone. The DLC consumes that material for curriculum; it never hosts missing content.
 9. **Purity.** Helpers never mutate inputs; outputs are fresh values. Mutable in-place variants are rejected — Dart already offers mutation via plain loops and the SDK when the caller opts in.
@@ -23,12 +23,12 @@ and ship typed code instead of `dynamic` soup.
 
 | # | Decision | Owner call |
 | --- | --- | --- |
-| — | Name + repo | `Praxis`, package `praxis`, repo `D:/Proyectos/Praxis` (private until the v0 bar) |
+| — | Name + repo | `Praxis`, package `praxis`, repo `D:/Proyectos/Praxis` (public since the v0 bar) |
 | 1 | Absence contract | **(a) Records `(valor, presente)`** mirroring Axiom's `(T, bool)` exactly; revisit with evidence only |
 | 3 | Async story | **Deferred to the `flow` slice** — the library started sync-only; `Future`/`Stream` + cancellation shipped with the `flow` slice (`FlowScope`, `lib/src/flow.dart`) as decided when `flow` opened |
 | 4 | JSON story | **Manual codecs now + migration guide later** — no codegen in the teaching library; `json_serializable` stays a Catalyst-side option |
 | 5 | Lint set | **`dart analyze` strict + `praxis_lints`** encoding the house rules (grep-able names, doc coverage) |
-| 6 | Release/versioning | **Path/git dependency while private; publish (MIT) at the library bar**, mirroring Axiom's v0 gate |
+| 6 | Release/versioning | **Path/git dependency while private; published (MIT) at the v0 library bar**, mirroring Axiom's v0 gate |
 
 ## Non-goals
 

@@ -4,20 +4,18 @@ One small, dependable generics library at Echo-level quality: typed helpers for
 results, options, and lists, built one feature at a time. Sister library of
 [Axiom](https://github.com/seinra/axiom) (Go generics); same thesis, Dart idioms.
 
-> Version: `0.1.0-dev` (private — path/git dependency until the v0 bar).
+> Version: `0.1.0` (public, MIT).
 > Prereqs: Dart SDK `^3.13.0` (`dart --version` → 3.13.5 verified 2026-10-23).
 > Runnable API examples land with the skeleton slice; every documented example
 > is CI-executed (tests assert the documented outputs), never scratch-only.
 
 ## Quick path
 
-1. Point at it (private library — path dependency, not `pub get`):
-   ```yaml
-   # pubspec.yaml of the consumer (e.g. Catalyst)
-   dependencies:
-     praxis:
-       path: ../Praxis
+1. Add it:
+   ```sh
+   dart pub add praxis
    ```
+   Pre-release consumers on an unreleased checkout can still use a path dependency (`path: ../Praxis`).
 2. Use one package (skeleton ships `result`, `opt`, lists):
    ```dart
    import 'package:praxis/praxis.dart';
