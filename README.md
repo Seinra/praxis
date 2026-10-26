@@ -1,6 +1,6 @@
 # Praxis — typed generics for Dart
 
-One small, dependable generics library at Echo-level quality: typed helpers for
+One small, dependable generics library: typed helpers for
 results, options, and lists, built one feature at a time. Sister library of
 [Axiom](https://github.com/seinra/axiom) (Go generics); same thesis, Dart idioms.
 

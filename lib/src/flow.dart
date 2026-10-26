@@ -72,6 +72,13 @@ import 'package:praxis/src/result.dart';
 /// // scope.isStopped == true
 /// ```
 final class FlowScope {
+  /// Creates a cooperative stop signal in the not-stopped state.
+  ///
+  /// Pass the new scope to [flowMap], [flowFirst], or [flowCollect] to keep
+  /// an outside handle on the run, or let the combinator create one
+  /// internally when no outside handle is needed.
+  FlowScope();
+
   /// Whether [stop] has been called, from inside the combinator or outside.
   bool get isStopped => _stopped;
   bool _stopped = false;

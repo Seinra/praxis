@@ -8,7 +8,7 @@ after every iteration with one logical feature per iteration.
 
 ## 🎯 Objective & Success Metrics
 
-- Objective: build a complete 21-package, human- and AI-friendly Dart generics library at Echo-level quality, with clear rules for the hard parts of generics; Catalyst (offline-first course app) consumes versioned releases via `dart pub add praxis`.
+- Objective: build a complete 21-package, human- and AI-friendly Dart generics library, with clear rules for the hard parts of generics; Catalyst (offline-first course app) consumes versioned releases via `dart pub add praxis`.
 - Definition of Done lives in `.loop-modules/SUCCESS_METRICS.md` — measurable, no aspirational checkboxes.
 
 ## 📦 Module Reference
