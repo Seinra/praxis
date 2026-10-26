@@ -38,6 +38,6 @@ Every design decision cites a stable ID below. A rename/replacement updates the 
 
 | ID | Status | Note |
 | --- | --- | --- |
-| CUSTOM-LINT-PLUGIN | parked | legacy plugin deprecated in DART-SDK; activation waits on new plugin-system migration (STATUS debt) |
+| CUSTOM-LINT-PLUGIN | live | `tools/praxis_lints`: 2 rules (`no_single_letter`, `no_banned_names`), built on `analysis_server_plugin` with isolated resolution, enabled in `analysis_options.yaml` |
 | REFS-DART-FLUTTER | missing | host-local `D:/Proyectos/Refs/dart|flutter` unverified; probe before citing |
 | ECO-DART (dart-lang/tools, fpdart API) | missing | declared for contrast only when a slice needs it; never a dependency |

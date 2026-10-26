@@ -63,7 +63,7 @@ mirrors Axiom's `(T, bool)`).
 | a loose value that may be missing, your own code | `(value, present)` record |
 | an absence to chain or transform | `opt` |
 | a failure with a cause | `result` |
-| two typed sides | `either` (future) |
+| two typed sides | `either` |
 
 ## Details
 
@@ -82,6 +82,31 @@ mirrors Axiom's `(T, bool)`).
 - [ ] `dart analyze` clean and `dart format` clean
 - [ ] New symbol cites what the SDK lacked + carries a doc comment with an example
 - [ ] No `dynamic` in public signatures except codec edges with typed wrappers
+
+## Linter
+
+You get the house rules enforced, not just documented: `praxis_lints`,
+a local analyzer plugin, diagnoses what the Which-tables teach.
+
+| If you write ... | You get |
+| --- | --- |
+| a single-letter name (`var x = 1`) | `no_single_letter` |
+| a nothing-name (`var data = rows`) | `no_banned_names` |
+
+Enable it in your `analysis_options.yaml`:
+
+```yaml
+plugins:
+  praxis_lints:
+    path: tools/praxis_lints
+    diagnostics:
+      no_single_letter: true
+      no_banned_names: true
+```
+
+Read the rule docs in [`tools/praxis_lints/README.md`](tools/praxis_lints/README.md) (symptom → rule table, violation vs clean pairs, scope notes). The plugin resolves in an
+isolated synthetic package, so it never fights the root analyzer line —
+restart the analysis server after changing the section.
 
 ## Why not just use `fpdart`?
 
