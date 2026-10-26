@@ -31,9 +31,9 @@ import 'dart:async';
 /// future under its key, hands the identical future to late joiners, and
 /// forgets the key when the future settles — success or failure — so the
 /// map never grows past the live keys and sequential calls re-execute.
-/// The group never mutates caller inputs; the shared outcome is the
-/// identical future instance, so callers treat a shared mutable value as
-/// read-only instead of aliasing it through mutation.
+/// The group never mutates caller inputs; every sharer receives the
+/// identical future instance, so a shared mutable outcome stays read-only
+/// for all sharers.
 ///
 /// Which-table row:
 ///
@@ -41,13 +41,13 @@ import 'dart:async';
 /// | --- | --- |
 /// | one key space with shared in-flight calls | [SingleflightGroup] |
 ///
-/// Stdlib gap (DART-SDK): [Future.wait] (`lib/async/future.dart:517`)
-/// joins an already-known set of futures — every future runs whether or
-/// not keys overlap — so it owns no per-key dedupe. [Stream.fromFutures]
-/// (`lib/async/stream.dart:297`) shares one subscription across listeners,
-/// not one execution across callers. No SDK combinator memoizes an
-/// in-flight future by key, so [SingleflightGroup] owns that shape as a
-/// hand-rolled live-key table over an SDK map, never a reimplementation.
+/// Stdlib gap (DART-SDK): [Future.wait] (`lib/async/future.dart`) joins an
+/// already-known set of futures — every future runs whether or not keys
+/// overlap — so it owns no per-key dedupe. [Stream.fromFutures]
+/// (`lib/async/stream.dart`) shares one subscription across listeners, not
+/// one execution across callers. No SDK combinator memoizes an in-flight
+/// future by key, so [SingleflightGroup] owns that shape as a hand-rolled
+/// live-key table over an SDK map, never a reimplementation.
 /// Fidelity note (AXIOM-SISTER): mirrors Axiom's `singleflight` discipline
 /// (share in-flight per key, forget on settle, propagate errors to all
 /// sharers) without Go signatures: futures instead of channels, an
@@ -99,11 +99,9 @@ final class SingleflightGroup<RequestKey extends Object, OutcomeValue> {
   /// | --- | --- |
   /// | a key plus work to run once while shared | [SingleflightGroup.call] |
   ///
-  /// Stdlib gap (DART-SDK): [Future.wait] (`lib/async/future.dart:517`)
-  /// runs every joined future instead of collapsing equal keys, and
-  /// [Stream.fromFutures] (`lib/async/stream.dart:297`) fans one
-  /// subscription out rather than one execution in. [call] owns the
-  /// missing shape: the first caller runs [action] while concurrent
+  /// Stdlib gap (DART-SDK): see [SingleflightGroup] for the missing shape —
+  /// no SDK combinator memoizes an in-flight future by key. [call] owns the
+  /// operation half: the first caller runs [action] while concurrent
   /// same-key callers receive the identical future instance.
   ///
   /// The check-then-store runs synchronously with no `await` between, so

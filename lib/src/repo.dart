@@ -201,13 +201,7 @@ final class Repository<StoredRecord extends Object, Identity extends Object> {
   /// final bool droppedLesson = lessonStore.remove('lesson-a');
   /// // droppedLesson == true
   /// ```
-  bool remove(Identity recordId) {
-    if (!_recordsById.containsKey(recordId)) {
-      return false;
-    }
-    _recordsById.remove(recordId);
-    return true;
-  }
+  bool remove(Identity recordId) => _recordsById.remove(recordId) != null;
 
   /// Returns a fresh snapshot holding every stored record.
   ///

@@ -167,8 +167,9 @@ final class HttpxRequest {
   /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
-  /// final HttpxRequest outgoingRequest = HttpxRequest.get(
-  ///   Uri.parse('https://catalyst.example/lessons/generics-intro'),
+  /// final HttpxRequest outgoingRequest = HttpxRequest(
+  ///   method: 'GET',
+  ///   resourceUri: Uri.parse('https://catalyst.example/lessons/generics-intro'),
   /// );
   /// // outgoingRequest.method == 'GET'
   /// ```
@@ -285,7 +286,7 @@ final class HttpxRequest {
   /// final HttpxRequest outgoingRequest = HttpxRequest.get(
   ///   Uri.parse('https://catalyst.example/lessons/generics-intro'),
   /// );
-  /// // outgoingRequest.method == 'GET'
+  /// // outgoingRequest.resourceUri.path == '/lessons/generics-intro'
   /// ```
   final Uri resourceUri;
 
@@ -306,7 +307,7 @@ final class HttpxRequest {
   /// final HttpxRequest outgoingRequest = HttpxRequest.get(
   ///   Uri.parse('https://catalyst.example/lessons/generics-intro'),
   /// );
-  /// // outgoingRequest.method == 'GET'
+  /// // outgoingRequest.headers.isEmpty == true
   /// ```
   final Map<String, String> headers;
 
@@ -328,7 +329,7 @@ final class HttpxRequest {
   ///   Uri.parse('https://catalyst.example/lessons'),
   ///   <String, Object?>{'slug': 'generics-intro'},
   /// );
-  /// // outgoingRequest.method == 'POST'
+  /// // outgoingRequest.bodyText.contains('generics-intro') == true
   /// ```
   final String bodyText;
 }
@@ -405,7 +406,7 @@ final class HttpxResponse {
   ///   statusCode: 200,
   ///   bodyText: '{"title":"Intro to Generics"}',
   /// );
-  /// // wireResponse.statusCode == 200
+  /// // wireResponse.bodyText.contains('Generics') == true
   /// ```
   final String bodyText;
 
@@ -427,7 +428,7 @@ final class HttpxResponse {
   ///   statusCode: 200,
   ///   bodyText: '{"title":"Intro to Generics"}',
   /// );
-  /// // wireResponse.statusCode == 200
+  /// // wireResponse.headers.isEmpty == true
   /// ```
   final Map<String, String> headers;
 }
@@ -522,7 +523,7 @@ final class HttpxStatusFailure implements Exception {
   ///   404,
   ///   'missing lesson',
   /// );
-  /// // statusFailure.statusCode == 404
+  /// // statusFailure.bodyText == 'missing lesson'
   /// ```
   final String bodyText;
 
@@ -809,7 +810,7 @@ Future<Result<DecodedBody>> _sendEnvelopeRequest<DecodedBody>(
   HttpxRequest outgoingRequest,
   DecodedBody Function(Map<String, Object?> decodedJson) decodeBody,
 ) async {
-  late final HttpxResponse wireResponse;
+  final HttpxResponse wireResponse;
   try {
     wireResponse = await transport(outgoingRequest);
   } catch (transportCause) {
@@ -820,7 +821,7 @@ Future<Result<DecodedBody>> _sendEnvelopeRequest<DecodedBody>(
       HttpxStatusFailure(wireResponse.statusCode, wireResponse.bodyText),
     );
   }
-  late final Object? decodedEnvelope;
+  final Object? decodedEnvelope;
   try {
     decodedEnvelope = jsonDecode(wireResponse.bodyText);
   } catch (codecCause) {

@@ -500,6 +500,17 @@ void main() {
       expect(lessonOutcome.getOrElse('missing'), equals('generics-intro'));
     });
 
+    test('HttpxRequest.new example', () {
+      final HttpxRequest outgoingRequest = HttpxRequest(
+        method: 'GET',
+        resourceUri: Uri.parse(
+          'https://catalyst.example/lessons/generics-intro',
+        ),
+      );
+      // outgoingRequest.method == 'GET'
+      expect(outgoingRequest.method, equals('GET'));
+    });
+
     test('HttpxRequest.get example', () {
       final HttpxRequest outgoingRequest = HttpxRequest.get(
         Uri.parse('https://catalyst.example/lessons/generics-intro'),
