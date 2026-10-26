@@ -35,7 +35,7 @@ everything else is declared future scope (one ODD feature per package).
 | a success-or-failure outcome | `result` | skeleton — shipped |
 | a maybe-present value | `opt` | skeleton — shipped |
 | a list to transform, find, or fold | lists | skeleton — shipped |
-| two typed sides (left / right) | `either` | declared future (same gate as Axiom's) |
+| two typed sides (left / right) | `either` | either — shipped |
 | a builtin map to reshape | `mapx` | mapx — shipped |
 | distinct values to combine or compare | `set` | set — shipped |
 | a lazy `Iterable` pipeline | `iterx` | iterx — shipped |
@@ -70,7 +70,7 @@ mirrors Axiom's `(T, bool)`).
 | Topic | Decision |
 | --- | --- |
 | Package / toolchain | `praxis`, Dart `^3.13.0` (records, patterns, sealed types) |
-| Ships now | skeleton: `result` + `opt` + lists (`odd/tasks/praxis-skeleton.md`); set slice: `set` (`odd/tasks/praxis-set.md`); mapx slice: `mapx` (`odd/tasks/praxis-mapx.md`); iterx slice: `iterx` (`odd/tasks/praxis-iterx.md`); valid slice: `valid` (`odd/tasks/praxis-valid.md`); strings slice: `strings` (`odd/tasks/praxis-strings.md`); mathx slice: `mathx` (`odd/tasks/praxis-mathx.md`); flow slice: `flow` (`odd/tasks/praxis-flow.md`); pool slice: `pool` (`odd/tasks/praxis-pool.md`); singleflight slice: `singleflight` (`odd/tasks/praxis-singleflight.md`); di slice: `di` (`odd/tasks/praxis-di.md`); repo slice: `repo` (`odd/tasks/praxis-repo.md`); httpx slice: `httpx` (`odd/tasks/praxis-httpx.md`); collections slice: `stack` + `queue` + `orderedmap` (`odd/tasks/praxis-collections.md`); task slice: `task` (`odd/tasks/praxis-taskfuture.md`); pipecompose slice: `pipe` (`odd/tasks/praxis-pipecompose.md`) |
+| Ships now | skeleton: `result` + `opt` + lists (`odd/tasks/praxis-skeleton.md`); set slice: `set` (`odd/tasks/praxis-set.md`); mapx slice: `mapx` (`odd/tasks/praxis-mapx.md`); iterx slice: `iterx` (`odd/tasks/praxis-iterx.md`); valid slice: `valid` (`odd/tasks/praxis-valid.md`); strings slice: `strings` (`odd/tasks/praxis-strings.md`); mathx slice: `mathx` (`odd/tasks/praxis-mathx.md`); flow slice: `flow` (`odd/tasks/praxis-flow.md`); pool slice: `pool` (`odd/tasks/praxis-pool.md`); singleflight slice: `singleflight` (`odd/tasks/praxis-singleflight.md`); di slice: `di` (`odd/tasks/praxis-di.md`); repo slice: `repo` (`odd/tasks/praxis-repo.md`); httpx slice: `httpx` (`odd/tasks/praxis-httpx.md`); collections slice: `stack` + `queue` + `orderedmap` (`odd/tasks/praxis-collections.md`); task slice: `task` (`odd/tasks/praxis-taskfuture.md`); pipecompose slice: `pipe` (`odd/tasks/praxis-pipecompose.md`); either slice: `either` (`odd/tasks/praxis-either.md`) |
 | Rules | SDK-first (`dart:core`/`dart:collection`/`dart:async` before hand-rolled); typed API, `dynamic` only at codec edges; grep-able names (no `data`/`item`/`res`); doc comment on every export + one CI-executed example per package happy path; pure helpers (never mutate inputs) |
 | Loop | `PRAXIS_LOOP.md` + `.loop-modules/` + `VISION.md` + `loop-config.yaml`; ODD-tracked in `odd/tasks/` |
 | Declared future (owner-gated) | new packages need an explicit owner package-creation call before any ODD — curriculum need gates helpers, never speculative generality |
