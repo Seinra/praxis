@@ -1,12 +1,4 @@
-import 'package:praxis/src/httpx.dart';
-import 'package:praxis/src/opt.dart';
-import 'package:praxis/src/orderedmap.dart';
-import 'package:praxis/src/pipe.dart';
-import 'package:praxis/src/queue.dart';
-import 'package:praxis/src/repo.dart';
-import 'package:praxis/src/result.dart';
-import 'package:praxis/src/stack.dart';
-import 'package:praxis/src/task.dart';
+import 'package:praxis/praxis.dart';
 import 'package:test/test.dart';
 
 /// Companion suite for docs unit C (guides `repo` + `httpx` + `stack` +

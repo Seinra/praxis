@@ -28,7 +28,7 @@
 /// with the SDK `take`. Invalid sizes are programmer errors and throw at
 /// call time; valid sizes stay fully lazy.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0` (records,
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0` (records,
 /// `sync*` generators).
 library;
 
@@ -58,7 +58,7 @@ import 'dart:collection';
 ///
 /// Returns an empty iterable when either side is empty.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0` (records).
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0` (records).
 ///
 /// ```dart
 /// final paired = zipIterables(<int>[1, 2, 3], <String>['a', 'b']);
@@ -103,7 +103,7 @@ zipIterables<FirstElement, SecondElement>(
 /// non-positive chunk size is a programmer error, not a domain outcome.
 /// Returns an empty iterable when [sourceElements] is empty.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final chunks = chunkedIterable(<int>[1, 2, 3, 4, 5], 2);
@@ -163,7 +163,7 @@ Iterable<List<Element>> _chunkedElements<Element>(
 /// Returns an empty iterable when [sourceElements] is empty or shorter
 /// than [windowSize].
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final windows = windowedIterable(<int>[1, 2, 3], 2);
@@ -218,7 +218,7 @@ Iterable<List<Element>> _windowedElements<Element>(
 ///
 /// Returns an empty iterable when [sourceElements] is empty.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final cycled = cycleIterable(<int>[1, 2]).take(5);
@@ -262,7 +262,7 @@ Iterable<Element> cycleIterable<Element>(
 /// known size. The yielded values are the same object when [repeatedElement]
 /// is an object: sharing is by design for an infinite constant stream.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final repeated = repeatElement(7).take(3);
@@ -297,7 +297,7 @@ Iterable<Element> repeatElement<Element>(Element repeatedElement) sync* {
 ///
 /// Returns an empty iterable when [sourceElements] is empty.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final uniqueRuns = deduplicateAdjacent(<int>[1, 1, 2, 1]);

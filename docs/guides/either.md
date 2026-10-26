@@ -1,7 +1,7 @@
 # either — two typed sides, neither favoured
 
-**Version:** praxis `0.1.0-dev` on Dart `^3.13.0`.
-**Prereqs:** Dart SDK; `import 'package:praxis/src/either.dart'`. Read
+**Version:** praxis `0.1.0` on Dart `^3.13.0`.
+**Prereqs:** Dart SDK; `import 'package:praxis/praxis.dart'`. Read
 [foundations](foundations.md) first if generic syntax is new.
 
 > API source: `lib/src/either.dart` — doc comments are the reference; this
@@ -65,8 +65,7 @@ verbatim.
 Runnable — asserted by `test/docs_guides_a_test.dart` (same outputs):
 
 ```dart
-import 'package:praxis/src/either.dart';
-import 'package:praxis/src/result.dart';
+import 'package:praxis/praxis.dart';
 
 void main() {
   final Either<String, int> granted = Either<String, int>.right(7);
@@ -108,6 +107,15 @@ true
 > Never branch on `isLeft`/`isRight` and then cast the payload — `when` keeps
 > both branches beside the type, while a cast reintroduces the untyped shape
 > `Either` exists to replace.
+
+## Checklist
+
+- [ ] You split with `when` instead of branching on `isLeft`/`isRight` plus
+  a cast.
+- [ ] You can state which side each transform carries through untouched.
+- [ ] You bridge with `toResult` only at the point a failure cause becomes
+  known.
+- [ ] You never assign success-or-failure meaning to the sides.
 
 ## Next step
 

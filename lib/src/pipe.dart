@@ -23,7 +23,7 @@
 /// plain total unary functions into one reusable value; it never runs
 /// anything until the composed function is called.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 library;
 
 /// Names a two-step pipeline that reads in application order.
@@ -57,7 +57,7 @@ library;
 /// safety makes it unrepresentable, since both legs are non-nullable
 /// functions the compiler already rejects as `null`.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final int Function(int) addOneThenDouble = pipe<int, int, int>(
@@ -104,7 +104,7 @@ pipe<InputValue, BridgeValue, OutputValue>(
 /// safety makes it unrepresentable, since both legs are non-nullable
 /// functions the compiler already rejects as `null`.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final int Function(int) doubleAfterAddOne = compose<int, int, int>(

@@ -22,7 +22,7 @@
 /// empty-safe, and the boolean probes answer directly without building an
 /// intermediate set.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 library;
 
 /// Returns the members held by exactly one of [firstMembers] or [secondMembers].
@@ -41,7 +41,7 @@ library;
 /// Returns a fresh empty set when both sides match or both are empty.
 /// Never mutates [firstMembers] or [secondMembers].
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final difference = symmetricDifference(<int>{1, 2, 3}, <int>{3, 4});
@@ -82,7 +82,7 @@ Set<Element> symmetricDifference<Element>(
 /// Returns `true` when [firstMembers] is empty: an empty side adds no
 /// counterexample. Never mutates [firstMembers] or [secondMembers].
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// print(isSubsetOf(<int>{1, 2}, <int>{1, 2, 3})); // true
@@ -118,7 +118,7 @@ bool isSubsetOf<Element>(
 /// Returns `true` when [secondMembers] is empty: nothing promises nothing
 /// to cover. Never mutates [firstMembers] or [secondMembers].
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// print(isSupersetOf(<int>{1, 2, 3}, <int>{1, 2})); // true
@@ -146,7 +146,7 @@ bool isSupersetOf<Element>(
 /// Returns `true` when either side is empty: an empty side shares
 /// nothing. Never mutates [firstMembers] or [secondMembers].
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// print(isDisjointFrom(<int>{1, 2}, <int>{3, 4})); // true
@@ -185,7 +185,7 @@ bool isDisjointFrom<Element>(
 /// Returns `true` for two empty sides. Never mutates [firstMembers] or
 /// [secondMembers].
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// print(hasSameMembers(<int>{1, 2}, <int>{2, 1})); // true

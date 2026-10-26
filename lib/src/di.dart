@@ -26,7 +26,7 @@
 /// that transitively resolves its own service recurses, which is a
 /// programmer error, never a checked failure).
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 library;
 
 /// Holds one lazy singleton per service name behind explicit factories.
@@ -56,7 +56,7 @@ library;
 /// instead of sentinel errors, and no `Replace` — [unregister] plus
 /// [register] covers the test-seed swap in this slice.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final ServiceContainer services = ServiceContainer();
@@ -76,7 +76,7 @@ final class ServiceContainer {
   /// lifecycle, so [ServiceContainer.new] names the empty slot table that
   /// [ServiceContainer.register] fills entry by entry.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final ServiceContainer services = ServiceContainer();
@@ -117,7 +117,7 @@ final class ServiceContainer {
   /// [StateError] when [serviceName] is already registered: the first
   /// registration wins and stays untouched.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final ServiceContainer services = ServiceContainer();
@@ -172,7 +172,7 @@ final class ServiceContainer {
   /// [serviceName], and a [StateError] when the cached value is not the
   /// requested type: both are programmer errors, never domain failures.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final ServiceContainer services = ServiceContainer();
@@ -219,7 +219,7 @@ final class ServiceContainer {
   /// Throws a [StateError] when no service is registered under
   /// [serviceName].
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final ServiceContainer services = ServiceContainer();
@@ -258,7 +258,7 @@ final class ServiceContainer {
   /// error still propagates, and removals land in a `finally` sweep so the
   /// next test always starts clean.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final ServiceContainer services = ServiceContainer();

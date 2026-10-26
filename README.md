@@ -25,8 +25,8 @@ results, options, and lists, built one feature at a time. Sister library of
 ## Which function? (guide index)
 
 Each package doc opens with a "Which function?" table (outcome → function).
-Start there, then `dart doc` the package. Skeleton shipped the first three rows;
-everything else is declared future scope (one ODD feature per package).
+Start there, then `dart doc` the package. New here? Work through
+docs/quickstart.md first.
 
 | If you are holding ... | Start with | Status |
 | --- | --- | --- |
@@ -68,30 +68,12 @@ mirrors Axiom's `(T, bool)`).
 | Topic | Decision |
 | --- | --- |
 | Package / toolchain | `praxis`, Dart `^3.13.0` (records, patterns, sealed types) |
-| Ships now | skeleton: `result` + `opt` + lists (`odd/tasks/praxis-skeleton.md`); set slice: `set` (`odd/tasks/praxis-set.md`); mapx slice: `mapx` (`odd/tasks/praxis-mapx.md`); iterx slice: `iterx` (`odd/tasks/praxis-iterx.md`); valid slice: `valid` (`odd/tasks/praxis-valid.md`); strings slice: `strings` (`odd/tasks/praxis-strings.md`); mathx slice: `mathx` (`odd/tasks/praxis-mathx.md`); flow slice: `flow` (`odd/tasks/praxis-flow.md`); pool slice: `pool` (`odd/tasks/praxis-pool.md`); singleflight slice: `singleflight` (`odd/tasks/praxis-singleflight.md`); di slice: `di` (`odd/tasks/praxis-di.md`); repo slice: `repo` (`odd/tasks/praxis-repo.md`); httpx slice: `httpx` (`odd/tasks/praxis-httpx.md`); collections slice: `stack` + `queue` + `orderedmap` (`odd/tasks/praxis-collections.md`); task slice: `task` (`odd/tasks/praxis-taskfuture.md`); pipecompose slice: `pipe` (`odd/tasks/praxis-pipecompose.md`); either slice: `either` (`odd/tasks/praxis-either.md`) |
-| Rules | SDK-first (`dart:core`/`dart:collection`/`dart:async` before hand-rolled); typed API, `dynamic` only at codec edges; grep-able names (no `data`/`item`/`res`); doc comment on every export + one CI-executed example per package happy path; pure helpers (never mutate inputs) |
-| Loop | `PRAXIS_LOOP.md` + `.loop-modules/` + `VISION.md` + `loop-config.yaml`; ODD-tracked in `odd/tasks/` |
-| Declared future (owner-gated) | new packages need an explicit owner package-creation call before any ODD — curriculum need gates helpers, never speculative generality |
-| Consumer | Catalyst (offline-first course app) pilots via scratch path-only — never a Catalyst commit from here |
-
-## Checklist
-
-- [ ] `dart test` green on Dart 3.13
-- [ ] `dart analyze` clean and `dart format` clean
-- [ ] New symbol cites what the SDK lacked + carries a doc comment with an example
-- [ ] No `dynamic` in public signatures except codec edges with typed wrappers
+| Ships now | `result` + `opt` + lists, `either`, `mapx`, `set`, `iterx`, `valid`, `strings`, `mathx`, `flow`, `pool`, `singleflight`, `di`, `repo`, `httpx`, `stack` + `queue` + `orderedmap`, `task`, `pipe`, `praxis_lints` (dev tooling) — see `docs/quickstart.md` to start, `CHANGELOG.md` for the slice history |
+| Rules | You follow the [VISION Invariants](VISION.md#invariants-non-negotiable-ratified-2026-10-23) and the [CONTRIBUTING Declined list](CONTRIBUTING.md#declined-with-reasons-dont-open-these) — SDK-first, typed APIs, grep-able names, doc comments with CI-executed examples, pure helpers |
 
 ## Linter
 
-You get the house rules enforced, not just documented: `praxis_lints`,
-a local analyzer plugin, diagnoses what the Which-tables teach.
-
-| If you write ... | You get |
-| --- | --- |
-| a single-letter name (`var x = 1`) | `no_single_letter` |
-| a nothing-name (`var data = rows`) | `no_banned_names` |
-
-Enable it in your `analysis_options.yaml`:
+You enable `praxis_lints` (the house-rule analyzer plugin) in your `analysis_options.yaml`:
 
 ```yaml
 plugins:
@@ -102,9 +84,7 @@ plugins:
       no_banned_names: true
 ```
 
-Read the rule docs in [`tools/praxis_lints/README.md`](tools/praxis_lints/README.md) (symptom → rule table, violation vs clean pairs, scope notes). The plugin resolves in an
-isolated synthetic package, so it never fights the root analyzer line —
-restart the analysis server after changing the section.
+You read the rule docs in [`tools/praxis_lints/README.md`](tools/praxis_lints/README.md) (symptom → rule table, violation vs clean pairs, scope notes); you restart the analysis server after changing the section.
 
 ## Why not just use `fpdart`?
 
@@ -124,5 +104,4 @@ domain helpers) are declined there with reasons.
 
 ## Next step
 
-Read `VISION.md` for the product line, then `.loop-modules/ARCHITECTURE.md` for
-the coverage map — each future package becomes one ODD feature.
+You work the [quickstart](docs/quickstart.md) next — you point, run, and verify in under five minutes.

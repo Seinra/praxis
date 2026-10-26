@@ -40,7 +40,7 @@ library;
 /// (AXIOM-SISTER): mirrors Axiom's typed-outcome discipline with Dart sealed
 /// types and exhaustive patterns.
 ///
-/// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
+/// Available since praxis `0.1.0`; requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final Result<int> outcome = Result<int>.ok(21);
@@ -62,7 +62,7 @@ sealed class Result<OutcomeValue> {
   /// successes travel as bare values beside throwing failure paths.
   /// [Result.ok] pairs with [Result.failure] so both sides share one type.
   ///
-  /// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
+  /// Available since praxis `0.1.0`; requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final Result<int> outcome = Result<int>.ok(21);
@@ -82,7 +82,7 @@ sealed class Result<OutcomeValue> {
   /// skip return types, so callers cannot see them. [Result.failure] keeps
   /// the failure inside the type so callers handle it.
   ///
-  /// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
+  /// Available since praxis `0.1.0`; requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final Result<int> outcome = Result<int>.failure(Exception('offline'));
@@ -102,7 +102,7 @@ sealed class Result<OutcomeValue> {
   /// `null` checks and scattered `is` tests. [Result.isOk] answers it from
   /// the outcome side itself.
   ///
-  /// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
+  /// Available since praxis `0.1.0`; requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// Result<int>.ok(1).isOk // true
@@ -125,7 +125,7 @@ sealed class Result<OutcomeValue> {
   /// `try`/`catch` handling at a distance. [Result.isFailure] answers it
   /// from the outcome side itself.
   ///
-  /// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
+  /// Available since praxis `0.1.0`; requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// Result<int>.failure(Exception('offline')).isFailure // true
@@ -152,7 +152,7 @@ sealed class Result<OutcomeValue> {
   /// `switch` statements over ad-hoc shapes drift from the type. [Result.when]
   /// keeps both branches beside the type.
   ///
-  /// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
+  /// Available since praxis `0.1.0`; requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final String label = Result<int>.ok(3).when(
@@ -183,7 +183,7 @@ sealed class Result<OutcomeValue> {
   /// Stdlib gap (DART-SDK): nullable reads with `??` conflate missing with
   /// failed. [Result.getOrElse] substitutes only on the failure side.
   ///
-  /// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
+  /// Available since praxis `0.1.0`; requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// Result<int>.ok(7).getOrElse(0); // 7
@@ -210,7 +210,7 @@ sealed class Result<OutcomeValue> {
   /// outcomes. [Result.mapValue] is the outcome-level transform, and it
   /// preserves the failure side by construction.
   ///
-  /// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
+  /// Available since praxis `0.1.0`; requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final Result<int> doubled = Result<int>.ok(21).mapValue(
@@ -244,7 +244,7 @@ sealed class Result<OutcomeValue> {
   /// synchronous outcomes have no chain. [Result.andThen] sequences fallible
   /// steps without `try`/`catch` at call sites.
   ///
-  /// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
+  /// Available since praxis `0.1.0`; requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final Result<int> chained = Result<int>.ok(21).andThen(
@@ -277,7 +277,7 @@ sealed class Result<OutcomeValue> {
 /// Fidelity note (AXIOM-SISTER): the success half of Axiom's typed-outcome
 /// pair, expressed as a Dart sealed-family member.
 ///
-/// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
+/// Available since praxis `0.1.0`; requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// const Ok<int>(21).value // 21
@@ -294,7 +294,7 @@ final class Ok<OutcomeValue> extends Result<OutcomeValue> {
   /// Stdlib gap (DART-SDK): same gap as [Result.ok]; this constructor is the
   /// direct spelling for pattern-matching and constant contexts.
   ///
-  /// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
+  /// Available since praxis `0.1.0`; requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// const Ok<int>(21).value // 21
@@ -313,7 +313,7 @@ final class Ok<OutcomeValue> extends Result<OutcomeValue> {
   /// assertions. [Ok.value] reads the value the outcome already proved
   /// present.
   ///
-  /// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
+  /// Available since praxis `0.1.0`; requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// const Ok<int>(21).value // 21
@@ -355,7 +355,7 @@ final class Ok<OutcomeValue> extends Result<OutcomeValue> {
 /// type. Fidelity note (AXIOM-SISTER): the failure half of Axiom's
 /// typed-outcome pair, expressed as a Dart sealed-family member.
 ///
-/// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
+/// Available since praxis `0.1.0`; requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final Failure<int> outcome = Failure<int>(Exception('offline'));
@@ -373,7 +373,7 @@ final class Failure<OutcomeValue> extends Result<OutcomeValue> {
   /// Stdlib gap (DART-SDK): same gap as [Result.failure]; this constructor
   /// is the direct spelling for pattern-matching and constant contexts.
   ///
-  /// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
+  /// Available since praxis `0.1.0`; requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final Failure<int> outcome = Failure<int>(Exception('offline'));
@@ -393,7 +393,7 @@ final class Failure<OutcomeValue> extends Result<OutcomeValue> {
   /// [Failure.cause] keeps the original instance on the outcome, so
   /// [Result.mapValue] and [Result.andThen] carry it through untouched.
   ///
-  /// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
+  /// Available since praxis `0.1.0`; requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final Exception rootCause = Exception('offline');

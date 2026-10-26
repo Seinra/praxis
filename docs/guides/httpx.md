@@ -4,7 +4,7 @@ You fetch and post typed JSON without owning the wire: you shape calls
 with `HttpxRequest`, you answer them with fakes through `HttpxTransport`,
 and every outcome — value or failure — travels back inside a `Result`.
 
-**Version:** Praxis `0.1.0-dev`, Dart `^3.13.0`.
+**Version:** Praxis `0.1.0`, Dart `^3.13.0`.
 **Prereqs:** `import 'package:praxis/praxis.dart';` exposes the envelope.
 Tests answer fakes in-process; production wires `dart:io` at the
 composition root (never inside `lib`, which stays web-compatible).
@@ -32,7 +32,7 @@ adapter with zero dependencies.
 6. Branch the outcome: status, transport, and codec failures each carry
    their own typed failure.
 
-## Which type?
+## Which function?
 
 The package doc (`lib/src/httpx.dart`) is the source; this table mirrors
 its "Which function?" table:
@@ -52,7 +52,7 @@ its "Which function?" table:
 
 ## Example
 
-From `test/docs_guides_c_test.dart` (group `httpx guide`):
+Example contents are asserted by `test/docs_guides_c_test.dart` (group `httpx guide`):
 
 ```dart
 import 'package:praxis/praxis.dart';
@@ -80,6 +80,13 @@ Future<void> main() async {
   );
   print(missingOutcome.isFailure); // Output: true
 }
+```
+
+Expected output:
+
+```text
+Intro to Generics
+true
 ```
 
 Run it: `dart test test/docs_guides_c_test.dart -n 'httpx guide'`.
@@ -111,6 +118,12 @@ already cover end to end, or streaming bodies this object envelope does
 not shape. Reach for `dart:convert` `jsonDecode` directly for one-off
 decoding with no status, transport, or codec policy. Reach for `httpx`
 when fakes, typed bodies, and classified failures must travel together.
+
+## Checklist
+
+- [ ] You can state the status rule in one sentence (only 2xx decodes; anything else answers `HttpxStatusFailure` without running your codec).
+- [ ] You can state the throw rule in one sentence (transport and codec throws stay inside the `Result` as typed failures; only a wrong-method call throws `ArgumentError`).
+- [ ] You can shape a GET and a POST and branch the outcome before decoding on success.
 
 ## Next step
 

@@ -4,7 +4,7 @@ You start one computation now and join it later: `Task.spawn` runs the
 work eagerly and hands back a handle, and `Task.join` reports its single
 shared outcome as a typed `Result`.
 
-**Version:** Praxis `0.1.0-dev`, Dart `^3.13.0`.
+**Version:** Praxis `0.1.0`, Dart `^3.13.0`.
 **Prereqs:** `import 'package:praxis/praxis.dart';` exposes `Task` (and
 `Result` for the joined outcome).
 
@@ -28,7 +28,7 @@ lazy cold-starts stay plain `Future` closures.
 4. Shape the joined value with `Result` helpers (`mapValue`, `andThen`) —
    never with `Then`/`Map` combinators here.
 
-## Which type?
+## Which function?
 
 The package doc (`lib/src/task.dart`) is the source; this table mirrors
 its "Which function?" table:
@@ -41,7 +41,7 @@ its "Which function?" table:
 
 ## Example
 
-From `test/docs_guides_c_test.dart` (group `task guide`):
+Example contents are asserted by `test/docs_guides_c_test.dart` (group `task guide`):
 
 ```dart
 import 'package:praxis/praxis.dart';
@@ -53,6 +53,13 @@ Future<void> main() async {
   final Result<int> secondOutcome = await backgroundTask.join();
   print(identical(outcome, secondOutcome)); // Output: true
 }
+```
+
+Expected output:
+
+```text
+42
+true
 ```
 
 Run it: `dart test test/docs_guides_c_test.dart -n 'task guide'`.
@@ -83,6 +90,12 @@ lazy closure you only invoke on demand. Reach for `Task` when one eager
 computation fans out to N joiners and every failure must travel as data.
 Reach for `flow` when concurrency needs a cap, races need a first-success
 win, or cancellation needs a scope.
+
+## Checklist
+
+- [ ] You can state the run-once rule in one sentence (the computation starts before `spawn` returns and never re-runs, even when `join` never comes).
+- [ ] You can state the sharing rule in one sentence (every joiner receives the identical `Result` instance, before or after completion).
+- [ ] You shape joined values with `Result` helpers instead of awaiting the raw computation beside the handle.
 
 ## Next step
 

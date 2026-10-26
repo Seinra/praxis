@@ -28,7 +28,7 @@
 /// shares its outcome; it never dedupes keys (reach for `singleflight`)
 /// and never caps concurrency (reach for `flow`).
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 library;
 
 import 'package:praxis/src/result.dart';
@@ -66,7 +66,7 @@ import 'package:praxis/src/result.dart';
 /// unrepresentable, since the computation is a non-nullable function the
 /// compiler already rejects as `null`.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final Task<int> backgroundTask = Task<int>.spawn(() async => 42);
@@ -95,7 +95,7 @@ final class Task<OutcomeValue> {
   /// [compute] becomes a [Result.failure] instead of escaping the
   /// constructor, matching the async-error path.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final Task<int> backgroundTask = Task<int>.spawn(() async => 42);
@@ -129,7 +129,7 @@ final class Task<OutcomeValue> {
   /// their string form, because [Result] names [Exception] as its only
   /// failure value by design. Never throws for a compute failure.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final Task<int> backgroundTask = Task<int>.spawn(() async => 42);

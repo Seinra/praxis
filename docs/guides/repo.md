@@ -4,7 +4,7 @@ You hold one record per identity behind a caller-supplied extractor: you
 store or replace with `put`, you read absence as a value with `get`, you
 drop with `remove`, and you snapshot with `list`.
 
-**Version:** Praxis `0.1.0-dev`, Dart `^3.13.0`.
+**Version:** Praxis `0.1.0`, Dart `^3.13.0`.
 **Prereqs:** `import 'package:praxis/praxis.dart';` exposes `Repository`.
 
 ## Concept
@@ -25,7 +25,7 @@ policy, never store behavior.
 4. Drop one identity: `lessonStore.remove('lesson-a')`.
 5. Snapshot everything stored: `lessonStore.list()`.
 
-## Which type?
+## Which function?
 
 The package doc (`lib/src/repo.dart`) is the source; this table mirrors
 its "Which function?" table:
@@ -40,7 +40,7 @@ its "Which function?" table:
 
 ## Example
 
-From `test/docs_guides_c_test.dart` (group `repo guide`):
+Example contents are asserted by `test/docs_guides_c_test.dart` (group `repo guide`):
 
 ```dart
 import 'package:praxis/praxis.dart';
@@ -56,6 +56,15 @@ void main() {
   print(lessonStore.remove('lesson-a')); // Output: true
   print(lessonStore.list()); // Output: [lesson-b]
 }
+```
+
+Expected output:
+
+```text
+true
+[lesson-a, lesson-b]
+true
+[lesson-b]
 ```
 
 Run it: `dart test test/docs_guides_c_test.dart -n 'repo guide'`.
@@ -85,7 +94,14 @@ live `keys`/`values` views cause no aliasing trouble. Reach for
 `Repository` when identity extraction, upsert policy, absent-instead-of-
 throw reads, or snapshot discipline is the lesson.
 
+## Checklist
+
+- [ ] You can state the upsert rule in one sentence (a duplicate `put` replaces and keeps one entry per identity).
+- [ ] You can state the absence rule in one sentence (a missing `get` answers absent `Opt`, and a missing `remove` reports `false` — neither throws).
+- [ ] You can state the snapshot rule in one sentence (every `list` call returns a fresh growable list in first-stored-first-listed order).
+
 ## Next step
 
 Records you fetch over HTTP land here: see [httpx](httpx.md) for the typed
 JSON envelope that delivers them.
+To hold the store behind a named singleton, see recipe (c) in [cookbook](../cookbook.md).

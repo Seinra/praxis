@@ -4,7 +4,7 @@ You serve the longest waiting first: you add at the back with `enqueue`,
 you serve with `dequeue`, you peek with `peek`, and an empty queue
 answers absence instead of throwing.
 
-**Version:** Praxis `0.1.0-dev`, Dart `^3.13.0`.
+**Version:** Praxis `0.1.0`, Dart `^3.13.0`.
 **Prereqs:** `import 'package:praxis/praxis.dart';` exposes `FifoQueue`.
 
 ## Concept
@@ -26,7 +26,7 @@ holder is `FifoQueue` so imports never clash with `dart:collection`.
 5. Branch on `present`, then trust `value`; ask `length`, `isEmpty`, or
    `isNotEmpty` for the depth.
 
-## Which type?
+## Which function?
 
 The package doc (`lib/src/queue.dart`) is the source; this table mirrors
 its "Which function?" table:
@@ -44,7 +44,7 @@ its "Which function?" table:
 
 ## Example
 
-From `test/docs_guides_c_test.dart` (group `queue guide`):
+Example contents are asserted by `test/docs_guides_c_test.dart` (group `queue guide`):
 
 ```dart
 import 'package:praxis/praxis.dart';
@@ -57,6 +57,14 @@ void main() {
   print(waitingWords.peek().value); // Output: pear
   print(waitingWords.length); // Output: 1
 }
+```
+
+Expected output:
+
+```text
+fig
+pear
+1
 ```
 
 Run it: `dart test test/docs_guides_c_test.dart -n 'queue guide'`.
@@ -85,6 +93,12 @@ your error policy. Reach for a plain `List` when indexed access or
 searching leads. Reach for `FifoQueue` when the call order is "serve the
 longest waiting first" and every empty read should answer absence
 instead of throwing.
+
+## Checklist
+
+- [ ] You can state the empty rule in one sentence (`dequeue` and `peek` on an empty queue answer `(value: null, present: false)` — never a throw).
+- [ ] You can state the order rule in one sentence (enqueues land at the back and dequeues leave from the front, so the longest-waiting value serves first).
+- [ ] You reach for `dart:collection` `Queue` when double-ended ops are the job, and for `FifoQueue` when every empty read must answer absence.
 
 ## Next step
 

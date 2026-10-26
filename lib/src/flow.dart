@@ -63,7 +63,7 @@ import 'package:praxis/src/result.dart';
 /// the cooperative half of Axiom's context-bound fan-out, without
 /// goroutines.
 ///
-/// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
+/// Available since praxis `0.1.0`; requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final FlowScope scope = FlowScope();
@@ -124,7 +124,7 @@ final class FlowScope {
 /// work. Synchronous throws inside [transform] count as task failures. When
 /// [scope] is omitted, one internal [FlowScope] serves this call only.
 ///
-/// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
+/// Available since praxis `0.1.0`; requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final List<int> doubledOutputs = await flowMap<int, int>(
@@ -198,7 +198,7 @@ Future<List<Output>> flowMap<Input, Output>(
 /// ignorable failures. When [scope] is omitted, one internal [FlowScope]
 /// serves this call only.
 ///
-/// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
+/// Available since praxis `0.1.0`; requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final int winnerOutput = await flowFirst<int, int>(
@@ -277,7 +277,7 @@ Future<Output> flowFirst<Input, Output>(
 /// failures and ride as [Result.failure] values. When [scope] is omitted,
 /// one internal [FlowScope] serves this call only.
 ///
-/// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
+/// Available since praxis `0.1.0`; requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final List<Result<int>> collectedOutcomes = await flowCollect<int, int>(

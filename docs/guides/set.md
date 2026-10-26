@@ -1,7 +1,7 @@
 # set — typed distinct-value helpers over Set
 
-**Version:** praxis `0.1.0-dev` on Dart `^3.13.0`.
-**Prereqs:** Dart SDK; `import 'package:praxis/src/set.dart'`. Read
+**Version:** praxis `0.1.0` on Dart `^3.13.0`.
+**Prereqs:** Dart SDK; `import 'package:praxis/praxis.dart'`. Read
 [foundations](foundations.md) first if generic syntax is new.
 
 > API source: `lib/src/set.dart` — doc comments are the reference; this guide
@@ -51,7 +51,7 @@ verbatim.
 Runnable — asserted by `test/docs_guides_a_test.dart` (same outputs):
 
 ```dart
-import 'package:praxis/src/set.dart';
+import 'package:praxis/praxis.dart';
 
 void main() {
   print(symmetricDifference(<int>{1, 2, 3}, <int>{3, 4})); // {1, 2, 4}
@@ -85,6 +85,15 @@ true
 > Never compare holdings with `==` — on sets it reports identity, not
 > membership, so two separately built holdings with the same members compare
 > unequal. You compare by membership with `hasSameMembers`.
+
+## Checklist
+
+- [ ] You compare holdings with `hasSameMembers`, never with `==`.
+- [ ] You read inclusion left to right (`isSubsetOf` asks about the first
+  side; `isSupersetOf` is the swapped call).
+- [ ] You can state the empty-side rules (an empty side adds no
+  counterexample and shares nothing; two empty sides hold the same
+  members).
 
 ## Next step
 

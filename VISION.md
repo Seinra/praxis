@@ -25,7 +25,7 @@ and ship typed code instead of `dynamic` soup.
 | --- | --- | --- |
 | — | Name + repo | `Praxis`, package `praxis`, repo `D:/Proyectos/Praxis` (public since the v0 bar) |
 | 1 | Absence contract | **(a) Records `(valor, presente)`** mirroring Axiom's `(T, bool)` exactly; revisit with evidence only |
-| 3 | Async story | **Deferred to the `flow` slice** — the library started sync-only; `Future`/`Stream` + cancellation shipped with the `flow` slice (`FlowScope`, `lib/src/flow.dart`) as decided when `flow` opened |
+| 3 | Async story | **Shipped with the `flow` slice** — the library starts sync-only; `Future`/`Stream` + cancellation ship with the `flow` slice (`FlowScope`, `lib/src/flow.dart`) as decided when `flow` opens |
 | 4 | JSON story | **Manual codecs now + migration guide later** — no codegen in the teaching library; `json_serializable` stays a Catalyst-side option |
 | 5 | Lint set | **`dart analyze` strict + `praxis_lints`** encoding the house rules (grep-able names, doc coverage) |
 | 6 | Release/versioning | **Path/git dependency while private; published (MIT) at the v0 library bar**, mirroring Axiom's v0 gate |

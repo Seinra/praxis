@@ -7,7 +7,7 @@ room remains, or discards it when idle is full; `Pool.use` borrows for one
 call with guaranteed release. Everything here is synchronous: waiting
 acquirers, timeouts, and cross-isolate sharing stay out of scope.
 
-**Version:** Praxis `0.1.0-dev`, Dart `^3.13.0`.
+**Version:** Praxis `0.1.0`, Dart `^3.13.0`.
 **Prereqs:** `import 'package:praxis/praxis.dart';`. You hold a factory
 that builds fresh values, an optional reset, and the idle cap.
 
@@ -34,24 +34,37 @@ The package doc (`lib/src/pool.dart`) is the source; this table mirrors its
 
 ## Example
 
-```dart
-final Pool<StringBuffer> bufferPool = Pool<StringBuffer>(
-  create: StringBuffer.new,
-  reset: (StringBuffer borrowedValue) => borrowedValue.clear(),
-  maxSize: 2,
-);
-final StringBuffer borrowedBuffer = bufferPool.acquire();
-borrowedBuffer.write('hi');
-bufferPool.release(borrowedBuffer);
-print(bufferPool.idleCount); // 1
+Runnable — asserted by `test/docs_guides_b_test.dart` (same outputs):
 
-final String greeting = bufferPool.use<String>(
-  (StringBuffer borrowedValue) {
-    borrowedValue.write('hi');
-    return borrowedValue.toString();
-  },
-);
-print(greeting); // hi
+```dart
+import 'package:praxis/praxis.dart';
+
+void main() {
+  final Pool<StringBuffer> bufferPool = Pool<StringBuffer>(
+    create: StringBuffer.new,
+    reset: (StringBuffer borrowedValue) => borrowedValue.clear(),
+    maxSize: 2,
+  );
+  final StringBuffer borrowedBuffer = bufferPool.acquire();
+  borrowedBuffer.write('hi');
+  bufferPool.release(borrowedBuffer);
+  print(bufferPool.idleCount); // 1
+
+  final String greeting = bufferPool.use<String>(
+    (StringBuffer borrowedValue) {
+      borrowedValue.write('hi');
+      return borrowedValue.toString();
+    },
+  );
+  print(greeting); // hi
+}
+```
+
+Expected output:
+
+```text
+1
+hi
 ```
 
 `acquire` reuses the most recently released value and never throws for lack

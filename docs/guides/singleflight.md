@@ -7,7 +7,7 @@ identical future to late joiners, and completion forgets the key so the next
 sequential call re-executes. Errors ride the shared future to every sharer;
 callers retry explicitly with a fresh call.
 
-**Version:** Praxis `0.1.0-dev`, Dart `^3.13.0`.
+**Version:** Praxis `0.1.0`, Dart `^3.13.0`.
 **Prereqs:** `import 'package:praxis/praxis.dart';` and
 `import 'dart:async';`. You hold the request key and the async action to run
 once while shared.
@@ -30,20 +30,33 @@ mirrors its "Which function?" table:
 
 ## Example
 
+Runnable — asserted by `test/docs_guides_b_test.dart` (same outputs):
+
 ```dart
-final SingleflightGroup<String, int> flightGroup =
-    SingleflightGroup<String, int>();
-int executionCount = 0;
-Future<int> loadUser() => flightGroup.call('user:7', () async {
-  executionCount += 1;
-  return 42;
-});
-final List<int> sharedResults = await Future.wait(<Future<int>>[
-  loadUser(),
-  loadUser(),
-]);
-print(sharedResults); // [42, 42]
-print(executionCount); // 1
+import 'package:praxis/praxis.dart';
+
+Future<void> main() async {
+  final SingleflightGroup<String, int> flightGroup =
+      SingleflightGroup<String, int>();
+  int executionCount = 0;
+  Future<int> loadUser() => flightGroup.call('user:7', () async {
+    executionCount += 1;
+    return 42;
+  });
+  final List<int> sharedResults = await Future.wait(<Future<int>>[
+    loadUser(),
+    loadUser(),
+  ]);
+  print(sharedResults); // [42, 42]
+  print(executionCount); // 1
+}
+```
+
+Expected output:
+
+```text
+[42, 42]
+1
 ```
 
 The check-then-store runs synchronously with no `await` between, so late
@@ -66,7 +79,7 @@ forgets each key on success and on failure.
 > the outcome is a shared mutable value, every sharer must treat it as
 > read-only, or one caller's mutation leaks into the others. And when you
 > need the value to persist past settlement with a TTL, you need a cache
-> (a future slice), not this package: sequential calls here always
+> (a future package), not this one: sequential calls here always
 > re-execute.
 
 ## When to use the stdlib directly

@@ -1,7 +1,7 @@
 # lists — typed searches, extremes, chunks, and splits over List
 
-**Version:** praxis `0.1.0-dev` on Dart `^3.13.0`.
-**Prereqs:** Dart SDK; `import 'package:praxis/src/lists.dart'`. Read
+**Version:** praxis `0.1.0` on Dart `^3.13.0`.
+**Prereqs:** Dart SDK; `import 'package:praxis/praxis.dart'`. Read
 [foundations](foundations.md) first if generic syntax is new.
 
 > API source: `lib/src/lists.dart` — doc comments are the reference; this
@@ -56,7 +56,7 @@ verbatim.
 Runnable — asserted by `test/docs_guides_a_test.dart` (same outputs):
 
 ```dart
-import 'package:praxis/src/lists.dart';
+import 'package:praxis/praxis.dart';
 
 void main() {
   final ({int? value, bool present}) found = findElement(
@@ -100,6 +100,16 @@ Expected output:
 > Never pass a shared or reused list into `chunkElements` expecting views —
 > every chunk is a fresh copy. You mutate the result freely; the input stays
 > untouched, and that is the guarantee, not a side effect to work around.
+
+## Checklist
+
+- [ ] You check `present` before you trust `value` on every flagged search
+  and extreme.
+- [ ] You can state the empty-input rule (flag `false` plus fresh empty
+  collections, without calling your function).
+- [ ] You can state the purity rule (no helper mutates its input; chunks and
+  both partition lists are fresh).
+- [ ] You pass a `chunkSize` of at least `1`, or you expect `ArgumentError`.
 
 ## Next step
 

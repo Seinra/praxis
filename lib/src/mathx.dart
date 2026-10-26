@@ -23,7 +23,7 @@
 /// `~/`, and `%` own their arithmetic, and `dart:math` owns
 /// `max`/`min`/`pow`/`sqrt`, so none of those are wrapped either.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 library;
 
 /// Reports whether [candidate] is a prime number.
@@ -46,7 +46,7 @@ library;
 /// other even yields `false` without looping. Never throws: below-two
 /// input is a normal outcome, not a programmer error.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final bool seven = isPrime(7);
@@ -94,7 +94,7 @@ bool isPrime(int candidate) {
 /// [upperBound], so callers cap bounds from untrusted input instead of
 /// sieving them raw. Returns a fresh list on every call.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final List<int> primes = primesUpTo(10);
@@ -151,7 +151,7 @@ List<int> primesUpTo(int upperBound) {
 /// follows Dart [int] wrap semantics; callers past that range reach for
 /// [BigInt] instead. Never throws for domain inputs.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final int shared = lcm(4, 6);

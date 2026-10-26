@@ -39,7 +39,7 @@
 /// map may itself hold `null` values, so only the flag tells a held `null`
 /// from a missing key.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 library;
 
 /// Holds entries of [Value] keyed by [Key] in first-insertion order.
@@ -71,7 +71,7 @@ library;
 /// over a `LinkedHashMap` backing instead of a keys slice plus positions
 /// map (SDK-first: the SDK already pins the order).
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final OrderedMap<String, int> scoresByName = OrderedMap<String, int>();
@@ -92,7 +92,7 @@ final class OrderedMap<Key, Value> {
   /// absence with `null`; [OrderedMap.new] starts an empty holder whose
   /// reads answer presence-flagged records.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final OrderedMap<String, int> scoresByName = OrderedMap<String, int>();
@@ -118,7 +118,7 @@ final class OrderedMap<Key, Value> {
   /// Never mutates caller inputs: the pair moves into the private backing,
   /// and no caller collection is read or written.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final OrderedMap<String, int> scoresByName = OrderedMap<String, int>();
@@ -145,7 +145,7 @@ final class OrderedMap<Key, Value> {
   /// A missing key yields `(value: null, present: false)`: never an
   /// error, never a throw. Never mutates the map.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final OrderedMap<String, int> scoresByName = OrderedMap<String, int>();
@@ -175,7 +175,7 @@ final class OrderedMap<Key, Value> {
   /// instead — the surviving keys keep their order and a missing key stays
   /// a normal outcome. A re-put after [remove] takes the back.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final OrderedMap<String, int> scoresByName = OrderedMap<String, int>();
@@ -200,7 +200,7 @@ final class OrderedMap<Key, Value> {
   /// [length] counts the ordered holder, mirroring the SDK noun so callers
   /// keep one vocabulary.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final OrderedMap<String, int> scoresByName = OrderedMap<String, int>();
@@ -222,7 +222,7 @@ final class OrderedMap<Key, Value> {
   /// [isEmpty] tests the ordered holder, mirroring the SDK predicate so
   /// callers keep one vocabulary.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final OrderedMap<String, int> scoresByName = OrderedMap<String, int>();
@@ -242,7 +242,7 @@ final class OrderedMap<Key, Value> {
   /// storage; [isNotEmpty] tests the ordered holder, mirroring the SDK
   /// predicate so callers keep one vocabulary.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final OrderedMap<String, int> scoresByName = OrderedMap<String, int>();
@@ -265,7 +265,7 @@ final class OrderedMap<Key, Value> {
   /// Returns a fresh empty list when the map is empty. Never mutates the
   /// map.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final OrderedMap<String, int> scoresByName = OrderedMap<String, int>();
@@ -292,7 +292,7 @@ final class OrderedMap<Key, Value> {
   /// Returns a fresh empty list when the map is empty. Never mutates the
   /// map.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final OrderedMap<String, int> scoresByName = OrderedMap<String, int>();
@@ -330,7 +330,7 @@ final class OrderedMap<Key, Value> {
 /// pairs, recency over the insertion-ordered SDK backing instead of
 /// `container/list`.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final LruCache<String, int> recentScores = LruCache<String, int>(2);
@@ -355,7 +355,7 @@ final class LruCache<Key, Value> {
   /// fixed at construction, so a non-positive bound is a programmer error,
   /// never a runtime condition.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final LruCache<String, int> recentScores = LruCache<String, int>(2);
@@ -383,7 +383,7 @@ final class LruCache<Key, Value> {
   /// [capacity] names the eviction bound the cache enforces on every
   /// [LruCache.put].
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final LruCache<String, int> recentScores = LruCache<String, int>(2);
@@ -408,7 +408,7 @@ final class LruCache<Key, Value> {
   /// A missing key yields `(value: null, present: false)` and leaves
   /// recency untouched: never an error, never a throw.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final LruCache<String, int> recentScores = LruCache<String, int>(2);
@@ -443,7 +443,7 @@ final class LruCache<Key, Value> {
   /// Never mutates caller inputs: the pair moves into the private backing,
   /// and no caller collection is read or written.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final LruCache<String, int> recentScores = LruCache<String, int>(2);
@@ -473,7 +473,7 @@ final class LruCache<Key, Value> {
   /// counts the bounded cache, mirroring the SDK noun so callers keep one
   /// vocabulary.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final LruCache<String, int> recentScores = LruCache<String, int>(2);
@@ -494,7 +494,7 @@ final class LruCache<Key, Value> {
   /// [isEmpty] tests the bounded cache, mirroring the SDK predicate so
   /// callers keep one vocabulary.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final LruCache<String, int> recentScores = LruCache<String, int>(2);
@@ -514,7 +514,7 @@ final class LruCache<Key, Value> {
   /// [isNotEmpty] tests the bounded cache, mirroring the SDK predicate so
   /// callers keep one vocabulary.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final LruCache<String, int> recentScores = LruCache<String, int>(2);

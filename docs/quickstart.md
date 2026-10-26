@@ -1,49 +1,29 @@
-# Praxis quickstart: point, run, verify
+# Praxis quickstart: add, run, verify
 
-You point a scratch package at Praxis through a path dependency, run one typed pipeline over `result` plus `lists`, and watch it print `42` and `2 true`.
+You add Praxis to a scratch package, run one typed pipeline over `result` plus `lists`, and watch it print `42` and `2 true`.
 
-**Version:** 0.1.0-dev on Dart ^3.13.0
-**Prereqs:** Dart `^3.13.0` in your `PATH` (`dart --version` reports `3.13.x`), plus a local Praxis checkout.
+**Version:** 0.1.0 on Dart ^3.13.0
+**Prereqs:** Dart `^3.13.0` in your `PATH` (`dart --version` reports `3.13.x`).
 
 ## Quick path
 
-### 1. Point a scratch package at Praxis
-
-Create the scratch package and wire it to your checkout:
+### 1. Add Praxis to a scratch package
 
 ```bash
 mkdir praxis_hello && cd praxis_hello
-```
-
-Save this as `pubspec.yaml`, replacing `<path-to-praxis>` with your checkout path:
-
-```yaml
-name: praxis_hello
-
-environment:
-  sdk: ^3.13.0
-
-dependencies:
-  praxis:
-    path: <path-to-praxis>
-```
-
-Then fetch dependencies:
-
-```bash
-dart pub get
+dart create --template console-simple . --force
+dart pub add praxis
 ```
 
 > [!NOTE]
-> Praxis stays private while it grows toward the library bar, so you consume it through a path dependency. Publishing waits for the maturity gate.
+> You hack on Praxis itself? Point the scratch package at your checkout with a path dependency (`path: <path-to-praxis>`) instead.
 
 ### 2. Run your first typed pipeline
 
 Save this as `bin/praxis_hello.dart`. It runs as-is — no edits needed:
 
 ```dart
-import 'package:praxis/src/lists.dart';
-import 'package:praxis/src/result.dart';
+import 'package:praxis/praxis.dart';
 
 void main() {
   final Result<int> current = Result<int>.ok(21);

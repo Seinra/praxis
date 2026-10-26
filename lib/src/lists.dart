@@ -42,7 +42,7 @@ library;
 /// Returns `(value: null, present: false)` without calling [shouldMatch]
 /// when [elements] is empty. Never mutates [elements].
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0` (records).
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0` (records).
 ///
 /// ```dart
 /// final scores = <int>[72, 91, 85];
@@ -85,7 +85,7 @@ library;
 /// Returns `(value: null, present: false)` when [elements] is empty. Ties
 /// keep the first minimal element. Never mutates [elements].
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0` (records).
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0` (records).
 ///
 /// ```dart
 /// final lowest = minElement(<int>[3, 1, 2]);
@@ -130,7 +130,7 @@ library;
 /// Returns `(value: null, present: false)` when [elements] is empty. Ties
 /// keep the first maximal element. Never mutates [elements].
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0` (records).
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0` (records).
 ///
 /// ```dart
 /// final highest = maxElement(<String>['fig', 'pear', 'kiwi']);
@@ -170,7 +170,7 @@ library;
 /// fresh list, so mutating the result never affects [elements]. Never
 /// mutates [elements].
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0` (records).
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0` (records).
 ///
 /// ```dart
 /// final chunks = chunkElements(<int>[1, 2, 3, 4, 5], 2);
@@ -210,7 +210,7 @@ List<List<Element>> chunkElements<Element>(
 /// Returns two empty lists without calling [shouldMatch] when [elements]
 /// is empty. Never mutates [elements].
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0` (records).
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0` (records).
 ///
 /// ```dart
 /// final split = partitionElements(

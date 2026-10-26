@@ -19,7 +19,7 @@
 /// out of scope), and waiting queues with timeouts (no `Timer` deadlines
 /// here). This package dedupes concurrency; it never stores outcomes.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 library;
 
 import 'dart:async';
@@ -55,7 +55,7 @@ import 'dart:async';
 /// counters and no manual `Forget` — completion forgets, and anything
 /// cache-shaped stays YAGNI-killed for the future `repo` slice.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final SingleflightGroup<String, int> flightGroup =
@@ -79,7 +79,7 @@ final class SingleflightGroup<RequestKey extends Object, OutcomeValue> {
   /// `null` through the [RequestKey extends Object] bound, so the compiler
   /// enforces the contract before any call runs.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final SingleflightGroup<String, int> flightGroup =
@@ -115,7 +115,7 @@ final class SingleflightGroup<RequestKey extends Object, OutcomeValue> {
   /// become error futures for the caller only: nothing was stored, so
   /// nothing was shared and the key stays free.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final SingleflightGroup<String, int> flightGroup =

@@ -1,6 +1,6 @@
 name: praxis_lints
 description: House-rule analyzer plugin for Praxis (dev-only tooling).
-version: 0.1.0-dev
+version: 0.1.0
 
 environment:
   sdk: ^3.13.0

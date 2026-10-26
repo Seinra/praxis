@@ -1,7 +1,7 @@
 # iterx — lazy iterable adapters that pull on demand
 
-**Version:** praxis `0.1.0-dev` on Dart `^3.13.0`.
-**Prereqs:** Dart SDK; `import 'package:praxis/src/iterx.dart'`. Read
+**Version:** praxis `0.1.0` on Dart `^3.13.0`.
+**Prereqs:** Dart SDK; `import 'package:praxis/praxis.dart'`. Read
 [foundations](foundations.md) first if generic syntax is new.
 
 > API source: `lib/src/iterx.dart` — doc comments are the reference; this
@@ -60,7 +60,7 @@ verbatim.
 Runnable — asserted by `test/docs_guides_a_test.dart` (same outputs):
 
 ```dart
-import 'package:praxis/src/iterx.dart';
+import 'package:praxis/praxis.dart';
 
 void main() {
   print(zipIterables(<int>[1, 2, 3], <String>['a', 'b']).toList());
@@ -108,6 +108,15 @@ Expected output:
 > only consecutive equals (`[1, 1, 2, 1]` keeps the trailing `1`). You reach
 > for `toSet` or the eager [lists](lists.md) helpers when every duplicate must
 > go regardless of position.
+
+## Checklist
+
+- [ ] You bound the infinite generators (`cycleIterable`, `repeatElement`)
+  with `take` before you realize them.
+- [ ] You can state the lazy rule (creating the iterable pulls nothing;
+  breaking early stops pulling the source).
+- [ ] You reach for `deduplicateAdjacent` only when consecutive duplicates
+  must collapse (non-adjacent repeats survive).
 
 ## Next step
 

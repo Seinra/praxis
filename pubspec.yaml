@@ -1,6 +1,8 @@
 name: praxis
-description: Small, dependable typed helpers for Dart generics.
-version: 0.1.0
+description: Composable, educative typed helpers for Dart
+  generics — 21 packages with Which-tables and CI-executed
+  examples, SDK-first.
+version: 0.1.1
 homepage: https://github.com/seinra/praxis
 
 environment:

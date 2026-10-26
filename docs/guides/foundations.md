@@ -1,6 +1,6 @@
 # Foundations — the generics mechanism, from concrete to generic
 
-**Version:** praxis `0.1.0-dev` on Dart `^3.13.0`.
+**Version:** praxis `0.1.0` on Dart `^3.13.0`.
 **Prereqs:** Dart SDK. No generics knowledge — this guide teaches it.
 
 After this guide you read any generic signature in Praxis: what `<OutcomeValue>`
@@ -163,9 +163,7 @@ or from you outside it.
 Runnable — asserted by `test/docs_guides_a_test.dart` (same outputs):
 
 ```dart
-import 'package:praxis/src/lists.dart';
-import 'package:praxis/src/opt.dart';
-import 'package:praxis/src/result.dart';
+import 'package:praxis/praxis.dart';
 
 void main() {
   // Inference from value arguments: no type list written.
