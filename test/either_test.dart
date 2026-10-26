@@ -666,6 +666,17 @@ void main() {
         );
       });
 
+      test('equal sides share hash codes', () {
+        expect(
+          Either<String, int>.left('locked').hashCode,
+          equals(Either<String, int>.left('locked').hashCode),
+        );
+        expect(
+          Either<String, int>.right(7).hashCode,
+          equals(Either<String, int>.right(7).hashCode),
+        );
+      });
+
       test('renders sides for debugging', () {
         expect(
           Either<String, int>.left('locked').toString(),

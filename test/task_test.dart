@@ -35,6 +35,10 @@ void main() {
         failure: (Exception failureCause) => failureCause,
       );
       expect(wrappedCause, isNotNull);
+      expect(
+        wrappedCause.toString(),
+        contains('task compute failed with a non-Exception'),
+      );
       expect(wrappedCause.toString(), contains('plain stop'));
     });
   });
