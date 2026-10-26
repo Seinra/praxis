@@ -6,10 +6,15 @@ analyzer:
     strict-casts: true
     strict-inference: true
     strict-raw-types: true
-  # custom_lint plugin parked: Dart 3.13 deprecates legacy analyzer plugins
-  # (analysis_options_deprecated_plugins) and custom_lint 0.7.x still uses
-  # it. The dev_dependency stays pinned; activation waits on the new plugin
-  # system migration. Tracked in .loop-modules/STATUS.md debt ledger.
+# House-rule analyzer plugin (tools/praxis_lints, own pubspec + analyzer 14):
+# resolved in an isolated synthetic package, so it never fights the root
+# analyzer 7 line; restart the analysis server after changing this section.
+plugins:
+  praxis_lints:
+    path: tools/praxis_lints
+    diagnostics:
+      no_single_letter: true
+      no_banned_names: true
 
 linter:
   rules:

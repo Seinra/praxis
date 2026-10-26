@@ -1,0 +1,4 @@
+# Published artifacts (private until the v0 bar — VISION invariant 6).
+# The house-rule analyzer plugin is dev tooling, never library API:
+# resolved separately in its own synthetic package, excluded here.
+/tools/

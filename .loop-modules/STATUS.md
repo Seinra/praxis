@@ -16,7 +16,7 @@ Progress log + debt ledger. Columns: Item, Phase, Ceiling, Upgrade Path. NEVER d
 
 | Item | Phase | Ceiling | Upgrade Path |
 | --- | --- | --- | --- |
-| custom_lint plugin activation | parked | legacy plugin deprecated in Dart 3.13; dep pinned `^0.7.0` | migrate to new analyzer plugin system, then re-enable in `analysis_options.yaml` |
+| custom_lint plugin activation | done | upstream archived + zero rules ever existed in repo (nothing to migrate) | superseded by `tools/praxis_lints` on `analysis_server_plugin` (isolated synthetic-package resolution) + plain `dart analyze`; dep deleted from root pubspec in the praxis-lints slice |
 | Branch protection / remote | done | `Seinra/praxis` private created 2026-10-23, main pushed (11 commits), tracks `origin/main` | branch protection at publish time; meanwhile discipline-gated work |
 | Catalyst path pilot | T-phase | scratch only | versioned release + pin before any Catalyst commit |
 | R1 result-slice advisories (R2-001 WARNING + 7 SUGGESTIONs) | parked | informational, receipt stands, no correction offered | later slice adopted/dismissed with evidence — T3 efd81a6 adopted equality trio + Failure note, remaining 6 not reproduced on fresh re-audit (see debt L4); never a review rerun |
