@@ -81,6 +81,16 @@ void main() {
       expect(() => pipeline(0), throwsA(isA<Exception>()));
       expect(secondRan, isFalse);
     });
+
+    test('propagates a second-step failure to the caller', () {
+      bool firstRan = false;
+      final int Function(int) pipeline = pipe<int, int, int>((int firstValue) {
+        firstRan = true;
+        return firstValue + 1;
+      }, (int pipedValue) => throw Exception('second step failed'));
+      expect(() => pipeline(0), throwsA(isA<Exception>()));
+      expect(firstRan, isTrue);
+    });
   });
 
   group('compose', () {

@@ -154,6 +154,17 @@ void main() {
       expect(annScore.value, equals(1));
     });
 
+    test('keeps a held null distinct from a missing key', () {
+      final LruCache<String, int?> recentScores = LruCache<String, int?>(2);
+      recentScores.put('ann', null);
+      final ({int? value, bool present}) annScore = recentScores.get('ann');
+      expect(annScore.present, isTrue);
+      expect(annScore.value, isNull);
+      final ({int? value, bool present}) missing = recentScores.get('bob');
+      expect(missing.present, isFalse);
+      expect(missing.value, isNull);
+    });
+
     test('reports absent for a missing key without touching recency', () {
       final LruCache<String, int> recentScores = LruCache<String, int>(2);
       recentScores.put('ann', 1);
