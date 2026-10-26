@@ -23,7 +23,7 @@
 /// here). This package reuses values already created; it never manages
 /// concurrency.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 library;
 
 /// A bounded sync pool of reusable values of type [Pooled].
@@ -50,7 +50,7 @@ library;
 /// without Go signatures: explicit factory required (no zero-value pool),
 /// explicit [maxSize] cap (no GC-drop), [ArgumentError] on double-release.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final Pool<StringBuffer> bufferPool = Pool<StringBuffer>(
@@ -81,7 +81,7 @@ final class Pool<Pooled> {
   /// [release] before idle storage; when omitted, released values store
   /// as-is.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final Pool<StringBuffer> bufferPool = Pool<StringBuffer>(
@@ -115,7 +115,7 @@ final class Pool<Pooled> {
   /// Stdlib gap (DART-SDK): [List] and [Queue] grow without a reuse cap,
   /// so [maxSize] names the bound that keeps idle storage bounded.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final Pool<StringBuffer> bufferPool = Pool<StringBuffer>(
@@ -140,7 +140,7 @@ final class Pool<Pooled> {
   /// readiness; [idleCount] reports how many reset values [acquire] can
   /// hand out without calling the factory.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final Pool<StringBuffer> bufferPool = Pool<StringBuffer>(
@@ -170,7 +170,7 @@ final class Pool<Pooled> {
   /// never throws for lack of idle and never waits. Factory throws
   /// propagate with nothing stored.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final Pool<StringBuffer> bufferPool = Pool<StringBuffer>(
@@ -213,7 +213,7 @@ final class Pool<Pooled> {
   /// throws is never stored. Full idle discards the value: [idleCount]
   /// stays at [maxSize] instead of growing unbounded.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final Pool<StringBuffer> bufferPool = Pool<StringBuffer>(
@@ -265,7 +265,7 @@ final class Pool<Pooled> {
   /// error propagates. Never mutates caller inputs:
   /// only the pooled value passes through [action] and [release].
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final Pool<StringBuffer> bufferPool = Pool<StringBuffer>(

@@ -3,8 +3,8 @@
 You run a transform over inputs with at most `maxInflight` concurrent
 runners. `flowMap` returns every result in input order; `flowFirst` races
 for the first success while ignoring failures; `flowCollect` streams one
-typed `Result` per input in completion order. Every call shares one
-caller-owned `FlowScope` for cooperative cancellation: the combinator stops
+typed `Result` per input in completion order. You share one caller-owned
+`FlowScope` for cooperative cancellation across each call: the combinator stops
 starting new work on its terminal event, and you stop it from the outside
 with `FlowScope.stop`. In-flight futures always run to completion because
 Dart futures are not preemptible.
@@ -35,35 +35,50 @@ The package doc (`lib/src/flow.dart`) is the source; this table mirrors its
 
 ## Example
 
+Runnable — asserted by `test/docs_guides_b_test.dart` (same outputs):
+
 ```dart
-final List<int> doubledOutputs = await flowMap<int, int>(
-  <int>[1, 2, 3],
-  maxInflight: 2,
-  transform: (int candidateInput, FlowScope scope) async =>
-      candidateInput * 2,
-);
-print(doubledOutputs); // [2, 4, 6]
+import 'package:praxis/praxis.dart';
 
-final int winnerOutput = await flowFirst<int, int>(
-  <int>[1, 2, 3],
-  maxInflight: 2,
-  transform: (int candidateInput, FlowScope scope) async {
-    if (candidateInput != 1) {
-      await Future<void>.delayed(const Duration(milliseconds: 50));
-    }
-    return candidateInput * 10;
-  },
-);
-print(winnerOutput); // 10
+Future<void> main() async {
+  final List<int> doubledOutputs = await flowMap<int, int>(
+    <int>[1, 2, 3],
+    maxInflight: 2,
+    transform: (int candidateInput, FlowScope scope) async =>
+        candidateInput * 2,
+  );
+  print(doubledOutputs); // [2, 4, 6]
 
-final List<Result<int>> collectedOutcomes = await flowCollect<int, int>(
-  <int>[1, 2],
-  maxInflight: 2,
-  transform: (int candidateInput, FlowScope scope) async =>
-      candidateInput * 2,
-).toList();
-print(collectedOutcomes.length); // 2
-print(collectedOutcomes.every((Result<int> outcome) => outcome.isOk)); // true
+  final int winnerOutput = await flowFirst<int, int>(
+    <int>[1, 2, 3],
+    maxInflight: 2,
+    transform: (int candidateInput, FlowScope scope) async {
+      if (candidateInput != 1) {
+        await Future<void>.delayed(const Duration(milliseconds: 50));
+      }
+      return candidateInput * 10;
+    },
+  );
+  print(winnerOutput); // 10
+
+  final List<Result<int>> collectedOutcomes = await flowCollect<int, int>(
+    <int>[1, 2],
+    maxInflight: 2,
+    transform: (int candidateInput, FlowScope scope) async =>
+        candidateInput * 2,
+  ).toList();
+  print(collectedOutcomes.length); // 2
+  print(collectedOutcomes.every((Result<int> outcome) => outcome.isOk)); // true
+}
+```
+
+Expected output:
+
+```text
+[2, 4, 6]
+10
+2
+true
 ```
 
 The inputs iterable must be finite: each combinator reads it once up front
@@ -111,4 +126,5 @@ typed `Result` per input that composes with the `result` helpers instead of
 When the problem is duplicate suppression rather than parallel transform —
 concurrent callers stampeding one backend behind the same key — you share
 one in-flight execution per key instead of racing. See
-`docs/guides/singleflight.md`.
+`docs/guides/singleflight.md`. For the first-success shape end to end, run
+recipe (b) in [cookbook](../cookbook.md).

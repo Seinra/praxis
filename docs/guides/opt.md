@@ -1,7 +1,7 @@
 # opt — a maybe-present value, with the flag beside it
 
 **Version:** praxis `0.1.0-dev` on Dart `^3.13.0`.
-**Prereqs:** Dart SDK; `import 'package:praxis/src/opt.dart'`. Read
+**Prereqs:** Dart SDK; `import 'package:praxis/praxis.dart'`. Read
 [foundations](foundations.md) first if generic syntax is new.
 
 > API source: `lib/src/opt.dart` — doc comments are the reference; this guide
@@ -63,7 +63,7 @@ verbatim.
 Runnable — asserted by `test/docs_guides_a_test.dart` (same outputs):
 
 ```dart
-import 'package:praxis/src/opt.dart';
+import 'package:praxis/praxis.dart';
 
 void main() {
   const Opt<int> presentScore = Opt<int>.present(4);
@@ -103,8 +103,22 @@ true:4
 > *why* there is no value. The moment a cause becomes known, the value belongs
 > in [result](result.md).
 
+## Checklist
+
+- [ ] You check presence (`isPresent`/`isAbsent` or `split`) before you
+  trust the value.
+- [ ] You can state which combinators short-circuit on absence (`mapValue`,
+  `andThen`) and which fallback wins (`orElse` keeps the first present
+  side).
+- [ ] You can state the laziness rule (`valueOrElse` never runs its fallback
+  when the value is present).
+- [ ] You never use `Opt` for failures with a cause.
+
 ## Next step
 
+- Cookbook recipe (a): [The absence ladder](../cookbook.md) — chain or
+  transform absence with `Opt`, and climb to `Result` only at the point a
+  cause becomes known.
 - Neighbor: [result](result.md) — success or failure with the cause attached;
   absence grows into a `Result` only at the point a cause becomes known.
 - Search lists with presence flags: [lists](lists.md) — `findElement`,

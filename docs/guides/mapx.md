@@ -1,7 +1,7 @@
 # mapx — typed reshapes over Map
 
 **Version:** praxis `0.1.0-dev` on Dart `^3.13.0`.
-**Prereqs:** Dart SDK; `import 'package:praxis/src/mapx.dart'`. Read
+**Prereqs:** Dart SDK; `import 'package:praxis/praxis.dart'`. Read
 [foundations](foundations.md) first if generic syntax is new.
 
 > API source: `lib/src/mapx.dart` — doc comments are the reference; this guide
@@ -53,7 +53,7 @@ verbatim.
 Runnable — asserted by `test/docs_guides_a_test.dart` (same outputs):
 
 ```dart
-import 'package:praxis/src/mapx.dart';
+import 'package:praxis/praxis.dart';
 
 void main() {
   print(invertEntries(<String, int>{'ann': 1, 'bob': 2, 'cid': 1}));
@@ -104,6 +104,16 @@ Expected output:
 > a plain reverse needs a rule for which key wins — and `mapKeys` collisions
 > collapse the same way, with the last encountered key winning. You name the
 > winner before you remap.
+
+## Checklist
+
+- [ ] You can state the empty-input rule (every helper returns a fresh empty
+  map; the grouping helpers never call your function when there is nothing
+  to group).
+- [ ] You can state the purity rule (no helper mutates its inputs; every
+  list inside `invertEntries` and `groupEntriesBy` is fresh).
+- [ ] You name the collision rule before you remap (`mapKeys` lets the last
+  encountered key win; inversion collects shared values into one list).
 
 ## Next step
 

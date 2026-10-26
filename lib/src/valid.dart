@@ -44,7 +44,7 @@ library;
 /// (AXIOM-SISTER): mirrors Axiom's `Predicate` discipline — one check as
 /// a value — expressed as a Dart typedef instead of a Go generic func type.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final Predicate<int> isAdult = (candidate) => candidate >= 18;
@@ -78,7 +78,7 @@ typedef Predicate<Candidate> = bool Function(Candidate candidate);
 /// Accepts any [Iterable]: re-calling the combined predicate re-iterates
 /// a single-use source. Never mutates [predicates].
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final Predicate<int> isPositiveEven = andPredicates<int>(<Predicate<int>>[
@@ -127,7 +127,7 @@ Predicate<Candidate> andPredicates<Candidate>(
 /// Accepts any [Iterable]: re-calling the combined predicate re-iterates
 /// a single-use source. Never mutates [predicates].
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final Predicate<int> isZeroOrEven = orPredicates<int>(<Predicate<int>>[
@@ -164,7 +164,7 @@ Predicate<Candidate> orPredicates<Candidate>(
 /// intent. [notPredicate] fills that gap. Fidelity note (AXIOM-SISTER):
 /// mirrors Axiom's `Not` negation discipline as a Dart top-level function.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final Predicate<int> isOdd = notPredicate<int>(
@@ -192,7 +192,7 @@ Predicate<Candidate> notPredicate<Candidate>(Predicate<Candidate> predicate) {
 /// names the identity Axiom's empty-`And` implies but never ships as a
 /// symbol.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// // alwaysTrue<int>(anything) == true
@@ -220,7 +220,7 @@ bool alwaysTrue<Candidate>(Candidate candidate) => true;
 /// names the identity Axiom's empty-`Or` implies but never ships as a
 /// symbol.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// // alwaysFalse<int>(anything) == false

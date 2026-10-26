@@ -28,6 +28,10 @@ must be genuinely good **and** thesis-fitting (`VISION.md`), or fork it.
    where text is involved); never-mutate pins.
 6. `dart doc` renders without warnings.
 
+## Process
+
+You work inside `PRAXIS_LOOP.md` + `.loop-modules/` + `VISION.md`; each package ships as one ODD-tracked slice in `odd/tasks/`. You keep one logical feature per iteration; pushes stay owner-gated. Catalyst pilots consume versioned releases only — never a Catalyst commit from here.
+
 ## Gates
 
 ```text

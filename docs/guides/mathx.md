@@ -2,8 +2,8 @@
 
 You ask pure number-theory questions over whole numbers: `isPrime` tests
 primality, `primesUpTo` lists the primes up to an inclusive bound, and `lcm`
-combines two numbers into their least common multiple. Integers travel by
-value and the one list returned is always fresh, so every helper is pure.
+combines two numbers into their least common multiple. You pass integers by
+value and receive a fresh list back, so every helper stays pure.
 
 **Version:** Praxis `0.1.0-dev`, Dart `^3.13.0`.
 **Prereqs:** `import 'package:praxis/praxis.dart';`. You hold the candidate
@@ -28,15 +28,31 @@ The package doc (`lib/src/mathx.dart`) is the source; this table mirrors its
 
 ## Example
 
+Runnable — asserted by `test/docs_guides_b_test.dart` (same outputs):
+
 ```dart
-print(isPrime(7)); // true
-print(isPrime(9)); // false
+import 'package:praxis/praxis.dart';
 
-final List<int> primes = primesUpTo(10);
-print(primes); // [2, 3, 5, 7]
+void main() {
+  print(isPrime(7)); // true
+  print(isPrime(9)); // false
 
-print(lcm(4, 6)); // 12
-print(lcm(0, 5)); // 0
+  final List<int> primes = primesUpTo(10);
+  print(primes); // [2, 3, 5, 7]
+
+  print(lcm(4, 6)); // 12
+  print(lcm(0, 5)); // 0
+}
+```
+
+Expected output:
+
+```text
+true
+false
+[2, 3, 5, 7]
+12
+0
 ```
 
 Values below `2` (including negatives, zero, and one) yield `false` from

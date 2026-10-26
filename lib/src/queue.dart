@@ -29,7 +29,7 @@
 /// without checking `present` first: a queue may itself hold `null`
 /// elements, so only the flag tells a held `null` from an absent one.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 library;
 
 /// Holds values of type [Element] in first-in first-out order.
@@ -61,7 +61,7 @@ library;
 /// records instead of `(T, bool)` pairs, total functions instead of
 /// panics.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final FifoQueue<int> waitingScores = FifoQueue<int>();
@@ -83,7 +83,7 @@ final class FifoQueue<Element> {
   /// empty too, but carries double-ended semantics; [FifoQueue.new] starts
   /// an empty holder whose only order is front-to-back.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final FifoQueue<int> waitingScores = FifoQueue<int>();
@@ -109,7 +109,7 @@ final class FifoQueue<Element> {
   /// Never mutates caller inputs: [heldValue] moves into the private
   /// backing, and no caller collection is read or written.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final FifoQueue<String> waitingWords = FifoQueue<String>();
@@ -139,7 +139,7 @@ final class FifoQueue<Element> {
   /// error, never a throw. The vacated slot is cleared so a served value
   /// stays collectable.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final FifoQueue<String> waitingWords = FifoQueue<String>();
@@ -177,7 +177,7 @@ final class FifoQueue<Element> {
   /// An empty queue yields `(value: null, present: false)`: never an
   /// error, never a throw. Never mutates the queue.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final FifoQueue<String> waitingWords = FifoQueue<String>();
@@ -205,7 +205,7 @@ final class FifoQueue<Element> {
   /// double-ended storage; [length] counts the FIFO line, mirroring the
   /// SDK noun so callers keep one vocabulary.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final FifoQueue<int> waitingScores = FifoQueue<int>();
@@ -227,7 +227,7 @@ final class FifoQueue<Element> {
   /// double-ended storage; [isEmpty] tests the FIFO line, mirroring the
   /// SDK predicate so callers keep one vocabulary.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final FifoQueue<int> waitingScores = FifoQueue<int>();
@@ -247,7 +247,7 @@ final class FifoQueue<Element> {
   /// double-ended storage; [isNotEmpty] tests the FIFO line, mirroring the
   /// SDK predicate so callers keep one vocabulary.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final FifoQueue<int> waitingScores = FifoQueue<int>();

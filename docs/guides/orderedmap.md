@@ -28,7 +28,7 @@ package; for a wrapped maybe see opt.
 5. Bound memory: `LruCache<String, int>(2)` — `put` stores and evicts
    least-recently-used-first, `get` reads while refreshing recency.
 
-## Which type?
+## Which function?
 
 The package doc (`lib/src/orderedmap.dart`) is the source; this table
 mirrors its "Which function?" table:
@@ -53,7 +53,7 @@ mirrors its "Which function?" table:
 
 ## Example
 
-From `test/docs_guides_c_test.dart` (group `orderedmap guide`):
+Example contents are asserted by `test/docs_guides_c_test.dart` (group `orderedmap guide`):
 
 ```dart
 import 'package:praxis/praxis.dart';
@@ -72,6 +72,15 @@ void main() {
   print(recentScores.get('ann').present); // Output: false
   print(recentScores.length); // Output: 2
 }
+```
+
+Expected output:
+
+```text
+[ann, bob]
+91
+false
+2
 ```
 
 Run it: `dart test test/docs_guides_c_test.dart -n 'orderedmap guide'`.
@@ -103,6 +112,12 @@ presence flag or bound applies. Reach for `SplayTreeMap` when sorted-key
 iteration is the job. Reach for `OrderedMap` when one-probe presence-flag
 reads plus snapshot replays teach better, and for `LruCache` when memory
 stays bounded under refresh-on-hit eviction.
+
+## Checklist
+
+- [ ] You can state the position rule in one sentence (replacing a key never moves it; removing then re-putting takes the back).
+- [ ] You can state the absence rule in one sentence (a missing `get` answers `(value: null, present: false)` and a missing `remove` is a no-op).
+- [ ] You can state the recency rule in one sentence (every `LruCache` hit refreshes recency and overflow evicts least-recently-used-first within the fixed `capacity`).
 
 ## Next step
 

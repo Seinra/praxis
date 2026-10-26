@@ -1,9 +1,9 @@
 # Praxis cookbook — three standalone recipes
 
-Each recipe is a standalone program: drop it into a scratch package wired with the quickstart path dependency, run it with `dart run`, and compare with the expected output.
+Each recipe is a standalone program: drop it into a scratch package wired with the [quickstart](quickstart.md) install, run it with `dart run`, and compare with the expected output.
 
-**Version:** 0.1.0-dev on Dart ^3.13.0.
-**Prereqs for every recipe:** Dart `^3.13.0` and a scratch package holding the [quickstart](quickstart.md) path dependency.
+**Version:** 0.1.0 on Dart ^3.13.0.
+**Prereqs for every recipe:** Dart `^3.13.0` and a scratch package holding the [quickstart](quickstart.md) install (`dart pub add praxis`).
 
 ## (a) The absence ladder — (value, present) → opt → result
 
@@ -149,4 +149,14 @@ true
 > [!NOTE]
 > The final `true` proves the singleton: the second `resolve` returns the identical store, not a rebuild. Swap the registration in tests with `unregister` plus `register` (the first registration still wins until you drop it).
 
-Read the `di` and `repo` package docs (`lib/src/di.dart`, `lib/src/repo.dart`) for the contracts behind each half.
+See the [di](guides/di.md) and [repo](guides/repo.md) guides for the contracts behind each half.
+
+## Checklist
+
+- [ ] Each recipe prints its expected output with no edits
+- [ ] You can state when to stop climbing the absence ladder (only as far as the caller needs)
+- [ ] You can state what the final `true` in recipe (c) proves (the second `resolve` returns the identical store)
+
+## Next step
+
+Pick the guide that matches what you hold next: [di](guides/di.md), [repo](guides/repo.md), and [flow](guides/flow.md) carry the contracts behind these recipes. New to generics syntax? Start with [foundations](guides/foundations.md).

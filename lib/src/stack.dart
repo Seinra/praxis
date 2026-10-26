@@ -27,7 +27,7 @@
 /// hold `null` elements, so only the flag tells a held `null` from an
 /// absent one.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 library;
 
 /// Holds values of type [Element] in last-in first-out order.
@@ -57,7 +57,7 @@ library;
 /// `(T, bool)` pairs, [ArgumentError]-free total functions instead of
 /// panics.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final Stack<int> heldScores = Stack<int>();
@@ -79,7 +79,7 @@ final class Stack<Element> {
   /// but carries indexed semantics; [Stack.new] starts an empty holder
   /// whose only order is top-of-pile.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final Stack<int> heldScores = Stack<int>();
@@ -104,7 +104,7 @@ final class Stack<Element> {
   /// Never mutates caller inputs: [heldValue] moves into the private
   /// backing, and no caller collection is read or written.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final Stack<String> heldWords = Stack<String>();
@@ -132,7 +132,7 @@ final class Stack<Element> {
   /// error, never a throw. Draining releases the backing for reuse; use a
   /// fresh [Stack] to release memory.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final Stack<String> heldWords = Stack<String>();
@@ -163,7 +163,7 @@ final class Stack<Element> {
   /// An empty stack yields `(value: null, present: false)`: never an
   /// error, never a throw. Never mutates the stack.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final Stack<String> heldWords = Stack<String>();
@@ -190,7 +190,7 @@ final class Stack<Element> {
   /// counts the LIFO pile, mirroring the SDK noun so callers keep one
   /// vocabulary.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final Stack<int> heldScores = Stack<int>();
@@ -212,7 +212,7 @@ final class Stack<Element> {
   /// tests the LIFO pile, mirroring the SDK predicate so callers keep one
   /// vocabulary.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final Stack<int> heldScores = Stack<int>();
@@ -232,7 +232,7 @@ final class Stack<Element> {
   /// [isNotEmpty] tests the LIFO pile, mirroring the SDK predicate so
   /// callers keep one vocabulary.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final Stack<int> heldScores = Stack<int>();

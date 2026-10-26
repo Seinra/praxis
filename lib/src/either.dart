@@ -58,7 +58,7 @@ import 'package:praxis/src/result.dart';
 /// swap, and a bridge into the outcome type — expressed with Dart sealed
 /// types and exhaustive patterns instead of Go generics.
 ///
-/// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
+/// Available since praxis `0.1.0`; requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final Either<String, String> granted = Either<String, String>.right(
@@ -85,7 +85,7 @@ sealed class Either<LeftValue, RightValue> {
   /// alternate payload travels as an untyped branch beside the main value.
   /// [Either.left] pairs with [Either.right] so both sides share one type.
   ///
-  /// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
+  /// Available since praxis `0.1.0`; requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final Either<String, int> locked = Either<String, int>.left(
@@ -107,7 +107,7 @@ sealed class Either<LeftValue, RightValue> {
   /// second-side spelling so the pair reads as a named choice, never as a
   /// bare value beside an untyped alternate.
   ///
-  /// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
+  /// Available since praxis `0.1.0`; requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final Either<String, int> granted = Either<String, int>.right(7);
@@ -128,7 +128,7 @@ sealed class Either<LeftValue, RightValue> {
   /// scattered `is`-checks over `Object?`. [Either.isLeft] answers it from
   /// the pair side itself.
   ///
-  /// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
+  /// Available since praxis `0.1.0`; requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// Either<String, int>.left('season pass missing').isLeft // true
@@ -150,7 +150,7 @@ sealed class Either<LeftValue, RightValue> {
   /// Stdlib gap (DART-SDK): the mirror of [Either.isLeft] for guard clauses
   /// that exit early on the first side; always exactly `!isLeft`.
   ///
-  /// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
+  /// Available since praxis `0.1.0`; requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// Either<String, int>.right(7).isRight // true
@@ -178,7 +178,7 @@ sealed class Either<LeftValue, RightValue> {
   /// so `switch` statements over ad-hoc `Object?` shapes drift from the
   /// type. [Either.when] keeps both branches beside the type.
   ///
-  /// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
+  /// Available since praxis `0.1.0`; requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final String label = Either<String, int>.right(7).when(
@@ -214,7 +214,7 @@ sealed class Either<LeftValue, RightValue> {
   /// preserves the first side by construction. Fidelity note (AXIOM-SISTER):
   /// mirrors Axiom's right-side map, including the short-circuit.
   ///
-  /// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
+  /// Available since praxis `0.1.0`; requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final Either<String, int> granted = Either<String, int>.right(21).mapRight(
@@ -248,7 +248,7 @@ sealed class Either<LeftValue, RightValue> {
   /// carrying the other. Fidelity note (AXIOM-SISTER): mirrors Axiom's
   /// left-side map, including the short-circuit.
   ///
-  /// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
+  /// Available since praxis `0.1.0`; requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final Either<String, int> locked = Either<String, int>.left(
@@ -282,7 +282,7 @@ sealed class Either<LeftValue, RightValue> {
   /// payload without touching it. Fidelity note (AXIOM-SISTER): mirrors
   /// Axiom's side exchange, including the double-swap round trip.
   ///
-  /// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
+  /// Available since praxis `0.1.0`; requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final Either<int, String> swapped = Either<String, int>.left(
@@ -314,7 +314,7 @@ sealed class Either<LeftValue, RightValue> {
   /// names the crossing once. Fidelity note (AXIOM-SISTER): mirrors Axiom's
   /// bridge into the outcome type with the same caller-supplied mapping.
   ///
-  /// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
+  /// Available since praxis `0.1.0`; requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final Result<int> outcome = Either<String, int>.right(7).toResult(
@@ -348,7 +348,7 @@ sealed class Either<LeftValue, RightValue> {
 /// side with its type. Fidelity note (AXIOM-SISTER): the first-side half
 /// of Axiom's unbiased pair, expressed as a Dart sealed-family member.
 ///
-/// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
+/// Available since praxis `0.1.0`; requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// const Left<String, int>('season pass missing').leftValue // 'season pass missing'
@@ -365,7 +365,7 @@ final class Left<LeftValue, RightValue> extends Either<LeftValue, RightValue> {
   /// Stdlib gap (DART-SDK): same gap as [Either.left]; this constructor is
   /// the direct spelling for pattern-matching and constant contexts.
   ///
-  /// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
+  /// Available since praxis `0.1.0`; requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// const Left<String, int>('season pass missing').isLeft // true
@@ -384,7 +384,7 @@ final class Left<LeftValue, RightValue> extends Either<LeftValue, RightValue> {
   /// and `!` assertions. [Left.leftValue] reads the value the pair already
   /// proved is held.
   ///
-  /// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
+  /// Available since praxis `0.1.0`; requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// const Left<String, int>('season pass missing').leftValue // 'season pass missing'
@@ -422,7 +422,7 @@ final class Left<LeftValue, RightValue> extends Either<LeftValue, RightValue> {
 /// side with its type. Fidelity note (AXIOM-SISTER): the second-side half
 /// of Axiom's unbiased pair, expressed as a Dart sealed-family member.
 ///
-/// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
+/// Available since praxis `0.1.0`; requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// const Right<String, int>(7).rightValue // 7
@@ -439,7 +439,7 @@ final class Right<LeftValue, RightValue> extends Either<LeftValue, RightValue> {
   /// Stdlib gap (DART-SDK): same gap as [Either.right]; this constructor
   /// is the direct spelling for pattern-matching and constant contexts.
   ///
-  /// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
+  /// Available since praxis `0.1.0`; requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// const Right<String, int>(7).isRight // true
@@ -458,7 +458,7 @@ final class Right<LeftValue, RightValue> extends Either<LeftValue, RightValue> {
   /// side — the pair already proved which value is held, so no cast is
   /// needed to read it.
   ///
-  /// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
+  /// Available since praxis `0.1.0`; requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// const Right<String, int>(7).rightValue // 7

@@ -35,7 +35,7 @@
 /// backoff also stay OUT: the caller transport owns wire policy, this
 /// envelope only classifies the outcome.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 library;
 
 import 'dart:convert';
@@ -84,7 +84,7 @@ const String _contentTypeHeader = 'content-type';
 /// an injected transport instead of server-side over `echo.Context`, and
 /// [Result] failures instead of `(T, error)` pairs.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final HttpxTransport fakeTransport =
@@ -144,7 +144,7 @@ typedef HttpxTransport = Future<HttpxResponse> Function(
 /// the socket, so shaping needs the network. [HttpxRequest] shapes the call
 /// as a plain value fakes can capture and assert.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final HttpxRequest outgoingRequest = HttpxRequest.get(
@@ -164,7 +164,7 @@ final class HttpxRequest {
   /// Stdlib gap (DART-SDK): same gap as [HttpxRequest] — shaping stays a
   /// plain value instead of a socket-bound object.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final HttpxRequest outgoingRequest = HttpxRequest(
@@ -192,7 +192,7 @@ final class HttpxRequest {
   /// against a live client. [HttpxRequest.get] shapes the same read as a
   /// value [httpxGet] and fakes share.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final HttpxRequest outgoingRequest = HttpxRequest.get(
@@ -225,7 +225,7 @@ final class HttpxRequest {
   /// Throws the `jsonEncode` error when [requestFields] holds values the
   /// SDK cannot encode (SDK contract, like `Uri.parse` on bad input).
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final HttpxRequest outgoingRequest = HttpxRequest.postJson(
@@ -259,7 +259,7 @@ final class HttpxRequest {
   /// Stdlib gap (DART-SDK): the method lives on the socket-bound request;
   /// [method] reads it from the plain value instead.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final HttpxRequest outgoingRequest = HttpxRequest.get(
@@ -280,7 +280,7 @@ final class HttpxRequest {
   /// Stdlib gap (DART-SDK): the uri lives on the socket-bound request;
   /// [resourceUri] reads it from the plain value instead.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final HttpxRequest outgoingRequest = HttpxRequest.get(
@@ -301,7 +301,7 @@ final class HttpxRequest {
   /// Stdlib gap (DART-SDK): header mutation lives on the socket-bound
   /// request; [headers] exposes the pinned snapshot as a read map instead.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final HttpxRequest outgoingRequest = HttpxRequest.get(
@@ -322,7 +322,7 @@ final class HttpxRequest {
   /// Stdlib gap (DART-SDK): the body streams on the socket-bound request;
   /// [bodyText] holds the already-encoded text on the plain value instead.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final HttpxRequest outgoingRequest = HttpxRequest.postJson(
@@ -351,7 +351,7 @@ final class HttpxResponse {
   /// reply off the socket, so tests need the network. [HttpxResponse]
   /// shapes the same reply as a value fakes construct directly.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// const HttpxResponse wireResponse = HttpxResponse(
@@ -377,7 +377,7 @@ final class HttpxResponse {
   /// Stdlib gap (DART-SDK): same gap as [HttpxResponse] — the status reads
   /// off the plain value instead of the socket stream.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// const HttpxResponse wireResponse = HttpxResponse(
@@ -399,7 +399,7 @@ final class HttpxResponse {
   /// Stdlib gap (DART-SDK): the body streams off the socket; [bodyText]
   /// holds the already-joined text on the plain value instead.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// const HttpxResponse wireResponse = HttpxResponse(
@@ -421,7 +421,7 @@ final class HttpxResponse {
   /// Stdlib gap (DART-SDK): same gap as [HttpxResponse] — headers read off
   /// the plain value instead of the socket stream.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// const HttpxResponse wireResponse = HttpxResponse(
@@ -451,7 +451,7 @@ final class HttpxResponse {
 /// mirrors Axiom `httpx` text-carrying failure envelopes without Go
 /// signatures — status plus body text instead of an Echo-rendered string.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// const HttpxStatusFailure statusFailure = HttpxStatusFailure(
@@ -472,7 +472,7 @@ final class HttpxStatusFailure implements Exception {
   /// Stdlib gap (DART-SDK): same gap as [HttpxStatusFailure]; this
   /// constructor is the direct spelling for pattern-matching contexts.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// const HttpxStatusFailure statusFailure = HttpxStatusFailure(
@@ -494,7 +494,7 @@ final class HttpxStatusFailure implements Exception {
   /// Stdlib gap (DART-SDK): same gap as [HttpxStatusFailure]; the code
   /// reads off the typed failure instead of a scattered check.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// const HttpxStatusFailure statusFailure = HttpxStatusFailure(
@@ -516,7 +516,7 @@ final class HttpxStatusFailure implements Exception {
   /// Stdlib gap (DART-SDK): same gap as [HttpxStatusFailure]; the body
   /// travels with the code instead of a second stream read.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// const HttpxStatusFailure statusFailure = HttpxStatusFailure(
@@ -549,7 +549,7 @@ final class HttpxStatusFailure implements Exception {
 /// callers catch beside the call. [HttpxTransportFailure] keeps the throw
 /// inside the outcome with its type.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final HttpxTransportFailure transportFailure = HttpxTransportFailure(
@@ -569,7 +569,7 @@ final class HttpxTransportFailure implements Exception {
   /// Stdlib gap (DART-SDK): same gap as [HttpxTransportFailure]; this
   /// constructor is the direct spelling for pattern-matching contexts.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final HttpxTransportFailure transportFailure = HttpxTransportFailure(
@@ -591,7 +591,7 @@ final class HttpxTransportFailure implements Exception {
   /// [cause] keeps the original instance on the outcome, mirroring
   /// [Failure.cause].
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final HttpxTransportFailure transportFailure = HttpxTransportFailure(
@@ -625,7 +625,7 @@ final class HttpxTransportFailure implements Exception {
 /// outcome with their types, behind the typed wrapper (no `dynamic`
 /// outside this edge).
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// const HttpxCodecFailure codecFailure = HttpxCodecFailure(
@@ -645,7 +645,7 @@ final class HttpxCodecFailure implements Exception {
   /// Stdlib gap (DART-SDK): same gap as [HttpxCodecFailure]; this
   /// constructor is the direct spelling for pattern-matching contexts.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// const HttpxCodecFailure codecFailure = HttpxCodecFailure(
@@ -667,7 +667,7 @@ final class HttpxCodecFailure implements Exception {
   /// [cause] keeps the original instance on the outcome, mirroring
   /// [Failure.cause].
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// const HttpxCodecFailure codecFailure = HttpxCodecFailure(
@@ -711,7 +711,7 @@ final class HttpxCodecFailure implements Exception {
 /// Throws [ArgumentError] when [outgoingRequest] carries a non-GET method
 /// (programmer error, like a bad `Uri.parse` argument).
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final Result<String> lessonOutcome = await httpxGet<String>(
@@ -766,7 +766,7 @@ Future<Result<DecodedBody>> httpxGet<DecodedBody>(
 /// Throws [ArgumentError] when [outgoingRequest] carries a non-POST method
 /// (programmer error).
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final Result<String> lessonOutcome = await httpxPost<String>(

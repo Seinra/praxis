@@ -1,7 +1,7 @@
 # result — success or failure, with the cause attached
 
 **Version:** praxis `0.1.0-dev` on Dart `^3.13.0`.
-**Prereqs:** Dart SDK; `import 'package:praxis/src/result.dart'`. Read
+**Prereqs:** Dart SDK; `import 'package:praxis/praxis.dart'`. Read
 [foundations](foundations.md) first if generic syntax is new.
 
 > API source: `lib/src/result.dart` — doc comments are the reference; this
@@ -61,7 +61,7 @@ rows above — never through casts.
 Runnable — asserted by `test/docs_guides_a_test.dart` (same outputs):
 
 ```dart
-import 'package:praxis/src/result.dart';
+import 'package:praxis/praxis.dart';
 
 void main() {
   final Result<int> doubled = Result<int>.ok(21).mapValue(
@@ -95,15 +95,28 @@ ok:42
 | Failures carry through untouched | `mapValue` never runs its transform on failure; `andThen` never runs its next step on failure. |
 | Cause identity holds | `andThen` carries the original `Failure.cause` instance into the chained outcome. |
 | `getOrElse` substitutes on failure only | Success passes through untouched; the fallback never masks a success. |
-| Cause is always an `Exception` | Callers with codes or ADTs wrap them in an `Exception`; generalizing the cause type stays a future ODD with a migration note. |
+| Cause is always an `Exception` | Callers with codes or ADTs wrap them in an `Exception`; generalizing the cause type stays future work with a migration note. |
 
 > [!WARNING]
 > Never steer branches on `getOrElse` output alone — the fallback erases *why*
 > the failure happened. You split with `when` when the cause matters, and you
 > reserve `getOrElse` for boundaries where a backup value is the whole story.
 
+## Checklist
+
+- [ ] You split with `when` when the cause matters, and you reserve
+  `getOrElse` for boundaries where a backup value is the whole story.
+- [ ] You can state which combinators never run their function on failure
+  (`mapValue`, `andThen`).
+- [ ] You can state the cause identity rule (a chained outcome carries the
+  original `Failure.cause` instance).
+- [ ] You never use `Result` for absence without a cause.
+
 ## Next step
 
+- Cookbook recipe (a): [The absence ladder](../cookbook.md) — climb from the
+  `(value, present)` record through `Opt` to `Result` only as far as the
+  caller needs.
 - Neighbor: [opt](opt.md) — absence without a cause; a missing value with no
   explanation lives there, never as a `failure`.
 - Unbiased pairs: [either](either.md) — two plain sides with neither favoured;

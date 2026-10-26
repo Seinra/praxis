@@ -2,8 +2,8 @@
 
 You enable two opt-in lints that keep names grep-able, run `dart analyze`, and rename whatever gets flagged.
 
-**Version:** 0.1.0-dev on Dart ^3.13.0
-**Prereqs:** Dart `^3.13.0` in your `PATH`, plus this tool folder inside your Praxis checkout (the plugin ships as a path dependency while Praxis stays private).
+**Version:** 0.1.0 on Dart ^3.13.0
+**Prereqs:** Dart `^3.13.0` in your `PATH`, plus this tool folder inside your Praxis checkout (the plugin ships from this repo as a path dependency).
 
 ## Quick path
 

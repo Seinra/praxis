@@ -34,16 +34,30 @@ The package doc (`lib/src/di.dart`) is the source; this table mirrors its
 
 ## Example
 
-```dart
-final ServiceContainer services = ServiceContainer();
-services.register<String>('greeting', () => 'hello');
-services.register<int>('answer', () => 42);
-print(services.resolve<String>('greeting')); // hello
-print(services.resolve<int>('answer')); // 42
+Runnable — asserted by `test/docs_guides_b_test.dart` (same outputs):
 
-services.unregister('greeting');
-print(services.resolve<int>('answer')); // 42
-services.reset();
+```dart
+import 'package:praxis/praxis.dart';
+
+void main() {
+  final ServiceContainer services = ServiceContainer();
+  services.register<String>('greeting', () => 'hello');
+  services.register<int>('answer', () => 42);
+  print(services.resolve<String>('greeting')); // hello
+  print(services.resolve<int>('answer')); // 42
+
+  services.unregister('greeting');
+  print(services.resolve<int>('answer')); // 42
+  services.reset();
+}
+```
+
+Expected output:
+
+```text
+hello
+42
+42
 ```
 
 Resolving `greeting` after `unregister` throws `StateError`, and resolving
@@ -66,7 +80,7 @@ fresh container instead of sharing one.
 > detection is a programmer error, never a checked failure, so you keep the
 > dependency graph acyclic by construction. And factories stay synchronous by
 > design: when a service needs an async build, that design belongs to a
-> future slice, not to this container.
+> future package, not to this container.
 
 ## When to use the stdlib directly
 
@@ -81,4 +95,5 @@ a bare map cannot express.
 
 When service work fans out with a cap — many inputs through one resolved
 dependency — you resolve once and hand the singleton to `flowMap` instead
-of resolving per input. See `docs/guides/flow.md`.
+of resolving per input. See `docs/guides/flow.md`. To hold a store behind
+a named singleton, run recipe (c) in [cookbook](../cookbook.md).

@@ -5,7 +5,7 @@ whole: `splitWords` splits on whitespace runs, `chunkString` cuts
 fixed-rune chunks, `truncateRunes` cuts to a rune budget, `takeRunes` and
 `dropRunes` take or drop a rune prefix, and `truncateWithEllipsis` cuts to
 a budget with an ellipsis that still lands on a rune boundary. Every helper
-is pure — inputs are never mutated, outputs are fresh values.
+stays pure — it never mutates your inputs and always hands you fresh values.
 
 **Version:** Praxis `0.1.0-dev`, Dart `^3.13.0`.
 **Prereqs:** `import 'package:praxis/praxis.dart';`. You hold the source
@@ -36,20 +36,38 @@ symbol's own doc:
 
 ## Example
 
+Runnable — asserted by `test/docs_guides_b_test.dart` (same outputs):
+
 ```dart
-final List<String> words = splitWords('  go   rust\tzig\n');
-print(words); // [go, rust, zig]
+import 'package:praxis/praxis.dart';
 
-final List<String> chunks = chunkString('héllo', 2);
-print(chunks); // [hé, ll, o]
+void main() {
+  final List<String> words = splitWords('  go   rust\tzig\n');
+  print(words); // [go, rust, zig]
 
-print(truncateRunes('héllo', 2)); // hé
-print(takeRunes('héllo', 2)); // hé
-print(dropRunes('héllo', 2)); // llo
+  final List<String> chunks = chunkString('héllo', 2);
+  print(chunks); // [hé, ll, o]
 
-final String kept = truncateWithEllipsis('héllo world', 8);
-print(kept); // héllo w…
-print(defaultEllipsisMark); // …
+  print(truncateRunes('héllo', 2)); // hé
+  print(takeRunes('héllo', 2)); // hé
+  print(dropRunes('héllo', 2)); // llo
+
+  final String kept = truncateWithEllipsis('héllo world', 8);
+  print(kept); // héllo w…
+  print(defaultEllipsisMark); // …
+}
+```
+
+Expected output:
+
+```text
+[go, rust, zig]
+[hé, ll, o]
+hé
+hé
+llo
+héllo w…
+…
 ```
 
 Blank input to `splitWords` yields an empty list (empty-means-empty, never

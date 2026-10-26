@@ -34,7 +34,7 @@
 /// ships `valid`, the strings slice ships `strings`, the mathx slice ships
 /// `mathx`, the flow slice ships `flow`, the pool slice ships `pool`, and the singleflight slice ships `singleflight`, the di slice ships `di`, and the repo slice ships `repo`, and the httpx slice ships `httpx`, and the collections slice ships `stack` + `queue` + `orderedmap`, and the task slice ships `task`, and the pipecompose slice ships `pipe`, and the either slice ships `either`; everything else is declared future scope, never stubbed (see `README.md`).
 ///
-/// Available since praxis `0.1.0-dev`; requires Dart `^3.13.0`.
+/// Available since praxis `0.1.0`; requires Dart `^3.13.0`.
 library;
 
 export 'src/di.dart';

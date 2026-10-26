@@ -7,13 +7,7 @@ library;
 
 import 'dart:async';
 
-import 'package:praxis/src/either.dart';
-import 'package:praxis/src/iterx.dart';
-import 'package:praxis/src/lists.dart';
-import 'package:praxis/src/mapx.dart';
-import 'package:praxis/src/opt.dart';
-import 'package:praxis/src/result.dart';
-import 'package:praxis/src/set.dart';
+import 'package:praxis/praxis.dart';
 import 'package:test/test.dart';
 
 List<String> capturePrints(void Function() body) {

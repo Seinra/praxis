@@ -27,7 +27,7 @@ one `pipe` inside another), no async execution shapes.
 4. Grow longer chains by nesting: `pipe(pipe(firstStep, secondStep),
    thirdStep)` stays typed through every bridge.
 
-## Which type?
+## Which function?
 
 The package doc (`lib/src/pipe.dart`) is the source; this table mirrors
 its "Which function?" table:
@@ -39,7 +39,7 @@ its "Which function?" table:
 
 ## Example
 
-From `test/docs_guides_c_test.dart` (group `pipe guide`):
+Example contents are asserted by `test/docs_guides_c_test.dart` (group `pipe guide`):
 
 ```dart
 import 'package:praxis/praxis.dart';
@@ -57,6 +57,13 @@ void main() {
   );
   print(doubleAfterAddOne(3)); // Output: 8
 }
+```
+
+Expected output:
+
+```text
+8
+8
 ```
 
 Run it: `dart test test/docs_guides_c_test.dart -n 'pipe guide'`.
@@ -87,6 +94,12 @@ you chain methods on one object, and for `Iterable.map` when you
 transform collections. Reach for `Result.mapValue`/`Result.andThen` when
 the steps are fallible. Reach for `pipe`/`compose` when two plain total
 steps deserve one reusable name.
+
+## Checklist
+
+- [ ] You can state the laziness rule in one sentence (composing runs nothing; legs run exactly once per call of the named value).
+- [ ] You can state the order rule in one sentence (`compose(outerStep, innerStep)` behaves as `pipe(innerStep, outerStep)` — same bridge, mirrored argument order).
+- [ ] You keep fallible steps in `Result.mapValue`/`Result.andThen` and compose only pure total steps here.
 
 ## Next step
 

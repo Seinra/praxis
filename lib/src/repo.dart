@@ -25,7 +25,7 @@
 /// adapter slice), and identity validation (any constructed identity is
 /// addressable; validity is caller domain policy, never store policy).
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 library;
 
 import 'package:praxis/src/opt.dart';
@@ -56,7 +56,7 @@ import 'package:praxis/src/opt.dart';
 /// a full fresh snapshot instead of pages — paging belongs to a future
 /// adapter slice, never here.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final Repository<String, String> lessonStore = Repository<String, String>(
@@ -82,7 +82,7 @@ final class Repository<StoredRecord extends Object, Identity extends Object> {
   /// reason: sound null safety makes it unrepresentable, since [keyOf] is
   /// a non-nullable function the compiler already rejects as `null`.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final Repository<String, String> lessonStore = Repository<String, String>(
@@ -120,7 +120,7 @@ final class Repository<StoredRecord extends Object, Identity extends Object> {
   /// Replacing keeps the original listing position: [list] still reports
   /// the identity where it was first stored.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final Repository<String, String> lessonStore = Repository<String, String>(
@@ -154,7 +154,7 @@ final class Repository<StoredRecord extends Object, Identity extends Object> {
   /// Never throws for a missing identity: absence is a normal outcome here,
   /// never a failure.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final Repository<String, String> lessonStore = Repository<String, String>(
@@ -191,7 +191,7 @@ final class Repository<StoredRecord extends Object, Identity extends Object> {
   /// Removing then re-storing lists the identity at the end: the drop
   /// releases its original listing position.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final Repository<String, String> lessonStore = Repository<String, String>(
@@ -222,7 +222,7 @@ final class Repository<StoredRecord extends Object, Identity extends Object> {
   ///
   /// An empty store lists an empty snapshot, never `null`.
   ///
-  /// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+  /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
   ///
   /// ```dart
   /// final Repository<String, String> lessonStore = Repository<String, String>(

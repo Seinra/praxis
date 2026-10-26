@@ -33,25 +33,41 @@ The package doc (`lib/src/valid.dart`) is the source; this table mirrors its
 
 ## Example
 
+Runnable — asserted by `test/docs_guides_b_test.dart` (same outputs):
+
 ```dart
-final Predicate<int> isPositiveEven = andPredicates<int>(<Predicate<int>>[
-  (int candidate) => candidate > 0,
-  (int candidate) => candidate.isEven,
-]);
-print(isPositiveEven(4)); // true
-print(isPositiveEven(-4)); // false
+import 'package:praxis/praxis.dart';
 
-final Predicate<int> isZeroOrEven = orPredicates<int>(<Predicate<int>>[
-  (int candidate) => candidate == 0,
-  (int candidate) => candidate.isEven,
-]);
-print(isZeroOrEven(3)); // false
-print(isZeroOrEven(4)); // true
+void main() {
+  final Predicate<int> isPositiveEven = andPredicates<int>(<Predicate<int>>[
+    (int candidate) => candidate > 0,
+    (int candidate) => candidate.isEven,
+  ]);
+  print(isPositiveEven(4)); // true
+  print(isPositiveEven(-4)); // false
 
-final Predicate<int> isOdd = notPredicate<int>(
-  (int candidate) => candidate.isEven,
-);
-print(isOdd(3)); // true
+  final Predicate<int> isZeroOrEven = orPredicates<int>(<Predicate<int>>[
+    (int candidate) => candidate == 0,
+    (int candidate) => candidate.isEven,
+  ]);
+  print(isZeroOrEven(3)); // false
+  print(isZeroOrEven(4)); // true
+
+  final Predicate<int> isOdd = notPredicate<int>(
+    (int candidate) => candidate.isEven,
+  );
+  print(isOdd(3)); // true
+}
+```
+
+Expected output:
+
+```text
+true
+false
+false
+true
+true
 ```
 
 `andPredicates` over an empty list holds vacuously (`true`, the

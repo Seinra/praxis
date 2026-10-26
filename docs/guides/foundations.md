@@ -163,9 +163,7 @@ or from you outside it.
 Runnable — asserted by `test/docs_guides_a_test.dart` (same outputs):
 
 ```dart
-import 'package:praxis/src/lists.dart';
-import 'package:praxis/src/opt.dart';
-import 'package:praxis/src/result.dart';
+import 'package:praxis/praxis.dart';
 
 void main() {
   // Inference from value arguments: no type list written.

@@ -24,7 +24,7 @@
 /// every list inside [invertEntries] and [groupEntriesBy] is fresh, so
 /// mutating it never affects the input.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 library;
 
 /// Groups keys sharing one value into fresh lists.
@@ -47,7 +47,7 @@ library;
 /// Returns a fresh empty map when [entries] is empty. Every list is fresh,
 /// so mutating the result never affects [entries]. Never mutates [entries].
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final grouped = invertEntries(<String, int>{'ann': 1, 'bob': 2, 'cid': 1});
@@ -80,7 +80,7 @@ Map<Value, List<Key>> invertEntries<Key, Value>(Map<Key, Value> entries) {
 /// empty, when [wantedKeys] is empty, or when no wanted key is present.
 /// Never mutates [entries] or [wantedKeys].
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final picked = pickEntries(<String, int>{'ann': 1, 'bob': 2}, <String>['ann', 'missing']);
@@ -117,7 +117,7 @@ Map<Key, Value> pickEntries<Key, Value>(
 /// empty, and a fresh copy of [entries] when [excludedKeys] is empty.
 /// Never mutates [entries] or [excludedKeys].
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final kept = omitEntries(<String, int>{'ann': 1, 'bob': 2}, <String>['ann']);
@@ -152,7 +152,7 @@ Map<Key, Value> omitEntries<Key, Value>(
 /// Returns a fresh empty map without calling [transformValue] when
 /// [entries] is empty. Never mutates [entries].
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final doubled = mapValues(<String, int>{'ann': 1}, (score) => score * 2);
@@ -186,7 +186,7 @@ Map<Key, TransformedValue> mapValues<Key, Value, TransformedValue>(
 /// Encounter order follows [Map] insertion order. Returns a fresh empty map
 /// without calling [keyOf] when [entries] is empty. Never mutates [entries].
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final upper = mapKeys(<String, int>{'ann': 1}, (name) => name.toUpperCase());
@@ -221,7 +221,7 @@ Map<NewKey, Value> mapKeys<Key, Value, NewKey>(
 /// [entries] is empty. Every list is fresh, so mutating the result never
 /// affects [entries]. Never mutates [entries].
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final grouped = groupEntriesBy(<String, int>{'ann': 91, 'bob': 72}, (name, score) => score >= 80 ? 'pass' : 'fail');

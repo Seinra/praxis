@@ -27,7 +27,7 @@
 /// zero-width-joiner sequences) count as several runes here; what stays
 /// whole is one rune (one code point), never one UTF-16 code unit.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 library;
 
 /// The default ellipsis mark used by [truncateWithEllipsis].
@@ -45,7 +45,7 @@ library;
 /// ellipsis variants out entirely; this package names the mark because
 /// the ellipsis cut is an explicit scope item here.
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final String mark = defaultEllipsisMark;
@@ -71,7 +71,7 @@ const String defaultEllipsisMark = '…';
 /// Returns a fresh empty list when [sourceText] is empty or blank.
 /// Never mutates [sourceText].
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final List<String> words = splitWords('  go   rust\tzig\n');
@@ -105,7 +105,7 @@ List<String> splitWords(String sourceText) {
 /// [sourceText]. Every chunk is fresh, so mutating the result never
 /// affects [sourceText]. Never mutates [sourceText].
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final List<String> chunks = chunkString('héllo', 2);
@@ -153,7 +153,7 @@ List<String> chunkString(String sourceText, int chunkSize) {
 /// budget is a programmer error, not a domain outcome. A zero budget
 /// yields an empty string. Never mutates [sourceText].
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final String kept = truncateRunes('héllo', 2);
@@ -187,7 +187,7 @@ String truncateRunes(String sourceText, int maxRunes) {
 /// an empty string. A count at or beyond the rune length returns
 /// [sourceText] unchanged. Never mutates [sourceText].
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final String kept = takeRunes('héllo', 2);
@@ -221,7 +221,7 @@ String takeRunes(String sourceText, int runeCount) {
 /// returns [sourceText] unchanged. A count at or beyond the rune length
 /// yields an empty string. Never mutates [sourceText].
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final String rest = dropRunes('héllo', 2);
@@ -263,7 +263,7 @@ String dropRunes(String sourceText, int runeCount) {
 /// [maxRunes] runes. An empty [ellipsis] behaves like [truncateRunes].
 /// Never mutates [sourceText].
 ///
-/// Available since Praxis `0.1.0-dev`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final String kept = truncateWithEllipsis('héllo world', 8);

@@ -27,7 +27,7 @@ the `List`.
 5. Branch on `present`, then trust `value`; ask `length`, `isEmpty`, or
    `isNotEmpty` for the depth.
 
-## Which type?
+## Which function?
 
 The package doc (`lib/src/stack.dart`) is the source; this table mirrors
 its "Which function?" table:
@@ -45,7 +45,7 @@ its "Which function?" table:
 
 ## Example
 
-From `test/docs_guides_c_test.dart` (group `stack guide`):
+Example contents are asserted by `test/docs_guides_c_test.dart` (group `stack guide`):
 
 ```dart
 import 'package:praxis/praxis.dart';
@@ -58,6 +58,14 @@ void main() {
   print(heldScores.peek().value); // Output: 72
   print(heldScores.length); // Output: 1
 }
+```
+
+Expected output:
+
+```text
+91
+72
+1
 ```
 
 Run it: `dart test test/docs_guides_c_test.dart -n 'stack guide'`.
@@ -86,6 +94,12 @@ is the job: you read by position, you reorder, or you scan with `where`
 and `map`. Reach for `Stack` when the call order is "undo the most
 recent first" and every empty read should answer absence instead of
 throwing.
+
+## Checklist
+
+- [ ] You can state the empty rule in one sentence (`pop` and `peek` on an empty stack answer `(value: null, present: false)` — never a throw).
+- [ ] You can state the order rule in one sentence (pushes land on top and pops leave from the top, so the most recent push serves first).
+- [ ] You branch on `present` before trusting `value`, even when the held element could itself be `null`.
 
 ## Next step
 
