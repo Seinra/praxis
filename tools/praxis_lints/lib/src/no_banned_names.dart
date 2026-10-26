@@ -15,7 +15,8 @@ import 'declaration_scope.dart';
 ///
 /// Seeds thesis invariant 3 (`data`, `item`, `res`) plus the abbreviations
 /// the craft floor bans outright (`err`, `ctx`, `req`, `cfg`, `usr`, `mgr`,
-/// `svc`) and the two ubiquitous temp-name shortenings (`tmp`, `temp`).
+/// `svc`), the two ubiquitous temp-name shortenings (`tmp`, `temp`), and
+/// the generic value/object shortenings (`val`, `obj`).
 /// Deliberately absent: `result`, `info`, and `dto`, which read as
 /// legitimate domain nouns in this codebase; they join on observed
 /// evidence, never speculatively. Matching is exact and case-sensitive, so

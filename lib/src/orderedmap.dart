@@ -452,9 +452,8 @@ final class LruCache<Key, Value> {
   /// // recentScores.length == 2
   /// ```
   void put(Key mapKey, Value heldValue) {
-    if (_entriesByKey.containsKey(mapKey)) {
-      _entriesByKey.remove(mapKey);
-    }
+    // `remove` on a missing key is a no-op: no `containsKey` guard needed.
+    _entriesByKey.remove(mapKey);
     _entriesByKey[mapKey] = heldValue;
     if (_entriesByKey.length > capacity) {
       _entriesByKey.remove(_entriesByKey.keys.first);

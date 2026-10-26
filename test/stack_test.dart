@@ -38,7 +38,7 @@ void main() {
       final Stack<String> heldWords = Stack<String>();
       heldWords.push('fig');
       heldWords.push('pear');
-      heldScoresPopAll(heldWords);
+      heldWordsPopAll(heldWords);
       expect(heldWords.isEmpty, isTrue);
       final ({String? value, bool present}) popped = heldWords.pop();
       expect(popped.present, isFalse);
@@ -181,7 +181,7 @@ void main() {
   });
 }
 
-void heldScoresPopAll(Stack<String> heldWords) {
+void heldWordsPopAll(Stack<String> heldWords) {
   while (heldWords.isNotEmpty) {
     heldWords.pop();
   }
