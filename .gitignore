@@ -22,6 +22,9 @@ Thumbs.db
 # Local scratch for pilot verification (never commit)
 /.tmp/
 
+# Conduit local-CI worktrees (ephemeral, never commit)
+/.conduit-worktrees/
+
 # Harness state: keys are secrets, caches are local
 .crystallize/keys/
 .atl/.skill-registry.cache.json
