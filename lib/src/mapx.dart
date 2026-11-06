@@ -1,8 +1,8 @@
 /// Typed map helpers over [Map], layered on `dart:core` instead of replacing it.
 ///
 /// Reach for these when the SDK names the parts but not the outcome: a
-/// grouped inversion, a key-set projection, a single-channel transform, or
-/// an entry grouping. Reach for the SDK directly when it already names the
+/// grouped inversion, a key-set projection, a single-channel transform, an
+/// entry grouping, or a presence-flagged single lookup. Reach for the SDK directly when it already names the
 /// operation (`map`, `keys`, `values`, `containsKey`, `update`,
 /// `putIfAbsent`, `addAll`, `remove`). Every helper is pure: inputs are
 /// never mutated and outputs are fresh maps with fresh collections.
@@ -17,6 +17,7 @@
 /// | Transform every value, keep keys        | [mapValues]     |
 /// | Remap every key, keep values            | [mapKeys]       |
 /// | Group values by a derived key           | [groupEntriesBy] |
+/// | Look one value up, presence-flagged     | [lookupValue]   |
 ///
 /// An empty map is a normal outcome here, never an error: every helper is
 /// empty-safe, and the grouping helpers return fresh empty maps without
@@ -239,4 +240,40 @@ Map<GroupKey, List<Value>> groupEntriesBy<Key, Value, GroupKey>(
         .add(candidateEntry.value);
   }
   return groupedEntries;
+}
+
+/// Looks one value up, answering presence-flagged.
+///
+/// | When you want to ...               | Reach for ... |
+/// | ----------------------------------- | ------------- |
+/// | Look one value up, presence-flagged | [lookupValue] |
+///
+/// `dart:core` answers lookup with `Map.[]`, which conflates a missing key
+/// with a held `null` value, while `containsKey` plus `[]` pays a two-probe
+/// dance with a cast — the same probe [pickEntries] already pays inline
+/// (DART-SDK). [lookupValue] fills that gap with one presence-flagged read,
+/// mirroring this package's `OrderedMap.get` `(value, present)` OrNull
+/// discipline.
+///
+/// A missing key yields `(value: null, present: false)`: never an error,
+/// never a throw. A held `null` reads `(value: null, present: true)`, so
+/// only `present` tells it apart from absence. Never mutates [entries]; the
+/// record is a fresh value.
+///
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
+///
+/// ```dart
+/// final ({int? value, bool present}) annScore = lookupValue(<String, int>{'ann': 1}, 'ann');
+/// print(annScore.present); // true
+/// ```
+({Value? value, bool present}) lookupValue<Key, Value>(
+  Map<Key, Value> entries,
+  Key wantedKey,
+) {
+  if (!entries.containsKey(wantedKey)) {
+    return (value: null, present: false);
+  }
+  // `as Value` (never `!`): preserves a present-null `Value`
+  // instead of throwing on it.
+  return (value: entries[wantedKey] as Value, present: true);
 }

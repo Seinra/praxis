@@ -47,6 +47,7 @@ verbatim.
 | Transform every value, keep keys        | [mapValues]     |
 | Remap every key, keep values            | [mapKeys]       |
 | Group values by a derived key           | [groupEntriesBy] |
+| Look one value up, presence-flagged     | [lookupValue]   |
 
 ## Example
 

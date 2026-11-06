@@ -122,4 +122,4 @@ true:4
 - Neighbor: [result](result.md) — success or failure with the cause attached;
   absence grows into a `Result` only at the point a cause becomes known.
 - Search lists with presence flags: [lists](lists.md) — `findElement`,
-  `minElement`, and `maxElement` report the same `(value, present)` shape.
+  `firstElement`, `lastElement`, `minElement`, and `maxElement` report the same `(value, present)` shape.

@@ -46,6 +46,8 @@ verbatim.
 | When you want to ...                   | Reach for ...       |
 | -------------------------------------- | ------------------- |
 | Find the first match, presence-flagged | [findElement]       |
+| First element, presence-flagged        | [firstElement]      |
+| Last element, presence-flagged         | [lastElement]       |
 | Smallest element, absent-safe          | [minElement]        |
 | Largest element, absent-safe           | [maxElement]        |
 | Fixed-size chunks as fresh lists       | [chunkElements]     |

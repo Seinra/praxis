@@ -407,6 +407,53 @@ void main() {
     });
   });
 
+  group('lookupValue', () {
+    test('reads a present value with its presence flag', () {
+      final ({int? value, bool present}) found = lookupValue<String, int>(
+        <String, int>{'ann': 1, 'bob': 2},
+        'bob',
+      );
+      expect(found.present, isTrue);
+      expect(found.value, equals(2));
+    });
+
+    test('answers a missing key as absent without throwing', () {
+      final ({int? value, bool present}) found = lookupValue<String, int>(
+        <String, int>{'ann': 1},
+        'missing',
+      );
+      expect(found.present, isFalse);
+      expect(found.value, isNull);
+    });
+
+    test('tells a present-null value apart from a missing key', () {
+      const Map<String, int?> entries = <String, int?>{'ann': null};
+      final ({int? value, bool present}) found = lookupValue<String, int?>(
+        entries,
+        'ann',
+      );
+      expect(found.present, isTrue);
+      expect(found.value, isNull);
+    });
+
+    test('answers absent for every key on empty input', () {
+      final ({int? value, bool present}) found = lookupValue<String, int>(
+        <String, int>{},
+        'ann',
+      );
+      expect(found.present, isFalse);
+      expect(found.value, isNull);
+    });
+
+    test('leaves the input untouched', () {
+      final Map<String, int> entries = <String, int>{'ann': 1};
+      final Map<String, int> snapshot = Map<String, int>.of(entries);
+      lookupValue<String, int>(entries, 'ann');
+      lookupValue<String, int>(entries, 'missing');
+      expect(entries, equals(snapshot));
+    });
+  });
+
   group('documented examples', () {
     test('invertEntries example groups names by shared score', () {
       final Map<int, List<String>> grouped = invertEntries(<String, int>{
@@ -447,6 +494,14 @@ void main() {
         'ann': 1,
       }, (name) => name.toUpperCase());
       expect(upper, equals(<String, int>{'ANN': 1}));
+    });
+
+    test('lookupValue example reads one score presence-flagged', () {
+      final ({int? value, bool present}) annScore = lookupValue(<String, int>{
+        'ann': 1,
+      }, 'ann');
+      expect(annScore.present, isTrue);
+      expect(annScore.value, equals(1));
     });
 
     test('groupEntriesBy example splits passing from failing scores', () {

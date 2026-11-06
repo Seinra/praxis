@@ -25,7 +25,7 @@ Every design decision cites a stable ID below. A rename/replacement updates the 
 | FOUNDRY-DEBUG | methodology | `foundry-debug` skill v1.0 | reproduce → hypothesise → probe → fix → regression-lock |
 | FOUNDRY-TESTING | methodology | `foundry-testing` skill v1.0 | HOW-to-test per language (no Dart playbook — Dart mechanics come from ATELIER-DART) |
 | FOUNDRY-REVIEW | methodology | `foundry-review` skill v1.0 | pre-freeze verdict gate |
-| FOUNDRY-DOCS | methodology | `foundry-docs` skill v1.0 | official docs layered over cognitive-doc-design (quickstart/guide/cookbook/API ref) |
+| FOUNDRY-DOCS | methodology | `foundry-docs` skill v1.1 + audit-checklist | official docs layered over cognitive-doc-design (quickstart/guide/cookbook/API ref); v1.1 adds roles/diataxis/voice gates + stranger test |
 | ATELIER-DART | methodology | `atelier-dart` skill v1.0 | Dart correctness: `package:test`, analyzer, patterns, `///` docs, `{@example}` injection |
 | WORK-UNIT-COMMITS | methodology | `work-unit-commits` skill v1.0 | one purpose per commit; tests + docs travel with unit |
 | AGENT-GIT-COMMIT | methodology | `agent-git-commit` skill v1.0 | safe commits under agent runtime gates; never commit unless the owner explicitly asked |
