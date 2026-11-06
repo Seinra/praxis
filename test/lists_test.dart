@@ -105,6 +105,174 @@ void main() {
     });
   });
 
+  group('firstElement', () {
+    final List<
+      ({String label, List<int> elements, int? expected, bool expectedPresent})
+    >
+    firstCases =
+        <
+          ({
+            String label,
+            List<int> elements,
+            int? expected,
+            bool expectedPresent,
+          })
+        >[
+          (
+            label: 'returns the first of several',
+            elements: <int>[72, 91, 85],
+            expected: 72,
+            expectedPresent: true,
+          ),
+          (
+            label: 'returns the lone element',
+            elements: <int>[7],
+            expected: 7,
+            expectedPresent: true,
+          ),
+          (
+            label: 'returns the head of descending input',
+            elements: <int>[5, 4, 3],
+            expected: 5,
+            expectedPresent: true,
+          ),
+          (
+            label: 'returns the head when duplicates follow',
+            elements: <int>[4, 2, 2, 5],
+            expected: 4,
+            expectedPresent: true,
+          ),
+          (
+            label: 'handles negative numbers',
+            elements: <int>[-5, -2, -9],
+            expected: -5,
+            expectedPresent: true,
+          ),
+        ];
+
+    for (final testCase in firstCases) {
+      test(testCase.label, () {
+        final first = firstElement<int>(List<int>.of(testCase.elements));
+        expect(first.present, equals(testCase.expectedPresent));
+        expect(first.value, equals(testCase.expected));
+      });
+    }
+
+    test('returns the first word', () {
+      const List<String> words = <String>['apple', 'fig', 'kiwi'];
+      final first = firstElement<String>(words);
+      expect(first.present, isTrue);
+      expect(first.value, equals('apple'));
+    });
+
+    test('returns absence on empty input', () {
+      final first = firstElement<int>(<int>[]);
+      expect(first.present, isFalse);
+      expect(first.value, isNull);
+    });
+
+    test('distinguishes a stored null head from absence via the flag', () {
+      const List<int?> nullableScores = <int?>[null, 1];
+      final hit = firstElement<int?>(nullableScores);
+      expect(hit.present, isTrue);
+      expect(hit.value, isNull);
+      final miss = firstElement<int?>(<int?>[]);
+      expect(miss.present, isFalse);
+      expect(miss.value, isNull);
+    });
+
+    test('leaves the input untouched', () {
+      final List<int> scores = <int>[72, 91, 85];
+      final List<int> snapshot = List<int>.of(scores);
+      firstElement<int>(scores);
+      expect(scores, equals(snapshot));
+    });
+  });
+
+  group('lastElement', () {
+    final List<
+      ({String label, List<int> elements, int? expected, bool expectedPresent})
+    >
+    lastCases =
+        <
+          ({
+            String label,
+            List<int> elements,
+            int? expected,
+            bool expectedPresent,
+          })
+        >[
+          (
+            label: 'returns the last of several',
+            elements: <int>[72, 91, 85],
+            expected: 85,
+            expectedPresent: true,
+          ),
+          (
+            label: 'returns the lone element',
+            elements: <int>[7],
+            expected: 7,
+            expectedPresent: true,
+          ),
+          (
+            label: 'returns the tail of ascending input',
+            elements: <int>[1, 2, 3],
+            expected: 3,
+            expectedPresent: true,
+          ),
+          (
+            label: 'returns the tail when duplicates lead',
+            elements: <int>[4, 2, 2, 5],
+            expected: 5,
+            expectedPresent: true,
+          ),
+          (
+            label: 'handles negative numbers',
+            elements: <int>[-5, -2, -9],
+            expected: -9,
+            expectedPresent: true,
+          ),
+        ];
+
+    for (final testCase in lastCases) {
+      test(testCase.label, () {
+        final last = lastElement<int>(List<int>.of(testCase.elements));
+        expect(last.present, equals(testCase.expectedPresent));
+        expect(last.value, equals(testCase.expected));
+      });
+    }
+
+    test('returns the last word', () {
+      const List<String> words = <String>['apple', 'fig', 'kiwi'];
+      final last = lastElement<String>(words);
+      expect(last.present, isTrue);
+      expect(last.value, equals('kiwi'));
+    });
+
+    test('returns absence on empty input', () {
+      final last = lastElement<int>(<int>[]);
+      expect(last.present, isFalse);
+      expect(last.value, isNull);
+    });
+
+    test('distinguishes a stored null tail from absence via the flag', () {
+      const List<int?> nullableScores = <int?>[1, null];
+      final hit = lastElement<int?>(nullableScores);
+      expect(hit.present, isTrue);
+      expect(hit.value, isNull);
+      final miss = lastElement<int?>(<int?>[]);
+      expect(miss.present, isFalse);
+      expect(miss.value, isNull);
+    });
+
+    test('leaves the input untouched', () {
+      final List<int> scores = <int>[72, 91, 85];
+      final List<int> snapshot = List<int>.of(scores);
+      lastElement<int>(scores);
+      expect(scores, equals(snapshot));
+    });
+  });
+
   group('minElement', () {
     final List<
       ({String label, List<int> elements, int? expected, bool expectedPresent})
@@ -453,6 +621,18 @@ void main() {
       final found = findElement(scores, (score) => score > 80);
       expect(found.present, isTrue);
       expect(found.value, equals(91));
+    });
+
+    test('firstElement example prints 72', () {
+      final first = firstElement(<int>[72, 91, 85]);
+      expect(first.present, isTrue);
+      expect(first.value, equals(72));
+    });
+
+    test('lastElement example prints 85', () {
+      final last = lastElement(<int>[72, 91, 85]);
+      expect(last.present, isTrue);
+      expect(last.value, equals(85));
     });
 
     test('minElement example prints 1', () {

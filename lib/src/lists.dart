@@ -12,13 +12,15 @@
 /// | When you want to ...                   | Reach for ...       |
 /// | -------------------------------------- | ------------------- |
 /// | Find the first match, presence-flagged | [findElement]       |
+/// | First element, presence-flagged       | [firstElement]      |
+/// | Last element, presence-flagged        | [lastElement]       |
 /// | Smallest element, absent-safe          | [minElement]        |
 /// | Largest element, absent-safe           | [maxElement]        |
 /// | Fixed-size chunks as fresh lists       | [chunkElements]     |
 /// | Split into matching plus rest          | [partitionElements] |
 ///
-/// The `(value, present)` record on [findElement], [minElement], and
-/// [maxElement] is this package's OrNull: `present` reports presence and
+/// The `(value, present)` record on [findElement], [firstElement],
+/// [lastElement], [minElement], and [maxElement] is this package's OrNull: `present` reports presence and
 /// `value` is `null` when absent. Empty input or no match is a normal
 /// outcome here, never an error. Never trust `value` without checking
 /// `present` first: a list may itself hold `null` elements, so only the
@@ -61,6 +63,74 @@ library;
     }
   }
   return (value: null, present: false);
+}
+
+/// Returns the first element of [elements].
+///
+/// | When you want to ...             | Reach for ...  |
+/// | --------------------------------- | -------------- |
+/// | First element, presence-flagged | [firstElement] |
+///
+/// `dart:core` answers this shape with [List.first], which throws a
+/// [StateError] when the list is empty, and with `firstOrNull`, which
+/// returns `null` for both an empty list and a stored `null` element,
+/// confounding absence with a found `null` (DART-SDK). [firstElement]
+/// fills that gap: it returns the `(value, present)` OrNull record
+/// instead, mirroring the Axiom `slice` precedent of `(value, bool)`
+/// presence pairs (AXIOM-SISTER), so empty input stays a normal outcome.
+///
+/// Returns `(value: null, present: false)` when [elements] is empty.
+/// Never mutates [elements]. Never trust `value` without checking
+/// `present` first: a list may itself hold `null` elements, so only the
+/// flag tells a found `null` from an absent one.
+///
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0` (records).
+///
+/// ```dart
+/// final first = firstElement(<int>[72, 91, 85]);
+/// if (first.present) {
+///   print(first.value); // 72
+/// }
+/// ```
+({Element? value, bool present}) firstElement<Element>(List<Element> elements) {
+  if (elements.isEmpty) {
+    return (value: null, present: false);
+  }
+  return (value: elements.first, present: true);
+}
+
+/// Returns the last element of [elements].
+///
+/// | When you want to ...            | Reach for ... |
+/// | -------------------------------- | ------------- |
+/// | Last element, presence-flagged | [lastElement] |
+///
+/// `dart:core` answers this shape with [List.last], which throws a
+/// [StateError] when the list is empty, and with `lastOrNull`, which
+/// returns `null` for both an empty list and a stored `null` element,
+/// confounding absence with a found `null` (DART-SDK). [lastElement]
+/// fills that gap: it returns the `(value, present)` OrNull record
+/// instead, mirroring the Axiom `slice` precedent of `(value, bool)`
+/// presence pairs (AXIOM-SISTER), so empty input stays a normal outcome.
+///
+/// Returns `(value: null, present: false)` when [elements] is empty.
+/// Never mutates [elements]. Never trust `value` without checking
+/// `present` first: a list may itself hold `null` elements, so only the
+/// flag tells a found `null` from an absent one.
+///
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0` (records).
+///
+/// ```dart
+/// final last = lastElement(<int>[72, 91, 85]);
+/// if (last.present) {
+///   print(last.value); // 85
+/// }
+/// ```
+({Element? value, bool present}) lastElement<Element>(List<Element> elements) {
+  if (elements.isEmpty) {
+    return (value: null, present: false);
+  }
+  return (value: elements.last, present: true);
 }
 
 /// Returns the smallest element of [elements].
