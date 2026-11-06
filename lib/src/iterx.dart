@@ -349,7 +349,7 @@ Iterable<Element> deduplicateAdjacent<Element>(
 /// iterable when [sourceElements] is empty or holds at most [droppedCount]
 /// elements.
 ///
-/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.3`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final remaining = dropRightElements(<int>[1, 2, 3, 4], 2);

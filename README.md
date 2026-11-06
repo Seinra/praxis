@@ -4,8 +4,8 @@ One small, dependable generics library: typed helpers for
 results, options, and lists, built one feature at a time. Sister library of
 [Axiom](https://github.com/seinra/axiom) (Go generics); same thesis, Dart idioms.
 
-> Version: `0.1.0` (public, MIT).
-> Prereqs: Dart SDK `^3.13.0` (`dart --version` → 3.13.5 verified 2026-10-23).
+> Version: `0.1.3` (public, MIT).
+> Prereqs: Dart SDK `^3.13.0` (`dart --version` → 3.13.5 verified 2026-11-06).
 > Runnable API examples land with the skeleton slice; every documented example
 > is CI-executed (tests assert the documented outputs), never scratch-only.
 
