@@ -13,7 +13,7 @@ Progress log + debt ledger. Columns: Item, Phase, Ceiling, Upgrade Path. NEVER d
 | 2026-10-23 | skeleton T1–T4 done + verifier Go | VALIDATE | 120/120 tests, analyze/format clean, docs-sync 6/6, pilot exit 0; 1 SUGGESTION adopted (result library doc); no commits, push/PR owner-gated |
 | 2026-11-06 | fpdart-gaps warnings T1–T3 done, verified inline | VALIDATE | 727 tests, analyze/format clean, doc 4 pre-existing warnings; 2 WARNING gaps adopted (first/last + lookupValue), EOL churn reverted, barrel+opt tables synced; work-unit chain on feat/praxis-fpdart-gaps-warnings, push/PR owner-gated |
 | 2026-11-06 | fpdart-gaps suggestions T1–T3 done, verified inline | VALIDATE | 775 tests, analyze/format clean, doc 4 pre-existing warnings; 3 SUGGESTION gaps adopted (sorted + min/maxBy + dropRight), barrel rows synced; work-unit chain on feat/praxis-fpdart-gaps-suggestions, push/PR owner-gated |
-| 2026-11-06 | findings-final T1–T4 done inline, verified | VALIDATE | doc-only + STATUS; adopted V2 (empty-map clause), V3 (example prints value + pin mirrored), V4 (records-boilerplate sweep sortedElements + chunkElements), V5 (runtime Comparable pin), V6 (unbounded-source clause), N1 (OrNull prose folded to table reference), N3 (one-read→probe precision); R11 DONE dispositions with efd81a6 evidence; dismissed V7 (base-only padding) + N2/N4 (re-read clean, park if re-observed); full gates green |
+| 2026-11-06 | findings-final T1–T4 done inline, verified | VALIDATE | doc-only + STATUS; 7 adopted + R11 DONE (efd81a6); dismissed 4 parked (re-observe to reopen); full gates green |
 
 ## Debt ledger
 

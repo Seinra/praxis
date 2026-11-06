@@ -22,8 +22,9 @@
 /// | Fixed-size chunks as fresh lists      | [chunkElements]     |
 /// | Split into matching plus rest         | [partitionElements] |
 ///
-/// The `(value, present)` record on the presence-flagged helpers in the
-/// table above is this package's OrNull: `present` reports presence and
+/// The `(value, present)` record on [findElement], [firstElement],
+/// [lastElement], [minElement], [maxElement], [minElementBy], and
+/// [maxElementBy] is this package's OrNull: `present` reports presence and
 /// `value` is `null` when absent. Empty input or no match is a normal
 /// outcome here, never an error. Never trust `value` without checking
 /// `present` first: a list may itself hold `null` elements, so only the

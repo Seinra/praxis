@@ -257,9 +257,8 @@ Map<GroupKey, List<Value>> groupEntriesBy<Key, Value, GroupKey>(
 ///
 /// A missing key yields `(value: null, present: false)`:
 /// never an error, never a throw — empty map included. A held `null`
-/// reads `(value: null, present: true)`, so `(value: null, present: true)`, so
-/// only `present` tells it apart from absence. Never mutates [entries]; the
-/// record is a fresh value.
+/// reads `(value: null, present: true)`, so only `present` tells it apart
+/// from absence. Never mutates [entries]; the record is a fresh value.
 ///
 /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
