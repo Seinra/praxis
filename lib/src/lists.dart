@@ -88,7 +88,7 @@ library;
 /// `present` first: a list may itself hold `null` elements, so only the
 /// flag tells a found `null` from an absent one.
 ///
-/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0` (records).
+/// Available since Praxis `0.1.3`. Requires Dart `^3.13.0` (records).
 ///
 /// ```dart
 /// final first = firstElement(<int>[72, 91, 85]);
@@ -122,7 +122,7 @@ library;
 /// `present` first: a list may itself hold `null` elements, so only the
 /// flag tells a found `null` from an absent one.
 ///
-/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0` (records).
+/// Available since Praxis `0.1.3`. Requires Dart `^3.13.0` (records).
 ///
 /// ```dart
 /// final last = lastElement(<int>[72, 91, 85]);
@@ -245,7 +245,7 @@ library;
 /// [elements] is empty. Ties keep the first minimal element. Never mutates
 /// [elements].
 ///
-/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0` (records).
+/// Available since Praxis `0.1.3`. Requires Dart `^3.13.0` (records).
 ///
 /// ```dart
 /// final youngest = minElementBy(
@@ -293,7 +293,7 @@ library;
 /// [elements] is empty. Ties keep the first maximal element. Never mutates
 /// [elements].
 ///
-/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0` (records).
+/// Available since Praxis `0.1.3`. Requires Dart `^3.13.0` (records).
 ///
 /// ```dart
 /// final longest = maxElementBy(
@@ -341,7 +341,7 @@ library;
 /// fresh empty list when [elements] is empty. Never mutates [elements]; mutating the result never
 /// affects [elements].
 ///
-/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.3`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final sorted = sortedElements(<int>[3, 1, 2], null);

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.3
+
+Gaps release — you get 7 new presence-flagged helpers: `firstElement`/`lastElement` (absent-safe ends of a list), `lookupValue` (absent-safe map lookup), `sortedElements` (sorted copy, input untouched), `minElementBy`/`maxElementBy` (extremes by derived key), and `dropRightElements` (lazy drop-last-n). Each carries a Which-row, a DART-SDK gap doc, and a CI-executed example. Ledger R1–R24 fully disposed with evidence; version floors verified (`dart --version` → 3.13.5). No breaking changes.
+
 ## 0.1.2
 
 Pana-gaps release — you get the same 21-package API with full doc coverage and a runnable example: `FlowScope()` gains its explicit documented constructor (200/200 documented API elements), and `example/main.dart` feeds the pub.dev Example tab. Drops the stray `at Echo-level quality` phrase from README and the loop hub. No library behavior changes.

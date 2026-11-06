@@ -14,6 +14,7 @@ Progress log + debt ledger. Columns: Item, Phase, Ceiling, Upgrade Path. NEVER d
 | 2026-11-06 | fpdart-gaps warnings T1–T3 done, verified inline | VALIDATE | 727 tests, analyze/format clean, doc 4 pre-existing warnings; 2 WARNING gaps adopted (first/last + lookupValue), EOL churn reverted, barrel+opt tables synced; work-unit chain on feat/praxis-fpdart-gaps-warnings, push/PR owner-gated |
 | 2026-11-06 | fpdart-gaps suggestions T1–T3 done, verified inline | VALIDATE | 775 tests, analyze/format clean, doc 4 pre-existing warnings; 3 SUGGESTION gaps adopted (sorted + min/maxBy + dropRight), barrel rows synced; work-unit chain on feat/praxis-fpdart-gaps-suggestions, push/PR owner-gated |
 | 2026-11-06 | findings-final T1–T4 done inline, verified | VALIDATE | doc-only + STATUS; 7 adopted + R11 DONE (efd81a6); dismissed 4 parked (re-observe to reopen); full gates green |
+| 2026-11-06 | release 0.1.3 cut (bump + docs-sync) | VALIDATE | pubspec 0.1.2→0.1.3, README version + re-verified SDK date, 7 Available-since 0.1.3, CHANGELOG 0.1.3 entry; full gates green pre-publish |
 
 ## Debt ledger
 

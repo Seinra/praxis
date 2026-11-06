@@ -260,7 +260,7 @@ Map<GroupKey, List<Value>> groupEntriesBy<Key, Value, GroupKey>(
 /// reads `(value: null, present: true)`, so only `present` tells it apart
 /// from absence. Never mutates [entries]; the record is a fresh value.
 ///
-/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
+/// Available since Praxis `0.1.3`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final annScore = lookupValue(<String, int>{'ann': 1}, 'ann');
