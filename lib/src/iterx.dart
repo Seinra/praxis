@@ -335,7 +335,9 @@ Iterable<Element> deduplicateAdjacent<Element>(
 /// Validates [droppedCount] eagerly at call time and stays fully lazy after
 /// that: creating the iterable pulls nothing, each pulled element advances
 /// the source by one, and the buffer never holds more than
-/// `droppedCount + 1` elements. Breaking early stops pulling the source,
+/// `droppedCount + 1` elements. Over an unbounded source this adapter yields
+/// forever, lagged by `droppedCount` pulls — the trailing drop never lands,
+/// so bound the source first. Breaking early stops pulling the source,
 /// and re-iterating re-runs from the source. Reach for this adapter when
 /// the source is an [Iterable] or the pipeline is lazy; reach for the SDK
 /// `take` and `skip` when the dropped side is the front, or for the eager

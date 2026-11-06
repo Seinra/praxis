@@ -497,9 +497,7 @@ void main() {
     });
 
     test('lookupValue example reads one score presence-flagged', () {
-      final ({int? value, bool present}) annScore = lookupValue(<String, int>{
-        'ann': 1,
-      }, 'ann');
+      final annScore = lookupValue(<String, int>{'ann': 1}, 'ann');
       expect(annScore.present, isTrue);
       expect(annScore.value, equals(1));
     });
