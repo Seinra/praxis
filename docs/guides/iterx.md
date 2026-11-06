@@ -54,6 +54,7 @@ verbatim.
 | Repeat a source iterable forever in order     | [cycleIterable]       |
 | Repeat one value forever                      | [repeatElement]       |
 | Collapse adjacent duplicates, keeping order   | [deduplicateAdjacent] |
+| Drop the last n, lazily                       | [dropRightElements]   |
 
 ## Example
 

@@ -659,6 +659,167 @@ void main() {
     });
   });
 
+  group('dropRightElements', () {
+    final List<
+      ({
+        String label,
+        List<int> sourceElements,
+        int droppedCount,
+        List<int> expected,
+      })
+    >
+    dropCases =
+        <
+          ({
+            String label,
+            List<int> sourceElements,
+            int droppedCount,
+            List<int> expected,
+          })
+        >[
+          (
+            label: 'drops the last two scores',
+            sourceElements: <int>[1, 2, 3, 4],
+            droppedCount: 2,
+            expected: <int>[1, 2],
+          ),
+          (
+            label: 'drops nothing when the count is zero',
+            sourceElements: <int>[1, 2, 3],
+            droppedCount: 0,
+            expected: <int>[1, 2, 3],
+          ),
+          (
+            label: 'drops everything when the count covers the input',
+            sourceElements: <int>[1, 2],
+            droppedCount: 2,
+            expected: <int>[],
+          ),
+          (
+            label: 'yields nothing when the count exceeds the input',
+            sourceElements: <int>[1, 2],
+            droppedCount: 5,
+            expected: <int>[],
+          ),
+          (
+            label: 'keeps a singleton when dropping nothing',
+            sourceElements: <int>[8],
+            droppedCount: 0,
+            expected: <int>[8],
+          ),
+          (
+            label: 'drops a singleton',
+            sourceElements: <int>[8],
+            droppedCount: 1,
+            expected: <int>[],
+          ),
+        ];
+
+    for (final testCase in dropCases) {
+      test(testCase.label, () {
+        expect(
+          dropRightElements<int>(
+            List<int>.of(testCase.sourceElements),
+            testCase.droppedCount,
+          ).toList(),
+          equals(testCase.expected),
+        );
+      });
+    }
+
+    test('drops trailing words', () {
+      expect(
+        dropRightElements<String>(<String>['a', 'b', 'c'], 1).toList(),
+        equals(<String>['a', 'b']),
+      );
+    });
+
+    test('yields nothing on empty input', () {
+      int calls = 0;
+      Iterable<int> emptySource() sync* {
+        for (final candidate in <int>[]) {
+          calls += 1;
+          yield candidate;
+        }
+      }
+
+      expect(dropRightElements<int>(emptySource(), 2).toList(), isEmpty);
+      expect(calls, equals(0));
+    });
+
+    test('rejects a negative dropped count without pulling the source', () {
+      int pulls = 0;
+      Iterable<int> countedSource() sync* {
+        pulls += 1;
+        yield 1;
+      }
+
+      expect(
+        () => dropRightElements<int>(countedSource(), -1),
+        throwsArgumentError,
+      );
+      expect(
+        () => dropRightElements<int>(countedSource(), -3),
+        throwsArgumentError,
+      );
+      expect(pulls, equals(0));
+    });
+
+    test('pulls nothing until iterated', () {
+      int pulls = 0;
+      Iterable<int> countedSource() sync* {
+        for (int index = 0; index < 4; index++) {
+          pulls += 1;
+          yield index;
+        }
+      }
+
+      final remaining = dropRightElements<int>(countedSource(), 2);
+      expect(pulls, equals(0));
+      expect(remaining.first, equals(0));
+      expect(pulls, equals(3));
+    });
+
+    test('stops pulling when the caller stops early', () {
+      int pulls = 0;
+      Iterable<int> countedSource() sync* {
+        for (int index = 0; index < 10; index++) {
+          pulls += 1;
+          yield index;
+        }
+      }
+
+      final remaining = dropRightElements<int>(
+        countedSource(),
+        2,
+      ).take(2).toList();
+      expect(remaining, equals(<int>[0, 1]));
+      expect(pulls, equals(4));
+    });
+
+    test('re-iterating re-runs the source', () {
+      int pulls = 0;
+      Iterable<int> countedSource() sync* {
+        for (int index = 0; index < 3; index++) {
+          pulls += 1;
+          yield index;
+        }
+      }
+
+      final remaining = dropRightElements<int>(countedSource(), 1);
+      expect(remaining.toList(), equals(<int>[0, 1]));
+      expect(remaining.toList(), equals(<int>[0, 1]));
+      expect(pulls, equals(6));
+    });
+
+    test('leaves list inputs untouched', () {
+      final List<int> scores = <int>[1, 2, 3];
+      final List<int> snapshot = List<int>.of(scores);
+      dropRightElements<int>(scores, 1).toList();
+      expect(scores, equals(snapshot));
+    });
+  });
+
   group('documented examples', () {
     test('zipIterables example pairs two lists stopping at the shorter', () {
       final paired = zipIterables(<int>[1, 2, 3], <String>['a', 'b']);
@@ -707,6 +868,11 @@ void main() {
     test('deduplicateAdjacent example collapses runs keeping order', () {
       final uniqueRuns = deduplicateAdjacent(<int>[1, 1, 2, 1]);
       expect(uniqueRuns.toList(), equals(<int>[1, 2, 1]));
+    });
+
+    test('dropRightElements example drops the last two scores', () {
+      final remaining = dropRightElements(<int>[1, 2, 3, 4], 2);
+      expect(remaining.toList(), equals(<int>[1, 2]));
     });
   });
 }
