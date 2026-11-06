@@ -4,7 +4,7 @@ One small, dependable generics library: typed helpers for
 results, options, and lists, built one feature at a time. Sister library of
 [Axiom](https://github.com/seinra/axiom) (Go generics); same thesis, Dart idioms.
 
-> Version: `0.1.3` (public, MIT).
+> Version: `0.1.4` (public, MIT).
 > Prereqs: Dart SDK `^3.13.0` (`dart --version` → 3.13.5 verified 2026-11-06).
 > Runnable API examples land with the skeleton slice; every documented example
 > is CI-executed (tests assert the documented outputs), never scratch-only.
@@ -73,7 +73,7 @@ mirrors Axiom's `(T, bool)`).
 
 ## Linter
 
-You enable `praxis_lints` (the house-rule analyzer plugin) in your `analysis_options.yaml`:
+Enable `praxis_lints` — our house analyzer plugin with two opt-in rules that keep names grep-able — in your `analysis_options.yaml`:
 
 ```yaml
 plugins:
@@ -84,7 +84,7 @@ plugins:
       no_banned_names: true
 ```
 
-You read the rule docs in [`tools/praxis_lints/README.md`](tools/praxis_lints/README.md) (symptom → rule table, violation vs clean pairs, scope notes); you restart the analysis server after changing the section.
+See the rule docs in [`tools/praxis_lints/README.md`](tools/praxis_lints/README.md) (symptom → rule table, violation vs clean pairs, scope notes). Restart the analysis server after editing this section.
 
 ## Why not just use `fpdart`?
 

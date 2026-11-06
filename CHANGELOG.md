@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.4
+
+Docs-voice release — you get the same 21-package API with a cleaner Linter section: imperative voice (`Enable`/`See`/`Restart`) plus the grep-able benefit line, matching `tools/praxis_lints/README.md`. No library behavior changes.
+
 ## 0.1.3
 
 Gaps release — you get 7 new presence-flagged helpers: `firstElement`/`lastElement` (absent-safe ends of a list), `lookupValue` (absent-safe map lookup), `sortedElements` (sorted copy, input untouched), `minElementBy`/`maxElementBy` (extremes by derived key), and `dropRightElements` (lazy drop-last-n). Each carries a Which-row, a DART-SDK gap doc, and a CI-executed example. Ledger R1–R24 fully disposed with evidence; version floors verified (`dart --version` → 3.13.5). No breaking changes.
