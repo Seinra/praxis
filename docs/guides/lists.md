@@ -32,10 +32,13 @@ per call, and `where` keeps the matches but drops the rest.
 1. Search: `findElement` returns the first match as `(value, present)` — no
    `StateError` on a miss, no callback-shaped absence.
 2. Extremes: `minElement`/`maxElement` scan once and stay absent-safe on empty
-   input; ties keep the first minimal or maximal element.
-3. Chunk: `chunkElements` cuts fixed-size fresh copies; a short final chunk
+   input; `minElementBy`/`maxElementBy` do the same by a derived key. Ties keep
+   the first minimal or maximal element.
+3. Sort: `sortedElements` returns a sorted copy and leaves the input untouched;
+   pass `null` for the natural ordering or a comparator for a custom one.
+4. Chunk: `chunkElements` cuts fixed-size fresh copies; a short final chunk
    carries the remainder.
-4. Split: `partitionElements` walks once and returns both fresh lists as a
+5. Split: `partitionElements` walks once and returns both fresh lists as a
    `(matching, rest)` record.
 
 ## Which function?
@@ -50,7 +53,10 @@ verbatim.
 | Last element, presence-flagged         | [lastElement]       |
 | Smallest element, absent-safe          | [minElement]        |
 | Largest element, absent-safe           | [maxElement]        |
-| Fixed-size chunks as fresh lists       | [chunkElements]     |
+| Smallest by a derived key             | [minElementBy]     |
+| Largest by a derived key              | [maxElementBy]     |
+| Sorted copy, input untouched          | [sortedElements]   |
+| Fixed-size chunks as fresh lists      | [chunkElements]     |
 | Split into matching plus rest          | [partitionElements] |
 
 ## Example
@@ -93,8 +99,8 @@ Expected output:
 
 | Contract | What it means for you |
 | --- | --- |
-| Empty is normal | `findElement`, `minElement`, and `maxElement` return `(value: null, present: false)` on empty input without calling your function; chunk and partition return fresh empty collections. |
-| Pure in, pure out | No helper mutates its input; chunks, groups, and both partition lists are fresh, so mutating the result never affects the source. |
+| Empty is normal | `findElement`, `minElement`, `maxElement`, `minElementBy`, and `maxElementBy` return `(value: null, present: false)` on empty input without calling your function; `sortedElements` returns a fresh empty list; chunk and partition return fresh empty collections. |
+| Pure in, pure out | No helper mutates its input; sorted copies, chunks, and both partition lists are fresh, so mutating the result never affects the source. |
 | One pass where the SDK takes two | `partitionElements` calls your predicate once per element and returns both sides; the SDK `where` composition calls it twice per element. |
 | Programmer errors throw | A `chunkSize` below `1` throws `ArgumentError` — a non-positive chunk size is a caller bug, not a domain outcome. |
 

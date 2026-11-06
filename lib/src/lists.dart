@@ -16,11 +16,15 @@
 /// | Last element, presence-flagged        | [lastElement]       |
 /// | Smallest element, absent-safe          | [minElement]        |
 /// | Largest element, absent-safe           | [maxElement]        |
-/// | Fixed-size chunks as fresh lists       | [chunkElements]     |
-/// | Split into matching plus rest          | [partitionElements] |
+/// | Smallest by a derived key             | [minElementBy]     |
+/// | Largest by a derived key              | [maxElementBy]     |
+/// | Sorted copy, input untouched          | [sortedElements]   |
+/// | Fixed-size chunks as fresh lists      | [chunkElements]     |
+/// | Split into matching plus rest         | [partitionElements] |
 ///
 /// The `(value, present)` record on [findElement], [firstElement],
-/// [lastElement], [minElement], and [maxElement] is this package's OrNull: `present` reports presence and
+/// [lastElement], [minElement], [maxElement], [minElementBy], and
+/// [maxElementBy] is this package's OrNull: `present` reports presence and
 /// `value` is `null` when absent. Empty input or no match is a normal
 /// outcome here, never an error. Never trust `value` without checking
 /// `present` first: a list may itself hold `null` elements, so only the
@@ -221,6 +225,134 @@ library;
     }
   }
   return (value: highest, present: true);
+}
+
+/// Returns the element of [elements] with the smallest derived key.
+///
+/// | When you want to ...      | Reach for ... |
+/// | ------------------------- | ------------- |
+/// | Smallest by a derived key | [minElementBy] |
+///
+/// `dart:core` has no smallest-by-key helper: `dart:math` `min` takes exactly
+/// two scalars, and ordering by a derived key otherwise needs a manual
+/// fold-with-comparator-over-extract (DART-SDK). [minElementBy] fills the gap
+/// with one pure scan that leaves [elements] untouched, mirroring the Axiom
+/// `slice` precedent where empty input yields the zero value plus `false`
+/// (AXIOM-SISTER); here the absent value is `null`, so never trust `value`
+/// without checking `present` first.
+///
+/// Returns `(value: null, present: false)` without calling [keyOf] when
+/// [elements] is empty. Ties keep the first minimal element. Never mutates
+/// [elements].
+///
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0` (records).
+///
+/// ```dart
+/// final youngest = minElementBy(
+///   <String>['fig', 'pear', 'kiwi'],
+///   (fruit) => fruit.length,
+/// );
+/// if (youngest.present) {
+///   print(youngest.value); // fig
+/// }
+/// ```
+({Element? value, bool present}) minElementBy<
+  Element,
+  ExtractedKey extends Comparable<Object>
+>(List<Element> elements, ExtractedKey Function(Element) keyOf) {
+  if (elements.isEmpty) {
+    return (value: null, present: false);
+  }
+  Element lowest = elements.first;
+  ExtractedKey lowestKey = keyOf(lowest);
+  for (final candidate in elements.skip(1)) {
+    final ExtractedKey candidateKey = keyOf(candidate);
+    if (candidateKey.compareTo(lowestKey) < 0) {
+      lowest = candidate;
+      lowestKey = candidateKey;
+    }
+  }
+  return (value: lowest, present: true);
+}
+
+/// Returns the element of [elements] with the largest derived key.
+///
+/// | When you want to ...     | Reach for ... |
+/// | ------------------------- | ------------- |
+/// | Largest by a derived key  | [maxElementBy] |
+///
+/// `dart:core` has no largest-by-key helper: `dart:math` `max` takes exactly
+/// two scalars, and ordering by a derived key otherwise needs a manual
+/// fold-with-comparator-over-extract (DART-SDK). [maxElementBy] fills the gap
+/// with one pure scan that leaves [elements] untouched, mirroring the Axiom
+/// `slice` precedent where empty input yields the zero value plus `false`
+/// (AXIOM-SISTER); here the absent value is `null`, so never trust `value`
+/// without checking `present` first.
+///
+/// Returns `(value: null, present: false)` without calling [keyOf] when
+/// [elements] is empty. Ties keep the first maximal element. Never mutates
+/// [elements].
+///
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0` (records).
+///
+/// ```dart
+/// final longest = maxElementBy(
+///   <String>['fig', 'pear', 'kiwi'],
+///   (fruit) => fruit.length,
+/// );
+/// if (longest.present) {
+///   print(longest.value); // pear
+/// }
+/// ```
+({Element? value, bool present}) maxElementBy<
+  Element,
+  ExtractedKey extends Comparable<Object>
+>(List<Element> elements, ExtractedKey Function(Element) keyOf) {
+  if (elements.isEmpty) {
+    return (value: null, present: false);
+  }
+  Element highest = elements.first;
+  ExtractedKey highestKey = keyOf(highest);
+  for (final candidate in elements.skip(1)) {
+    final ExtractedKey candidateKey = keyOf(candidate);
+    if (candidateKey.compareTo(highestKey) > 0) {
+      highest = candidate;
+      highestKey = candidateKey;
+    }
+  }
+  return (value: highest, present: true);
+}
+
+/// Returns a sorted copy of [elements], leaving the input untouched.
+///
+/// | When you want to ...          | Reach for ...    |
+/// | ---------------------------- | ---------------- |
+/// | Sorted copy, input untouched | [sortedElements] |
+///
+/// `dart:core` answers this shape with [List.sort], which sorts in place and
+/// returns `void`: a fresh pipeline must spell the unnamed
+/// `List.of(elements)..sort(compare)` idiom itself (DART-SDK).
+/// [sortedElements] fills that gap with one pure copy that leaves [elements]
+/// untouched.
+///
+/// Returns a fresh growable list ordered by [compare] when provided, and by
+/// the elements' natural ordering otherwise. Returns a fresh empty list when
+/// [elements] is empty. Never mutates [elements]; mutating the result never
+/// affects [elements].
+///
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0` (records).
+///
+/// ```dart
+/// final sorted = sortedElements(<int>[3, 1, 2], null);
+/// print(sorted); // [1, 2, 3]
+/// ```
+List<Element> sortedElements<Element>(
+  List<Element> elements,
+  Comparator<Element>? compare,
+) {
+  final List<Element> sortedCopy = List<Element>.of(elements);
+  sortedCopy.sort(compare);
+  return sortedCopy;
 }
 
 /// Splits [elements] into consecutive fresh chunks of at most [chunkSize].
