@@ -22,6 +22,7 @@
 /// | Repeat a source iterable forever in order     | [cycleIterable]       |
 /// | Repeat one value forever                      | [repeatElement]       |
 /// | Collapse adjacent duplicates, keeping order   | [deduplicateAdjacent] |
+/// | Drop the last n, lazily                       | [dropRightElements]   |
 ///
 /// An empty source is a normal outcome here, never an error: every adapter
 /// is empty-safe except the infinite generators, which the caller bounds
@@ -315,5 +316,63 @@ Iterable<Element> deduplicateAdjacent<Element>(
     started = true;
     previousElement = candidate;
     yield candidate;
+  }
+}
+
+/// Drops the last [droppedCount] elements, yielding the rest lazily.
+///
+/// | When you want to ...                         | Reach for ...         |
+/// | -------------------------------------------- | --------------------- |
+/// | Drop the last n, lazily                      | [dropRightElements]   |
+///
+/// `dart:core` drops from the front only (`skip`), and spelling drop-last
+/// with the SDK takes `reversed.take` plus `reverse`, which materializes
+/// the whole source eagerly (DART-SDK). [dropRightElements] fills that gap
+/// with a bounded queue buffer holding only the trailing elements, sharing
+/// the queue-buffer convention of [windowedIterable] (AXIOM-SISTER via its
+/// WindowsSeq precedent).
+///
+/// Validates [droppedCount] eagerly at call time and stays fully lazy after
+/// that: creating the iterable pulls nothing, each pulled element advances
+/// the source by one, and the buffer never holds more than
+/// `droppedCount + 1` elements. Breaking early stops pulling the source,
+/// and re-iterating re-runs from the source. Reach for this adapter when
+/// the source is an [Iterable] or the pipeline is lazy; reach for the SDK
+/// `take` and `skip` when the dropped side is the front, or for the eager
+/// `lists` helpers when the input is already a [List] and the caller wants
+/// a finished value in one pass. Never mutates [sourceElements].
+///
+/// Throws an [ArgumentError] when [droppedCount] is negative: a negative
+/// count is a programmer error, not a domain outcome. Returns an empty
+/// iterable when [sourceElements] is empty or holds at most [droppedCount]
+/// elements.
+///
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
+///
+/// ```dart
+/// final remaining = dropRightElements(<int>[1, 2, 3, 4], 2);
+/// print(remaining.toList()); // [1, 2]
+/// ```
+Iterable<Element> dropRightElements<Element>(
+  Iterable<Element> sourceElements,
+  int droppedCount,
+) {
+  if (droppedCount < 0) {
+    throw ArgumentError.value(droppedCount, 'droppedCount', 'needs count >= 0');
+  }
+  return _dropRightElements(sourceElements, droppedCount);
+}
+
+Iterable<Element> _dropRightElements<Element>(
+  Iterable<Element> sourceElements,
+  int droppedCount,
+) sync* {
+  final Queue<Element> heldElements = Queue<Element>();
+  for (final Element candidate in sourceElements) {
+    heldElements.addLast(candidate);
+    if (heldElements.length <= droppedCount) {
+      continue;
+    }
+    yield heldElements.removeFirst();
   }
 }

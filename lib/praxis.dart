@@ -9,8 +9,8 @@
 /// | --- | --- |
 /// | a success-or-failure outcome | `result` ([Result], [Ok], [Failure]) |
 /// | a maybe-present value | `opt` ([Opt], [Some], [None]) |
-/// | a list to transform, find, or fold | lists ([findElement], [firstElement], [lastElement], [minElement], [maxElement], [chunkElements], [partitionElements]) |
-/// | a lazy `Iterable` pipeline to pull on demand | `iterx` ([zipIterables], [chunkedIterable], [windowedIterable], [cycleIterable], [repeatElement], [deduplicateAdjacent]) — reach for `iterx` when the source is an `Iterable` or the pipeline should stay lazy; reach for the eager `lists` helpers when the input is already a `List` and you want a finished value in one pass |
+/// | a list to transform, find, or fold | lists ([findElement], [firstElement], [lastElement], [minElement], [maxElement], [minElementBy], [maxElementBy], [sortedElements], [chunkElements], [partitionElements]) |
+/// | a lazy `Iterable` pipeline to pull on demand | `iterx` ([zipIterables], [chunkedIterable], [windowedIterable], [cycleIterable], [repeatElement], [deduplicateAdjacent], [dropRightElements]) — reach for `iterx` when the source is an `Iterable` or the pipeline should stay lazy; reach for the eager `lists` helpers when the input is already a `List` and you want a finished value in one pass |
 /// | distinct values to combine or compare | `set` ([symmetricDifference], [isSubsetOf], [isSupersetOf], [isDisjointFrom], [hasSameMembers]) |
 /// | a builtin map to reshape | `mapx` ([invertEntries], [pickEntries], [omitEntries], [mapValues], [mapKeys], [groupEntriesBy], [lookupValue]) |
 /// | predicates to combine (And / Or / Not) | `valid` ([Predicate], [andPredicates], [orPredicates], [notPredicate], [alwaysTrue], [alwaysFalse]) |

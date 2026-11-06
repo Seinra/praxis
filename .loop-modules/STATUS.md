@@ -12,6 +12,7 @@ Progress log + debt ledger. Columns: Item, Phase, Ceiling, Upgrade Path. NEVER d
 | 2026-10-23 | Axiom contrast (thesis fidelity) | VALIDATE | `(T, bool)` pins (FindSlice/Min/Max/Average), zero codegen, context-bound flow → deferral holds, manual JSON codecs, minimal lint set, CONTRIBUTING decline rows |
 | 2026-10-23 | skeleton T1–T4 done + verifier Go | VALIDATE | 120/120 tests, analyze/format clean, docs-sync 6/6, pilot exit 0; 1 SUGGESTION adopted (result library doc); no commits, push/PR owner-gated |
 | 2026-11-06 | fpdart-gaps warnings T1–T3 done, verified inline | VALIDATE | 727 tests, analyze/format clean, doc 4 pre-existing warnings; 2 WARNING gaps adopted (first/last + lookupValue), EOL churn reverted, barrel+opt tables synced; work-unit chain on feat/praxis-fpdart-gaps-warnings, push/PR owner-gated |
+| 2026-11-06 | fpdart-gaps suggestions T1–T3 done, verified inline | VALIDATE | 775 tests, analyze/format clean, doc 4 pre-existing warnings; 3 SUGGESTION gaps adopted (sorted + min/maxBy + dropRight), barrel rows synced; work-unit chain on feat/praxis-fpdart-gaps-suggestions, push/PR owner-gated |
 
 ## Debt ledger
 

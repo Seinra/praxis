@@ -615,6 +615,337 @@ void main() {
     });
   });
 
+  group('minElementBy', () {
+    final List<
+      ({
+        String label,
+        List<int> elements,
+        int Function(int) keyOf,
+        int? expected,
+        bool expectedPresent,
+      })
+    >
+    minByCases =
+        <
+          ({
+            String label,
+            List<int> elements,
+            int Function(int) keyOf,
+            int? expected,
+            bool expectedPresent,
+          })
+        >[
+          (
+            label: 'finds the smallest by identity',
+            elements: <int>[3, 1, 2],
+            keyOf: (score) => score,
+            expected: 1,
+            expectedPresent: true,
+          ),
+          (
+            label: 'finds the largest value through a negated key',
+            elements: <int>[3, 1, 2],
+            keyOf: (score) => -score,
+            expected: 3,
+            expectedPresent: true,
+          ),
+          (
+            label: 'keeps the first of duplicate minima',
+            elements: <int>[4, 2, 2, 5],
+            keyOf: (score) => score,
+            expected: 2,
+            expectedPresent: true,
+          ),
+          (
+            label: 'handles negative numbers',
+            elements: <int>[-2, -8, -3],
+            keyOf: (score) => score,
+            expected: -8,
+            expectedPresent: true,
+          ),
+          (
+            label: 'returns the lone element',
+            elements: <int>[7],
+            keyOf: (score) => score,
+            expected: 7,
+            expectedPresent: true,
+          ),
+        ];
+
+    for (final testCase in minByCases) {
+      test(testCase.label, () {
+        final lowest = minElementBy<int, int>(
+          List<int>.of(testCase.elements),
+          testCase.keyOf,
+        );
+        expect(lowest.present, equals(testCase.expectedPresent));
+        expect(lowest.value, equals(testCase.expected));
+      });
+    }
+
+    test('finds the shortest word by length', () {
+      const List<String> words = <String>['pear', 'fig', 'kiwi'];
+      final lowest = minElementBy<String, int>(words, (fruit) => fruit.length);
+      expect(lowest.present, isTrue);
+      expect(lowest.value, equals('fig'));
+    });
+
+    test('keeps the first of equal derived keys', () {
+      const List<String> words = <String>['pear', 'kiwi', 'plum'];
+      final lowest = minElementBy<String, int>(words, (fruit) => fruit.length);
+      expect(lowest.present, isTrue);
+      expect(lowest.value, equals('pear'));
+    });
+
+    test(
+      'returns absence on empty input without calling the key extractor',
+      () {
+        int calls = 0;
+        final lowest = minElementBy<int, int>(<int>[], (score) {
+          calls += 1;
+          return score;
+        });
+        expect(lowest.present, isFalse);
+        expect(lowest.value, isNull);
+        expect(calls, equals(0));
+      },
+    );
+
+    test('distinguishes a stored null minimum from absence via the flag', () {
+      final hit = minElementBy<int?, int>(<int?>[
+        null,
+        1,
+      ], (candidate) => candidate ?? -1);
+      expect(hit.present, isTrue);
+      expect(hit.value, isNull);
+      final miss = minElementBy<int?, int>(
+        <int?>[],
+        (candidate) => candidate ?? -1,
+      );
+      expect(miss.present, isFalse);
+      expect(miss.value, isNull);
+    });
+
+    test('leaves the input untouched', () {
+      final List<String> words = <String>['pear', 'fig', 'kiwi'];
+      final List<String> snapshot = List<String>.of(words);
+      minElementBy<String, int>(words, (fruit) => fruit.length);
+      expect(words, equals(snapshot));
+    });
+  });
+
+  group('maxElementBy', () {
+    final List<
+      ({
+        String label,
+        List<int> elements,
+        int Function(int) keyOf,
+        int? expected,
+        bool expectedPresent,
+      })
+    >
+    maxByCases =
+        <
+          ({
+            String label,
+            List<int> elements,
+            int Function(int) keyOf,
+            int? expected,
+            bool expectedPresent,
+          })
+        >[
+          (
+            label: 'finds the largest by identity',
+            elements: <int>[3, 1, 2],
+            keyOf: (score) => score,
+            expected: 3,
+            expectedPresent: true,
+          ),
+          (
+            label: 'finds the smallest value through a negated key',
+            elements: <int>[3, 1, 2],
+            keyOf: (score) => -score,
+            expected: 1,
+            expectedPresent: true,
+          ),
+          (
+            label: 'keeps the first of duplicate maxima',
+            elements: <int>[4, 5, 5, 1],
+            keyOf: (score) => score,
+            expected: 5,
+            expectedPresent: true,
+          ),
+          (
+            label: 'handles negative numbers',
+            elements: <int>[-2, -8, -3],
+            keyOf: (score) => score,
+            expected: -2,
+            expectedPresent: true,
+          ),
+          (
+            label: 'returns the lone element',
+            elements: <int>[7],
+            keyOf: (score) => score,
+            expected: 7,
+            expectedPresent: true,
+          ),
+        ];
+
+    for (final testCase in maxByCases) {
+      test(testCase.label, () {
+        final highest = maxElementBy<int, int>(
+          List<int>.of(testCase.elements),
+          testCase.keyOf,
+        );
+        expect(highest.present, equals(testCase.expectedPresent));
+        expect(highest.value, equals(testCase.expected));
+      });
+    }
+
+    test('finds the longest word by length', () {
+      const List<String> words = <String>['fig', 'pear', 'kiwi'];
+      final highest = maxElementBy<String, int>(words, (fruit) => fruit.length);
+      expect(highest.present, isTrue);
+      expect(highest.value, equals('pear'));
+    });
+
+    test('keeps the first of equal derived keys', () {
+      const List<String> words = <String>['kiwi', 'pear', 'plum'];
+      final highest = maxElementBy<String, int>(words, (fruit) => fruit.length);
+      expect(highest.present, isTrue);
+      expect(highest.value, equals('kiwi'));
+    });
+
+    test(
+      'returns absence on empty input without calling the key extractor',
+      () {
+        int calls = 0;
+        final highest = maxElementBy<int, int>(<int>[], (score) {
+          calls += 1;
+          return score;
+        });
+        expect(highest.present, isFalse);
+        expect(highest.value, isNull);
+        expect(calls, equals(0));
+      },
+    );
+
+    test('distinguishes a stored null maximum from absence via the flag', () {
+      final hit = maxElementBy<int?, int>(<int?>[
+        null,
+        1,
+      ], (candidate) => candidate ?? 99);
+      expect(hit.present, isTrue);
+      expect(hit.value, isNull);
+      final miss = maxElementBy<int?, int>(
+        <int?>[],
+        (candidate) => candidate ?? 99,
+      );
+      expect(miss.present, isFalse);
+      expect(miss.value, isNull);
+    });
+
+    test('leaves the input untouched', () {
+      final List<String> words = <String>['fig', 'pear', 'kiwi'];
+      final List<String> snapshot = List<String>.of(words);
+      maxElementBy<String, int>(words, (fruit) => fruit.length);
+      expect(words, equals(snapshot));
+    });
+  });
+
+  group('sortedElements', () {
+    final List<({String label, List<int> elements, List<int> expected})>
+    sortedCases = <({String label, List<int> elements, List<int> expected})>[
+      (
+        label: 'sorts shuffled input',
+        elements: <int>[3, 1, 2],
+        expected: <int>[1, 2, 3],
+      ),
+      (
+        label: 'keeps already sorted input',
+        elements: <int>[1, 2, 3],
+        expected: <int>[1, 2, 3],
+      ),
+      (
+        label: 'handles descending input',
+        elements: <int>[5, 4, 3],
+        expected: <int>[3, 4, 5],
+      ),
+      (
+        label: 'keeps duplicate values',
+        elements: <int>[4, 2, 2, 5],
+        expected: <int>[2, 2, 4, 5],
+      ),
+      (
+        label: 'handles negative numbers',
+        elements: <int>[-2, -8, -3],
+        expected: <int>[-8, -3, -2],
+      ),
+      (
+        label: 'returns the lone element',
+        elements: <int>[7],
+        expected: <int>[7],
+      ),
+    ];
+
+    for (final testCase in sortedCases) {
+      test(testCase.label, () {
+        final sorted = sortedElements<int>(
+          List<int>.of(testCase.elements),
+          null,
+        );
+        expect(sorted, equals(testCase.expected));
+      });
+    }
+
+    test('orders words lexicographically with the natural ordering', () {
+      const List<String> words = <String>['pear', 'fig', 'kiwi'];
+      final sorted = sortedElements<String>(words, null);
+      expect(sorted, equals(<String>['fig', 'kiwi', 'pear']));
+    });
+
+    test('honours a custom descending comparator', () {
+      final sorted = sortedElements<int>(<int>[
+        3,
+        1,
+        2,
+      ], (formerNumber, latterNumber) => latterNumber.compareTo(formerNumber));
+      expect(sorted, equals(<int>[3, 2, 1]));
+    });
+
+    test('returns a fresh empty list for empty input', () {
+      final List<int> emptyScores = <int>[];
+      final sorted = sortedElements<int>(emptyScores, null);
+      expect(sorted, isEmpty);
+      expect(sorted, isNot(same(emptyScores)));
+    });
+
+    test('sorts stored nulls with a null-aware comparator', () {
+      int compareNullable(int? formerNumber, int? latterNumber) {
+        if (formerNumber == null) {
+          return latterNumber == null ? 0 : -1;
+        }
+        if (latterNumber == null) {
+          return 1;
+        }
+        return formerNumber.compareTo(latterNumber);
+      }
+
+      final sorted = sortedElements<int?>(<int?>[2, null, 1], compareNullable);
+      expect(sorted, equals(<int?>[null, 1, 2]));
+    });
+
+    test('returns a fresh list and leaves the input untouched', () {
+      final List<int> scores = <int>[3, 1, 2];
+      final List<int> snapshot = List<int>.of(scores);
+      final sorted = sortedElements<int>(scores, null);
+      expect(sorted, isNot(same(scores)));
+      sorted.add(99);
+      expect(scores, equals(snapshot));
+      expect(sorted, equals(<int>[1, 2, 3, 99]));
+    });
+  });
+
   group('documented examples', () {
     test('findElement example prints the first score above 80', () {
       final List<int> scores = <int>[72, 91, 85];
@@ -668,6 +999,31 @@ void main() {
       ], (number) => number.isEven);
       expect(split.matching, equals(<int>[2, 4]));
       expect(split.rest, equals(<int>[1, 3]));
+    });
+
+    test('minElementBy example prints fig', () {
+      final youngest = minElementBy(<String>[
+        'fig',
+        'pear',
+        'kiwi',
+      ], (fruit) => fruit.length);
+      expect(youngest.present, isTrue);
+      expect(youngest.value, equals('fig'));
+    });
+
+    test('maxElementBy example prints pear', () {
+      final longest = maxElementBy(<String>[
+        'fig',
+        'pear',
+        'kiwi',
+      ], (fruit) => fruit.length);
+      expect(longest.present, isTrue);
+      expect(longest.value, equals('pear'));
+    });
+
+    test('sortedElements example sorts three scores', () {
+      final sorted = sortedElements(<int>[3, 1, 2], null);
+      expect(sorted, equals(<int>[1, 2, 3]));
     });
   });
 }
