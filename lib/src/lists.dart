@@ -335,9 +335,9 @@ library;
 /// untouched.
 ///
 /// Returns a fresh growable list ordered by [compare] when provided, and by
-/// the elements' natural ordering otherwise (with a `null` compare the elements
-/// must be `Comparable` at runtime — SDK `sort` parity). Returns a fresh empty list when
-/// [elements] is empty. Never mutates [elements]; mutating the result never
+/// the elements' natural ordering otherwise. With a `null` compare the
+/// elements must be `Comparable` at runtime (SDK `sort` parity). Returns a
+/// fresh empty list when [elements] is empty. Never mutates [elements]; mutating the result never
 /// affects [elements].
 ///
 /// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.

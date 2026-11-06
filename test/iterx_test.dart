@@ -780,6 +780,21 @@ void main() {
       expect(pulls, equals(3));
     });
 
+    test('lags an unbounded source by the dropped count', () {
+      Iterable<int> naturals() sync* {
+        int next = 0;
+        while (true) {
+          yield next;
+          next += 1;
+        }
+      }
+
+      expect(
+        dropRightElements<int>(naturals(), 2).take(3).toList(),
+        equals(<int>[0, 1, 2]),
+      );
+    });
+
     test('stops pulling when the caller stops early', () {
       int pulls = 0;
       Iterable<int> countedSource() sync* {

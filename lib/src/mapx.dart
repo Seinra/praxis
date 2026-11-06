@@ -251,12 +251,13 @@ Map<GroupKey, List<Value>> groupEntriesBy<Key, Value, GroupKey>(
 /// `dart:core` answers lookup with `Map.[]`, which conflates a missing key
 /// with a held `null` value, while `containsKey` plus `[]` pays a two-probe
 /// dance with a cast — the same probe [pickEntries] already pays inline
-/// (DART-SDK). [lookupValue] fills that gap with one presence-flagged probe,
+/// (DART-SDK). [lookupValue] fills that gap with one presence-flagged call,
 /// mirroring this package's `OrderedMap.get` `(value, present)` OrNull
 /// discipline.
 ///
-/// A missing key yields `(value: null, present: false)` (empty map included):
-/// never an error, never a throw. A held `null` reads `(value: null, present: true)`, so
+/// A missing key yields `(value: null, present: false)`:
+/// never an error, never a throw — empty map included. A held `null`
+/// reads `(value: null, present: true)`, so `(value: null, present: true)`, so
 /// only `present` tells it apart from absence. Never mutates [entries]; the
 /// record is a fresh value.
 ///
