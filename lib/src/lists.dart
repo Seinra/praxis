@@ -22,9 +22,8 @@
 /// | Fixed-size chunks as fresh lists      | [chunkElements]     |
 /// | Split into matching plus rest         | [partitionElements] |
 ///
-/// The `(value, present)` record on [findElement], [firstElement],
-/// [lastElement], [minElement], [maxElement], [minElementBy], and
-/// [maxElementBy] is this package's OrNull: `present` reports presence and
+/// The `(value, present)` record on the presence-flagged helpers in the
+/// table above is this package's OrNull: `present` reports presence and
 /// `value` is `null` when absent. Empty input or no match is a normal
 /// outcome here, never an error. Never trust `value` without checking
 /// `present` first: a list may itself hold `null` elements, so only the
@@ -336,11 +335,12 @@ library;
 /// untouched.
 ///
 /// Returns a fresh growable list ordered by [compare] when provided, and by
-/// the elements' natural ordering otherwise. Returns a fresh empty list when
+/// the elements' natural ordering otherwise (with a `null` compare the elements
+/// must be `Comparable` at runtime — SDK `sort` parity). Returns a fresh empty list when
 /// [elements] is empty. Never mutates [elements]; mutating the result never
 /// affects [elements].
 ///
-/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0` (records).
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final sorted = sortedElements(<int>[3, 1, 2], null);
@@ -372,7 +372,7 @@ List<Element> sortedElements<Element>(
 /// fresh list, so mutating the result never affects [elements]. Never
 /// mutates [elements].
 ///
-/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0` (records).
+/// Available since Praxis `0.1.0`. Requires Dart `^3.13.0`.
 ///
 /// ```dart
 /// final chunks = chunkElements(<int>[1, 2, 3, 4, 5], 2);
