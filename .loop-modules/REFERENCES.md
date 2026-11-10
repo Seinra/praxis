@@ -1,14 +1,14 @@
 # REFERENCES
 
-Pinned external truth by category. Packs cite IDs, never raw versions. Prose citing a version without an ID has no standing. `stale`/`missing` rows never support a decision.
+Pinned external truth by category, plus the artifact-store row. Packs cite IDs, never raw versions. Prose citing a version without an ID has no standing. `stale`/`missing` rows never support a decision.
 
 ## How to use
 
-Every design decision cites a stable ID below. A rename/replacement updates the pin + adapter mapping, never rule prose.
+Every design decision cites a stable ID below. A rename/replacement updates the pin + adapter mapping, never rule prose. The store row pins the artifact store + manifest path + glob dialect (Rule 15).
 
 ## Pins
 
-| ID | Category | Source | Pin |
+| ID | category | artifact | pin note |
 | --- | --- | --- | --- |
 | DART-SDK | toolchain | local `dart --version` | `3.13.5 stable windows_x64` (2026-10-23) |
 | DART-FLUTTER | toolchain | local `flutter --version` | `3.47.7 stable` (2026-10-23); consumer-adjacent only |
@@ -17,7 +17,7 @@ Every design decision cites a stable ID below. A rename/replacement updates the 
 | FPDART-REF | external-docs | fpdart (v1.2.0, v2 pre-release) | reference/inspiration ONLY, never a dependency (thesis verdict 2026-10-23: monadic-effects mismatch + v1→v2 churn) |
 | CATALYST-CONSUMER | consumer | owner-declared | offline-first course app; pilots via scratch path-only; no commit from here; versioned release + pin before any Catalyst commit |
 | ODD-HARNESS | methodology | el Gentleman orchestrator (this session) | Authorize → Explore → Resolve → Classify → Track → Implement → Close |
-| LOOP-ENGINEERING | methodology | `loop-engineering` skill v1.9 | loop authoring discipline (this loop complies) |
+| LOOP-ENGINEERING | methodology | `loop-engineering` skill v1.14 | loop authoring discipline (this loop complies) |
 | COG-DOC | methodology | `cognitive-doc-design` skill v1.0 | lead-with-answer, progressive disclosure, chunking, signposting |
 | FOUNDRY-CRAFT | methodology | `foundry-craft` skill v1.0 + craft-floor | absolute bans + quality floor (single policy source); exactly one Decision Gate playbook per IMPLEMENT task |
 | FOUNDRY-EXPLORE | methodology | `foundry-explore` skill v1.0 | read-only mapping, stops before design |
@@ -33,6 +33,7 @@ Every design decision cites a stable ID below. A rename/replacement updates the 
 | CHAINED-PR | methodology | `chained-pr` skill | PRs over 400 lines split into chained review slices |
 | ISSUE-CREATION | methodology | `issue-creation` skill | triage + create from repo evidence with read-back |
 | RDD-DEFECT | methodology | `rdd-defect-workflow` skill | review authority, correction/recovery, delivery gate |
+| CONDUIT-STORE | store | Conduit content-addressed artifact store; manifest `.private` (repo root), dialect gitignore-lite | default store (Rule 15); manifest lists paths only, never content; every tracked glob mirrored in `.gitignore`, manifest itself never ignored |
 
 ## Gaps (investigation only)
 
