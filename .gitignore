@@ -38,3 +38,14 @@ Thumbs.db
 pubspec.lock
 
 # Published artifacts (private until the v0 bar — VISION invariant 6)
+
+# Conduit-tracked agent artifacts (mirror of .private — never in git)
+/VISION.md
+/PRAXIS_LOOP.md
+/loop-config.yaml
+/.loop-modules/
+/odd/
+/openspec/
+
+# Conduit local pool (content-addressed snapshots, never commit)
+/.conduit-pool/

@@ -30,7 +30,7 @@ must be genuinely good **and** thesis-fitting (`VISION.md`), or fork it.
 
 ## Process
 
-You work inside `PRAXIS_LOOP.md` + `.loop-modules/` + `VISION.md`; each package ships as one ODD-tracked slice in `odd/tasks/`. You keep one logical feature per iteration; pushes stay owner-gated. Catalyst pilots consume versioned releases only — never a Catalyst commit from here.
+You work inside the loop protocol (materialized at runtime from the Conduit store); each package ships as one ODD-tracked slice. You keep one logical feature per iteration; pushes stay owner-gated. Catalyst pilots consume versioned releases only — never a Catalyst commit from here.
 
 ## Gates
 
